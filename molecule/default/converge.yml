@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include leantime_ansible"
+      include_role:
+        name: "leantime_ansible"
