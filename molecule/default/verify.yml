@@ -21,3 +21,16 @@
       - not estado.changed
       success_msg: "SUCESSO: A cache está atualizada"
       fail_msg: "ERRO: Existem actualizações pendentes"
+
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"
+    apt:
+      upgrade: safe
+    check_mode: true
+    register: estado
+
+  - name: "teste: o sistema operativo encontra-se atualizado?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: O sistema operativo está atualizado"
+      fail_msg: "ERRO: Existem actualizações pendentes"
