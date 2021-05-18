@@ -3,9 +3,39 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
+provider:
+  name: virtualbox
+  type: virtualbox
 platforms:
-  - name: instance
+  - name: ubuntu-20.04
+    box: ubuntu/focal64
+    memory: 2048
+    cpus: 2
+    instance_raw_config_args:
+    - "vm.network 'forwarded_port', guest: 80, host: 8080"
+    interfaces:
+    - auto_config: true
+      network_name: private_network
+      type: dhcp
 provisioner:
   name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+scenario:
+  test_sequence:
+  - dependency
+  - lint
+  - cleanup
+  - destroy
+  - syntax
+  - create
+  - prepare
+  - converge
+  - idempotence
+  - verify
+  - cleanup
+  - destroy
 verifier:
   name: ansible
