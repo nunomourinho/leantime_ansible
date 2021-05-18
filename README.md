@@ -1,38 +1,41 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Este role instala a plataforma de gestão de projetos agil leantime num servidor ou máquina virtual com Ubuntu 20.04
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ubuntu 20.04, Ubuntu 21.04. 
 
 Role Variables
 --------------
+    login_leantime - Utilizador a ser criado na base de dados de Mysql ou MariaDB
+    password_leantime - Password da base de dados de Mysql ou MariaDB
+    login_website - Endereço de email para o login inicial no site web
+    password_website - Password para o site web. Tem de obrigatóriamente responder aos requisitos mínimos de tamanho e complexidade documentados
+    versao_leantime - Versão da release do software leantime a instalar - por exemplo: v2.1.7
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Sem dependencias.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { login_leantime: "adminLeanTimeDB", password_leantime: "P0ssW0rD###)", login_website: "utilizador@email.com", password_website: "Passw0rd###)Websit3", versao_leantime: "v2.1.7" }
 
 License
 -------
 
-BSD
+GPL 3.1
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Nuno Mourinho.
+---
