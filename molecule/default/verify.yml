@@ -11,6 +11,7 @@
   - name: "Simulação: Atualizar a cache do sistema"
     apt:
       update_cache: true
+      cache_valid_time: 3600
     check_mode: true
     register: estado
 

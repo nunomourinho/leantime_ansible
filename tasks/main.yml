@@ -1,2 +1,2 @@
 ---
-# tasks file for leantime_ansible
+- { include: tasks.yml, become: yes }
