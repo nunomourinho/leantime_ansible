@@ -3,3 +3,7 @@
      apt:
        update_cache: true
        cache_valid_time: 3600
+
+   - name: "Atualiza o sistema operativo"
+     apt:
+       upgrade: safe
