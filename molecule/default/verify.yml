@@ -1,10 +1,22 @@
 ---
-# This is an example playbook to execute Ansible tests.
+# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
 
-- name: Verify
+- name: "Infraestrutura conduzida por testes"
   hosts: all
   gather_facts: false
+  become: true
+
   tasks:
-  - name: Example assertion
+  - name: "Simulação: Atualizar a cache do sistema"
+    apt:
+      update_cache: true
+    check_mode: true
+    register: estado
+
+  - name: "teste: a cache encontra-se actualizada?"
     assert:
-      that: true
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: A cache está atualizada"
+      fail_msg: "ERRO: Existem actualizações pendentes"
