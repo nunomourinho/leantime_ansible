@@ -87,3 +87,19 @@
       - not estado.changed
       success_msg: "SUCESSO: As dependencias estavam instaladas"
       fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+
+  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+  - name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"
+    service:
+      name: apache2
+      state: started
+      enabled: true
+    check_mode: true
+    register: estado
+
+  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"
+      fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
