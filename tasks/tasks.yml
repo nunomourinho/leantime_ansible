@@ -7,3 +7,40 @@
    - name: "Atualiza o sistema operativo"
      apt:
        upgrade: safe
+
+   - name: "Instalar as dependencias necessária ao programa leantime"
+     apt:
+       pkg:
+       - mc
+       - screen
+       - git
+       - apache2
+       - mysql-server
+       - php
+       - php-mysql
+       - php-ldap
+       - php-cli
+       - php-soap
+       - php-json
+       - graphviz
+       - php-xml
+       - php-gd
+       - php-zip
+       - libapache2-mod-php
+       - php-dev
+       - libmcrypt-dev
+       - gcc
+       - make
+       - autoconf
+       - libc-dev
+       - pkg-config
+       - pwgen
+       - curl
+       - unzip
+       - zip
+       - php-mbstring
+       - expect
+       - net-tools
+       - python3-mysqldb
+       - python3-apt
+       - python3-pycurl
