@@ -1,0 +1,34 @@
+admlocal@devOps:~/leantime_ansible$ ascnsible-lint 
+WARNING  Computed fully qualified role name of leantime_ansible does not follow current galaxy requirements.
+Please edit meta/main.yml and assure we can correctly determine full role name:
+
+galaxy_info:
+role_name: my_name  # if absent directory name hosting role is used instead
+namespace: my_galaxy_namespace  # if absent, author is used instead
+
+Namespace: https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations
+Role: https://galaxy.ansible.com/docs/contributing/creating_role.html#role-names
+
+As an alternative, you can add 'role-name' to either skip_list or warn_list.
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+WARNING  Listing 4 violation(s) that are fatal
+<span style="color: #ea4040">meta-no-info</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Role info should contain platforms</span>
+<span style="color: #0000aa">meta/main.yml</span>:0
+
+<span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: author</span>
+<span style="color: #0000aa">meta/main.yml</span>:1
+
+<span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: company</span>
+<span style="color: #0000aa">meta/main.yml</span>:1
+
+<span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: license</span>
+<span style="color: #0000aa">meta/main.yml</span>:1
+
+You can skip specific rules or tags by adding them to your configuration file:
+<span style="font-weight: lighter"># .ansible-lint</span>
+<span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span>
+  - meta-incorrect  <span style="font-weight: lighter"># meta/main.yml default values should be changed</span>
+  - meta-no-info  <span style="font-weight: lighter"># meta/main.yml should contain relevant info</span>
+Finished with <span style="font-weight: bold; color: #00aaaa">4</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">14</span> files.
+admlocal@devOps:~/leantime_ansible$ exit
