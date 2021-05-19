@@ -1,0 +1,50 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+admlocal@devOps:~/leantime_ansible$ ascnsible-lint 
+WARNING  Computed fully qualified role name of leantime_ansible does not follow current galaxy requirements.
+Please edit meta/main.yml and assure we can correctly determine full role name:
+
+galaxy_info:
+role_name: my_name  # if absent directory name hosting role is used instead
+namespace: my_galaxy_namespace  # if absent, author is used instead
+
+Namespace: https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations
+Role: https://galaxy.ansible.com/docs/contributing/creating_role.html#role-names
+
+As an alternative, you can add 'role-name' to either skip_list or warn_list.
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+WARNING  Listing 4 violation(s) that are fatal
+\textcolor{ansi91}{meta-no-info}\textcolor{ansi2}{:} \textcolor{ansi31}{Role info should contain platforms}
+\textcolor{ansi34}{meta/main.yml}:0
+
+\textcolor{ansi91}{meta-incorrect}\textcolor{ansi2}{:} \textcolor{ansi31}{Should change default metadata: author}
+\textcolor{ansi34}{meta/main.yml}:1
+
+\textcolor{ansi91}{meta-incorrect}\textcolor{ansi2}{:} \textcolor{ansi31}{Should change default metadata: company}
+\textcolor{ansi34}{meta/main.yml}:1
+
+\textcolor{ansi91}{meta-incorrect}\textcolor{ansi2}{:} \textcolor{ansi31}{Should change default metadata: license}
+\textcolor{ansi34}{meta/main.yml}:1
+
+You can skip specific rules or tags by adding them to your configuration file:
+\textcolor{ansi2}{# .ansible-lint}
+\textcolor{ansi94}{warn_list}:  \textcolor{ansi2}{# or 'skip_list' to silence them completely}
+  - meta-incorrect  \textcolor{ansi2}{# meta/main.yml default values should be changed}
+  - meta-no-info  \textcolor{ansi2}{# meta/main.yml should contain relevant info}
+Finished with \textbf{\textcolor{ansi36}{4}} failure\textcolor{ansi1}{(}s\textcolor{ansi1}{)}, \textbf{\textcolor{ansi36}{0}} warning\textcolor{ansi1}{(}s\textcolor{ansi1}{)} on \textbf{\textcolor{ansi36}{14}} files.
+admlocal@devOps:~/leantime_ansible$ exit
+
+\end{Verbatim}
+\end{document}
