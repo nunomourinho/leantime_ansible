@@ -51,3 +51,31 @@
        name: apache2
        state: started
        enabled: true
+
+   # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder
+   - name: "Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2"
+     find:
+       paths: /etc
+       patterns: "php.ini"
+       recurse: true
+     register: caminho_php_ini
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+   - name: "Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile."
+     ansible.builtin.lineinfile:
+       path: "{{ caminho_php_ini.files[0].path }}"
+       regexp: "{{ item.regexp  }}"
+       line: "{{ item.line }}"
+     with_items:
+       - regexp: "^file_uploads"
+         line: "file_uploads = 1"
+       - regexp: "^upload_max_filesize"
+         line: "upload_max_filesize = 1G"
+       - regexp: "^max_file_uploads"
+         line: "max_file_uploads = 20"
+       - regexp: "^post_max_size"
+         line: "post_max_size = 2G"
+       - regexp: "^memory_limit"
+         line: "memory_limit = 2G"
+       - regexp: "^max_input_time"
+         line: "max_input_time = 3600"
