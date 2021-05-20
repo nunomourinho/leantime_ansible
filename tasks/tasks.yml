@@ -79,3 +79,15 @@
          line: "memory_limit = 2G"
        - regexp: "^max_input_time"
          line: "max_input_time = 3600"
+
+   # Fonte: https://docs.ansible.com/ansible/2.7/modules/file_module.html
+   - name: Cria a directoria temporária leantime e a directoria de apache leantime
+     file:
+       path: "{{ item.path }}"
+       state: directory
+       mode: 0755
+       owner: www-data
+       group: www-data
+     with_items:
+       - path: "/tmp/leantime"
+       - path: "/var/www/leantime"
