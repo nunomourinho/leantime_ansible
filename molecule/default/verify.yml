@@ -140,3 +140,22 @@
       - not estado.changed
       success_msg: "SUCESSO: O ficheiro php.ini foi alterado com sucesso"
       fail_msg: "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"
+  
+  # O site deve existir na pasta /var/www/leantime. Este teste visa determinar se a pasta
+  # existe e se temas permissões certas
+  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre a pastas /var/www/leantime"
+    stat:
+      path: "/var/www/leantime"
+    register: pasta
+ 
+  - name: "Teste: A pasta /var/www/leantime existe e tem as permissões certas?"
+    assert:
+      that:
+        - pasta.stat.exists
+        - pasta.stat.isdir
+        - pasta.stat.mode == "0755"
+        - pasta.stat.pw_name == "www-data"
+        - pasta.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas no site leantime"
+      fail_msg: "ERRO: Permissões incorrectas no site leantime ou site não existente"
