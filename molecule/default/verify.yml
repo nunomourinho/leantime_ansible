@@ -159,3 +159,19 @@
         - pasta.stat.gr_name == "www-data"
       success_msg: "SUCESSO: Permissões correctas no site leantime"
       fail_msg: "ERRO: Permissões incorrectas no site leantime ou site não existente"
+
+  # Outro dos requesitos é a existência de uma base de dados para o site.
+  # Esta base de dados deve ser criada, logo tem de ser testada para determinar se ela existe ou não.
+  # Fonte de inspiração: https://serverfault.com/questions/173978/from-a-shell-script-how-can-i-check-whether-a-mysql-database-exists
+  - name: "Simulação: Verifica se é necessário criar a base de dados leantime_database"
+    shell: "mysql -u root -e 'use leantime_database'"
+    register: result
+    failed_when: false
+    changed_when: false
+
+  - name: "Teste: A base de dados leantime_database existe ?"
+    assert:
+      that:
+      - result.rc == 0
+      success_msg: "SUCESSO: A base de dados leantime_database já se encontra criada"
+      fail_msg: "ERRO: Não existe a base de dados leantime_database"
