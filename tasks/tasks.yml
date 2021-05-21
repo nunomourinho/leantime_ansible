@@ -103,3 +103,9 @@
        priv: "leantime_database.*:ALL"
        host: localhost
        state: present
+
+   - name: "Faz o download do software leantime a partir do repositório git"
+     get_url:
+       url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip
+       dest: /tmp/leantime
+       mode: 0755
