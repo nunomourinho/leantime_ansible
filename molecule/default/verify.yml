@@ -185,3 +185,22 @@
     uri:
       url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip
     register: resultado
+
+  # Teste: Deve existir o ficheiro configuration.php no site do leantime. A existência deste ficheiro
+  #        com as permissões certas indica que o processo de unzip correu bem
+  # Documentação oficial em: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /var/www/leantime/config/configuration.php"
+    stat:
+      path: "/var/www/leantime/config/configuration.php"
+    register: ficheiro
+ 
+  - name: "Teste: O ficheiro /var/www/leantime/config/configuration.php existe e tem as permissões certas?"
+    assert:
+      that:
+        - ficheiro.stat.exists
+        - ficheiro.stat.isreg
+        - ficheiro.stat.mode == "0755"
+        - ficheiro.stat.pw_name == "www-data"
+        - ficheiro.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas e ficheiro configuration.php existente"
+      fail_msg: "ERRO: Permissões incorrectas ou ficheiro configuration.php não existente"
