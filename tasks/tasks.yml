@@ -91,3 +91,15 @@
      with_items:
        - path: "/tmp/leantime"
        - path: "/var/www/leantime"
+
+   # Fonte: Ansible for DevOps - Server and configuration management for humans de Jeff Geerling, página 98
+   - name: "Cria a base de dados de mysql para o leantime"
+     mysql_db: "db=leantime_database state=present"
+
+   - name: "Cria o utilizador para a base de dados leantime"
+     mysql_user:
+       name: "{{ login_leantime }}"
+       password: "{{ password_leantime }}"
+       priv: "leantime_database.*:ALL"
+       host: localhost
+       state: present
