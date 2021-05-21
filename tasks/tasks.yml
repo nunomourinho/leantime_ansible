@@ -131,3 +131,18 @@
        group: www-data
        mode: '0755'
        remote_src: true
+       force: false
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+   - name: Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.
+     ansible.builtin.replace:
+       path: /var/www/leantime/config/configuration.php
+       regexp: "{{ item.regexp  }}"
+       replace: "{{ item.line }}"
+     with_items:
+       - regexp: 'dbUser=""'
+         line: 'dbUser="{{ login_leantime }}"'
+       - regexp: 'dbDatabase=""'
+         line: 'dbDatabase="leantime_database"'
+       - regexp: 'dbPassword=""'
+         line: 'dbPassword="{{ password_leantime }}"'
