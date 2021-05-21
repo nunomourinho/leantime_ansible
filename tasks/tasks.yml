@@ -109,3 +109,25 @@
        url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip
        dest: /tmp/leantime
        mode: 0755
+
+   # O ficheiro Leantime-versao.zip necessita de ser descomprimido
+   - name: Descomprime o software leantime
+     unarchive:
+       src: "/tmp/leantime/Leantime-{{ versao_leantime }}.zip"
+       dest: "/var/www/leantime"
+       owner: www-data
+       group: www-data
+       mode: 0755
+       remote_src: true
+
+   # Após a descompressão, se o ficheiro configuration.php não existir, este necessita de ser
+   # criado a partir do ficheiro configuration.sample.php
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+   - name: Copia o ficheiro de configuração configuration.sample.php
+     ansible.builtin.copy:
+       src: /var/www/leantime/config/configuration.sample.php
+       dest: /var/www/leantime/config/configuration.php
+       owner: www-data
+       group: www-data
+       mode: '0755'
+       remote_src: true
