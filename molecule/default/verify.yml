@@ -204,3 +204,61 @@
         - ficheiro.stat.gr_name == "www-data"
       success_msg: "SUCESSO: Permissões correctas e ficheiro configuration.php existente"
       fail_msg: "ERRO: Permissões incorrectas ou ficheiro configuration.php não existente"
+
+  # Teste: O ficheiro /var/www/leantime/config/configuration.php necessita de ser alterado.
+  # As variáveis dbuser, dbDatabase, e dbPassword necessitam de estar configuradas.
+  # Por simulação o sistema vai determinar se estas estão configuradas com o valor esperado.
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbuser foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbUser=""'
+      replace: 'dbUser="{{ login_leantime }}"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: O dbUser foi alterado?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbUser foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbUser não foi alterado no ficheiro configuration.php"
+
+
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbDatabase foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbDatabase=""'
+      replace: 'dbDatabase="leantime_database"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: a variável dbDatabase foi alterada?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbDatabase foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbDatabase não foi alterado no ficheiro configuration.php"
+
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbPassword foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbPassword=""'
+      replace: 'dbPassword="{{ password_leantime }}"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: O dbPassword foi alterado?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbPassword não foi alterado no ficheiro configuration.php"
