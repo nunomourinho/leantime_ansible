@@ -8,6 +8,10 @@
   become: true
 
   tasks:
+  - name: Variáveis
+    include_vars:
+      file: ../../vars/main.yml
+
   - name: "Simulação: Atualizar a cache do sistema"
     apt:
       update_cache: true
@@ -175,3 +179,9 @@
       - result.rc == 0
       success_msg: "SUCESSO: A base de dados leantime_database já se encontra criada"
       fail_msg: "ERRO: Não existe a base de dados leantime_database"
+
+  # Teste: O download do software leantime deve ser possível, a partir do site do leantime
+  - name: "Simulação e Teste: Verifica se o endereço git para a versão de leantime existe"
+    uri:
+      url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip
+    register: resultado
