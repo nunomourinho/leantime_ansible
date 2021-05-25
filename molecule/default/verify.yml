@@ -277,7 +277,7 @@
       that:
         - ficheiro.stat.exists
         - ficheiro.stat.isreg
-        - ficheiro.stat.mode == "0755"
+        - ficheiro.stat.mode == "0777"
         - ficheiro.stat.pw_name == "root"
         - ficheiro.stat.gr_name == "www-data"
       success_msg: "SUCESSO: Permissões correctas"

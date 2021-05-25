@@ -154,4 +154,20 @@
        dest: /etc/apache2/sites-available/leantime.conf
        owner: root
        group: www-data
-       mode: 0755
+       mode: 0644
+       force: false
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+   - name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled"
+     ansible.builtin.file:
+       src: /etc/apache2/sites-available/leantime.conf
+       dest: /etc/apache2/sites-enabled/leantime.conf
+       state: link
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+   - name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled"
+     ansible.builtin.file:
+       path: /etc/apache2/sites-available/leantime.conf
+       owner: root
+       group: www-data
+       mode: '0777'
