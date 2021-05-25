@@ -146,3 +146,12 @@
          line: 'dbDatabase="leantime_database"'
        - regexp: 'dbPassword=""'
          line: 'dbPassword="{{ password_leantime }}"'
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
+   - name: Copia o template do site para a pásta /etc/apache2/sites-available
+     ansible.builtin.template:
+       src: leantime.template.j2
+       dest: /etc/apache2/sites-available/leantime.conf
+       owner: root
+       group: www-data
+       mode: 0755
