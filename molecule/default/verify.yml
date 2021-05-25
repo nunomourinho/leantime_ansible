@@ -263,7 +263,7 @@
       success_msg: "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"
       fail_msg: "ERRO: O dbPassword não foi alterado no ficheiro configuration.php"
 
-  # A configuração do site leantime necessita que seja criado um site atravé~s de um ficheiro de
+  # A configuração do site leantime necessita que seja criado um site através de um ficheiro de
   # configuração, dentro das pasta do apache2. Deve existir um ficheiro de configuração do
   # leantime em (/etc/apache2/sites-available
   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
@@ -280,5 +280,23 @@
         - ficheiro.stat.mode == "0755"
         - ficheiro.stat.pw_name == "root"
         - ficheiro.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas"
+      fail_msg: "ERRO: Permissões incorrectas"
+
+  # O site deve estar ativo no apache. Este teste vai verificar se o site se encontra ativo
+  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/leantime.conf"
+    stat:
+      path: "/etc/apache2/sites-enabled/leantime.conf"
+    register: ficheiro
+ 
+  - name: "Teste: O ficheiro /etc/apache2/sites-enabled/leantime.conf existe e tem as permissões certas?"
+    assert:
+      that:
+        - ficheiro.stat.exists
+        - ficheiro.stat.islnk
+        - ficheiro.stat.mode == "0777"
+        - ficheiro.stat.pw_name == "root"
+        - ficheiro.stat.gr_name == "root"
       success_msg: "SUCESSO: Permissões correctas"
       fail_msg: "ERRO: Permissões incorrectas"
