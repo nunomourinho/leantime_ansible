@@ -311,3 +311,24 @@
     assert:
       that:
         - not ficheiro.stat.exists
+
+  - name: "Simulação: Activa o módulo mod_rewrite no apache"
+    apache2_module:
+      name: rewrite
+      state: present
+    check_mode: true
+    register: estado
+
+  - name: "Simulação: Activa o módulo mod_rewrite no apache"
+    apache2_module:
+      name: rewrite
+      state: present
+    check_mode: true
+    register: estado
+ 
+  - name: "Teste: o mod_rewrite do apache encontra-se ativo?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: mod_rewrite encontra-se instalado e ativo"
+      fail_msg: "ERRO: mod_rewrite não instalado ou não ativo!"
