@@ -171,3 +171,8 @@
        owner: root
        group: www-data
        mode: '0777'
+
+   - name: "Apaga o link 000-default.conf na pasta sites-enabled do apache2"
+     ansible.builtin.file:
+       path: /etc/apache2/sites-enabled/000-default.conf
+       state: absent
