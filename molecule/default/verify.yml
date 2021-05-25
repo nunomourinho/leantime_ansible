@@ -300,3 +300,14 @@
         - ficheiro.stat.gr_name == "root"
       success_msg: "SUCESSO: Permissões correctas"
       fail_msg: "ERRO: Permissões incorrectas"
+
+  # https//docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/000-default.conf"
+    stat:
+      path: "/etc/apache2/sites-enabled/000-default.conf"
+    register: ficheiro
+
+  - name: "Teste: O ficheiro /etc/apache2/sites-enabled/000-default.conf NÃO existe?"
+    assert:
+      that:
+        - not ficheiro.stat.exists
