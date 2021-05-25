@@ -176,3 +176,8 @@
      ansible.builtin.file:
        path: /etc/apache2/sites-enabled/000-default.conf
        state: absent
+
+   - name: "Activa o módulo mod_rewrite no apache"
+     apache2_module:
+       name: rewrite
+       state: present
