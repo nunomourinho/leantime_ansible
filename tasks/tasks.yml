@@ -191,3 +191,19 @@
      apache2_module:
        name: rewrite
        state: present
+
+   # Tarefa: Criar o administrador da aplicação leantime
+   - name: "Cria o administrador da aplicação leantime"
+     uri:
+       url: http://localhost/install
+       method: POST
+       body_format: form-urlencoded
+       body:
+         email: "{{ login_website }}"
+         password: "{{ password_website }}"
+         firstname: "{{ first_name_website }}"
+         lastname: "{{ last_name_website }}"
+         company: "{{ company_website }}"
+         install: Install
+       status_code: 200
+     register: login
