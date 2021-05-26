@@ -97,6 +97,16 @@
      mysql_db: "db=leantime_database state=present"
 
    - name: "Cria o utilizador para a base de dados leantime"
+     no_log: true
+     mysql_user:
+       name: "{{ login_leantime }}"
+       password: "{{ password_leantime }}"
+       priv: "leantime_database.*:ALL"
+       host: localhost
+       state: present
+
+   - name: "Cria o utilizador para a base de dados leantime"
+     no_log: true
      mysql_user:
        name: "{{ login_leantime }}"
        password: "{{ password_leantime }}"

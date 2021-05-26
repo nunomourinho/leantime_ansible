@@ -332,3 +332,37 @@
       - not estado.changed
       success_msg: "SUCESSO: mod_rewrite encontra-se instalado e ativo"
       fail_msg: "ERRO: mod_rewrite não instalado ou não ativo!"
+
+  # Teste: Verificar se o sistema se encontra devidamente instalado e configurado.
+  #        Se a base de dados estiver correctamente configurada e se o administrador do
+  #        sistema estiver configurado, deve ser possível fazer login ao sistema sem problemas.
+  #        Este teste tem como objetivo verificar se é possível fazer o login
+  # Através do BurpSuite (https://portswigger.net/burp), aprendido nas aulas de Testes de Penetração e Desenvolvimento de Exploits
+  # foi realizado um debug da sessão de login. Com base nessa sessão a fase de Login encontra-se aqui replicada.
+  # É necessário gravar a cockie de sessão. A página oficial do Ansible contem um erro que é resolvido com a seguinte...
+  # Fonte: https://stackoverflow.com/questions/63791689/ansible-looses-cookie-content
+  - name: "Simulação: Tenta fazer login na aplicação com o utilizador criado"
+    uri:
+      url: http://localhost
+      method: POST
+      body: "username={{ login_website  }}&password={{ password_website  }}&redirectUrl:=/&login=Login"
+      status_code: 200
+      follow_redirects: true
+    register: paginalogin
+
+  - name: "Simulação: Obtem a página showMyCalendar para testar uma página com o login efetuado com sucesso"
+    uri:
+      url: http://localhost/calendar/showMyCalendar
+      method: GET
+      headers:
+        Cookie: "{{ paginalogin.set_cookie }}"
+      return_content: yes
+    register: paginaweb
+
+  - name: "Teste: Existe o texto editCompanySettings na página?"
+    assert:
+      that:
+      - "'password' not in paginaweb.content"
+      - "'editCompanySettings' in paginaweb.content"
+      success_msg: "SUCESSO: Login com sucesso. Utilizador e palavra passe iniciais correctamente criados"
+      fail_msg: "ERRO: Não foi possivel fazer login! O utilizador ou palavra passe não foram criados com sucesso!"
