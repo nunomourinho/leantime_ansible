@@ -166,6 +166,7 @@
        group: www-data
        mode: 0644
        force: false
+     notify: Reiniciar apache2
 
    # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
    - name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled"
@@ -173,9 +174,10 @@
        src: /etc/apache2/sites-available/leantime.conf
        dest: /etc/apache2/sites-enabled/leantime.conf
        state: link
+     notify: Reiniciar apache2
 
    # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
-   - name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled"
+   - name: "Muda as permissões do ficheiro leantime.conf na pasta /etc/apache/sites-available"
      ansible.builtin.file:
        path: /etc/apache2/sites-available/leantime.conf
        owner: root
@@ -186,11 +188,18 @@
      ansible.builtin.file:
        path: /etc/apache2/sites-enabled/000-default.conf
        state: absent
+     notify: Reiniciar apache2
 
    - name: "Activa o módulo mod_rewrite no apache"
      apache2_module:
        name: rewrite
        state: present
+     notify: Reiniciar apache2
+
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/meta_module.html#examples
+   # Força o reinicio do apache2
+   - name: Obriga a execução dos handlers
+     meta: flush_handlers
 
    # Tarefa: Criar o administrador da aplicação leantime
    - name: "Cria o administrador da aplicação leantime"
