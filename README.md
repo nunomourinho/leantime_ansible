@@ -15,7 +15,9 @@ Role Variables
     login_website - Endereço de email para o login inicial no site web
     password_website - Password para o site web. Tem de obrigatóriamente responder aos requisitos mínimos de tamanho e complexidade documentados
     versao_leantime - Versão da release do software leantime a instalar - por exemplo: v2.1.7
-
+    first_name_website - Primeiro nome do administrador do site
+    last_name_website - Último nome do administrador do site
+    company_website - Nome do site da empresa
 
 Dependencies
 ------------
