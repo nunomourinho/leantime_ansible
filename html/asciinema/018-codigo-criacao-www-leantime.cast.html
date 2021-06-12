@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {background-color: black;}
+pre {
+	font-weight: normal;
+	color: #bbb;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+b {font-weight: normal}
+b.BOLD {color: #fff}
+b.ITA {font-style: italic}
+b.UND {text-decoration: underline}
+b.STR {text-decoration: line-through}
+b.UNDSTR {text-decoration: underline line-through}
+b.BLK {color: #000000}
+b.RED {color: #aa0000}
+b.GRN {color: #00aa00}
+b.YEL {color: #aa5500}
+b.BLU {color: #0000aa}
+b.MAG {color: #aa00aa}
+b.CYN {color: #00aaaa}
+b.WHI {color: #aaaaaa}
+b.HIK {color: #555555}
+b.HIR {color: #ff5555}
+b.HIG {color: #55ff55}
+b.HIY {color: #ffff55}
+b.HIB {color: #5555ff}
+b.HIM {color: #ff55ff}
+b.HIC {color: #55ffff}
+b.HIW {color: #ffffff}
+b.BBLK {background-color: #000000}
+b.BRED {background-color: #aa0000}
+b.BGRN {background-color: #00aa00}
+b.BYEL {background-color: #aa5500}
+b.BBLU {background-color: #0000aa}
+b.BMAG {background-color: #aa00aa}
+b.BCYN {background-color: #00aaaa}
+b.BWHI {background-color: #aaaaaa}
+</style>
+</head>
+<body>
+<pre>admlocal@devOps:~/leantime_ansible$ exit&#x232B;&#x232B;&#x232B;&#x232B;nano tasks/tasks.yml 
+BB
+<hr>
+B<b class="BLK BWHI">[ A ler... ]B</b>B<b class="BLK BWHI">[ 81 linhas lidas ]B</b>B<b class="BLK BWHI">  GNU nano 4.8                                                tasks/tasks.yml                                                             B</b>&crarr;
+B<b class="BLK BWHI">^GB</b> AjudaB<b class="BLK BWHI">^OB</b> GravarB<b class="BLK BWHI">^WB</b> ProcurarB<b class="BLK BWHI">^KB</b> Cortar txt    B<b class="BLK BWHI">^JB</b> Justificar    B<b class="BLK BWHI">^CB</b> Pos cursor    B<b class="BLK BWHI">M-UB</b> Desfazer     B<b class="BLK BWHI">M-AB</b> Marcar txt&crarr;
+B<b class="BLK BWHI">^XB</b> SairB<b class="BLK BWHI">^RB</b> CarregarB<b class="BLK BWHI">^\B</b> Substituir    B<b class="BLK BWHI">^UB</b> Colar txt     B<b class="BLK BWHI">^TB</b> Ortografia    B<b class="BLK BWHI">^_B</b> Ir p/ linha   B<b class="BLK BWHI">M-EB</b> RefazerB<b class="BLK BWHI">M-6B</b> Copiar txt&crarr;
+B---- name: Atualiza a cache (equivalente a apt update)apt:&#x232B;&#x232B;update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:&#x232B;&#x232B;upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:&#x232B;&#x232B;pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev&crarr;
+ - autoconf    - libc-dev  - pkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expect- net-tools    - python3-mysqldb  - python3-apt- python3-pycurl&crarr;
+<b class=CYN>   # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</b>B- name: "Instala o serviço apache2 no arranque do sistema"service:name: apache2state: startedenabled: true&crarr;
+<b class=CYN>   # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</b>B- name: "Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini&crarr;
+<b class=CYN>   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</b>B- name: "Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile."ansible.builtin.lineinfile:path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"&crarr;
+regexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:regexp: "^file_uploads"  line: "file_uploads = 1"regexp: "^upload_max_filesize"  line: "upload_max_filesize = 1G"regexp: "^max_file_uploads"  line: "max_file_uploads = 20"regexp: "^post_max_size"  line: "post_max_size = 2G"regexp: "^memory_limit"  line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"&crarr;
+B<b class="BLK BWHI">ModificadoB</b>&crarr;
+   &crarr;
+<b class=CYN>   #</b>B<b class=CYN> </b>B<b class=CYN>F</b>B<b class=CYN>o</b>B<b class=CYN>n</b>B<b class=CYN>t</b>B<b class=CYN>e</b>B<b class=CYN>:</b>B<b class=CYN> </b>B<b class=CYN>h</b>B<b class=CYN>t</b>B<b class=CYN>t</b>B<b class=CYN>p</b>B<b class=CYN>s</b>B<b class=CYN>:</b>B<b class=CYN>/</b>B<b class=CYN>/</b>B<b class=CYN>d</b>&crarr;
+B<b class=CYN>o</b>B<b class=CYN>c</b>B<b class=CYN>s</b>B<b class=CYN>.</b>B<b class=CYN>a</b>B<b class=CYN>n</b>B<b class=CYN>s</b>B<b class=CYN>i</b>B<b class=CYN>b</b>B<b class=CYN>l</b>B<b class=CYN>e</b>B<b class=CYN>.</b>B<b class=CYN>c</b>B<b class=CYN>o</b>B<b class=CYN>m</b>B<b class=CYN>/</b>B<b class=CYN>a</b>B<b class=CYN>n</b>B<b class=CYN>s</b>B<b class=CYN>i</b>B<b class=CYN>b</b>B<b class=CYN>l</b>B<b class=CYN>e</b>B<b class=CYN>/</b>B<b class=CYN>2</b>B<b class=CYN>.</b>B<b class=CYN>7</b>B<b class=CYN>/</b>B<b class=CYN>m</b>B<b class=CYN>o</b>B<b class=CYN>d</b>B<b class=CYN>u</b>B<b class=CYN>l</b>B<b class=CYN>e</b>B<b class=CYN>s</b>B<b class=CYN>/</b>B<b class=CYN>f</b>B<b class=CYN>i</b>B<b class=CYN>l</b>B<b class=CYN>e</b>B<b class=CYN>_</b>B<b class=CYN>m</b>B<b class=CYN>o</b>B<b class=CYN>d</b>B<b class=CYN>u</b>B<b class=CYN>l</b>B<b class=CYN>e</b>B<b class=CYN>.</b>B<b class=CYN>h</b>B<b class=CYN>t</b>B<b class=CYN>m</b>B<b class=CYN>l</b>B&crarr;
+   - name: Cria a directoria temporária leantime e a directoria de apache leantime&crarr;
+     file:&crarr;
+       path: "{{ item.path }}"&crarr;
+       state: directory&crarr;
+       mode: 0755&crarr;
+       owner: www-data&crarr;
+       group: www-data&crarr;
+     with_items:&crarr;
+       - path: "/tmp/leantime"&crarr;
+       - path: "/var/www/leantime"&crarr;
+         B<b class="BLK BWHI">M-DB</b> Formato DOSB<b class="BLK BWHI">M-AB</b> AnexarB<b class="BLK BWHI">BB</b> SegurançaB<b class="BLK BWHI">CB</b> Cancelar           B<b class="BLK BWHI">M-MB</b> Formato MacB<b class="BLK BWHI">M-PB</b> PreporB<b class="BLK BWHI">^TB</b> P/ ficheiros&crarr;
+B<b class="BLK BWHI">Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           B</b> B<b class="BLK BWHI">[ A escrever... ]B</b>B<b class="BLK BWHI">          B</b>B<b class="BLK BWHI">[ 96 linhas escritas ]B</b>B<b class="BLK BWHI">^OB</b> GravarB<b class="BLK BWHI">^WB</b> Procurar      B<b class="BLK BWHI">^KB</b> Cortar txt    B<b class="BLK BWHI">^JB</b> Justificar    B<b class="BLK BWHI">^CB</b> Pos cursorB<b class="BLK BWHI">UB</b> Desfazer     B<b class="BLK BWHI">M-AB</b> Marcar txtB<b class="BLK BWHI">XB</b> Sair    B<b class="BLK BWHI">^RB</b> CarregarB<b class="BLK BWHI">^\B</b> Substituir    B<b class="BLK BWHI">^UB</b> Colar txt     B<b class="BLK BWHI">^TB</b> Ortografia    B<b class="BLK BWHI">^_B</b> Ir p/ linha   B<b class="BLK BWHI">M-EB</b> Refazer      B<b class="BLK BWHI">M-6B</b> Copiar txt&crarr;
+
+<hr>
+&crarr;
+admlocal@devOps:~/leantime_ansible$ ansi&#x232B;&#x232B;&#x232B;&#x232B;molecule lint
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, lint
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>lint</b>
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+./tasks/tasks.yml
+  96:1      error    too many blank lines (2 &gt; 0)  (empty-lines)
+
+<b class=HIR>CRITICAL</b> Lint failed with error code <b class=HIC>1</b>
+admlocal@devOps:~/leantime_ansible$ molecule lint&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;nano tasks/tasks.yml 
+BB
+<hr>
+B<b class="BLK BWHI">[ A ler... ]B</b>B<b class="BLK BWHI">[ 96 linhas lidas ]B</b>B<b class="BLK BWHI">  GNU nano 4.8                                                tasks/tasks.yml                                                             B</b>&crarr;
+B<b class="BLK BWHI">^GB</b> AjudaB<b class="BLK BWHI">^OB</b> GravarB<b class="BLK BWHI">^WB</b> ProcurarB<b class="BLK BWHI">^KB</b> Cortar txt    B<b class="BLK BWHI">^JB</b> Justificar    B<b class="BLK BWHI">^CB</b> Pos cursor    B<b class="BLK BWHI">M-UB</b> Desfazer     B<b class="BLK BWHI">M-AB</b> Marcar txt&crarr;
+B<b class="BLK BWHI">^XB</b> SairB<b class="BLK BWHI">^RB</b> CarregarB<b class="BLK BWHI">^\B</b> Substituir    B<b class="BLK BWHI">^UB</b> Colar txt     B<b class="BLK BWHI">^TB</b> Ortografia    B<b class="BLK BWHI">^_B</b> Ir p/ linha   B<b class="BLK BWHI">M-EB</b> RefazerB<b class="BLK BWHI">M-6B</b> Copiar txt&crarr;
+B---- name: Atualiza a cache (equivalente a apt update)apt:&#x232B;&#x232B;update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:&#x232B;&#x232B;upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:&#x232B;&#x232B;pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev&crarr;
+         In. parágB<b class="BLK BWHI">^YB</b> Prim.linhaB<b class="BLK BWHI">^TB</b> Ir para txtB<b class="BLK BWHI">CB</b> Cancelar           B<b class="BLK BWHI">OB</b> Fim parágB<b class="BLK BWHI">VB</b> Últ. linha&crarr;
+B<b class="BLK BWHI">Insira nº da linha, nº da coluna:                                                                                                         B</b>B<b class="BLK BWHI">9</b>&crarr;
+BB<b class="BLK BWHI">6</b>&crarr;
+BB<b class="BLK BWHI">,</b>&crarr;
+BB<b class="BLK BWHI">1</b>&crarr;
+B&crarr;
+B<b class="BLK BWHI">^OB</b> GravarProcurar      B<b class="BLK BWHI">^KB</b> Cortar txt    B<b class="BLK BWHI">^JB</b> Justificar    B<b class="BLK BWHI">^CB</b> Pos cursor    B<b class="BLK BWHI">M-UB</b> Desfazer     B<b class="BLK BWHI">M-AB</b> Marcar txtB<b class="BLK BWHI">XB</b> Sair    B<b class="BLK BWHI">^RB</b> CarregarB<b class="BLK BWHI">\B</b> Substituir    B<b class="BLK BWHI">^UB</b> Colar txtB<b class="BLK BWHI">TB</b> Ortografia    B<b class="BLK BWHI">^_B</b> Ir p/ linha   B<b class="BLK BWHI">M-EB</b> RefazerB<b class="BLK BWHI">M-6B</b> Copiar txt&crarr;
+ line: "memory_limit = 2G"    - regexp: "^max_input_time"    line: "max_input_time = 3600"&crarr;
+<b class=CYN>   # Fonte: https://docs.ansible.com/ansible/2.7/modules/file_module.html</b>BCria a directoria temporária leantime e a directoria de apache leantimefile:path: "{{ item.path }}"state: directory    mode: 0755  owner: www-datagroup: www-datawith_items:path: "/tmp/leantime"path: "/var/www/leantime"&crarr;
+B<b class="BLK BWHI">ModificadoB</b>&crarr;
+&#x232B;&#x232B;&#x232B;&#x232B;&crarr;
+
+         B<b class="BLK BWHI">M-DB</b> Formato DOSB<b class="BLK BWHI">M-AB</b> AnexarB<b class="BLK BWHI">BB</b> SegurançaB<b class="BLK BWHI">CB</b> Cancelar           B<b class="BLK BWHI">M-MB</b> Formato MacB<b class="BLK BWHI">M-PB</b> PreporB<b class="BLK BWHI">^TB</b> P/ ficheiros&crarr;
+B<b class="BLK BWHI">Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           B</b> B<b class="BLK BWHI">[ A escrever... ]B</b>B<b class="BLK BWHI">          B</b>B<b class="BLK BWHI">[ 93 linhas escritas ]B</b>B<b class="BLK BWHI">^OB</b> GravarB<b class="BLK BWHI">^WB</b> Procurar      B<b class="BLK BWHI">^KB</b> Cortar txt    B<b class="BLK BWHI">^JB</b> Justificar    B<b class="BLK BWHI">^CB</b> Pos cursorB<b class="BLK BWHI">UB</b> Desfazer     B<b class="BLK BWHI">M-AB</b> Marcar txtB<b class="BLK BWHI">XB</b> Sair    B<b class="BLK BWHI">^RB</b> CarregarB<b class="BLK BWHI">^\B</b> Substituir    B<b class="BLK BWHI">^UB</b> Colar txt     B<b class="BLK BWHI">^TB</b> Ortografia    B<b class="BLK BWHI">^_B</b> Ir p/ linha   B<b class="BLK BWHI">M-EB</b> Refazer      B<b class="BLK BWHI">M-6B</b> Copiar txt&crarr;
+
+<hr>
+&crarr;
+admlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml &#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;molecule lint
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, lint
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>lint</b>
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+admlocal@devOps:~/leantime_ansible$ molecule converge
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, create, prepare, converge
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>create</b>
+<b class=RED>WARNING </b> Skipping, instances already created.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>prepare</b>
+<b class=RED>WARNING </b> Skipping, instances already prepared.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>converge</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=YEL>ubuntu-20.04</b>               : <b class=GRN>ok=8   </b> <b class=YEL>changed=1   </b> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+admlocal@devOps:~/leantime_ansible$ molecule converge&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;idempotence
+<b class=BLU>INFO    </b> default scenario test matrix: idempotence
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>idempotence</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=GRN>ubuntu-20.04</b>               : <b class=GRN>ok=8   </b> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<b class=BLU>INFO    </b> Idempotence completed successfully.
+admlocal@devOps:~/leantime_ansible$ molecule verify
+<b class=BLU>INFO    </b> default scenario test matrix: verify
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>verify</b>
+<b class=BLU>INFO    </b> Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: A cache está atualizada"</b>
+<b class=GRN>}</b>
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: O sistema operativo está atualizado"</b>
+<b class=GRN>}</b>
+
+TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: A cache está atualizada"</b>
+<b class=GRN>}</b>
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: As dependencias estavam instaladas"</b>
+<b class=GRN>}</b>
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"</b>
+<b class=GRN>}</b>
+
+TASK [Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: O ficheiro php.ini foi alterado com sucesso"</b>
+<b class=GRN>}</b>
+
+TASK [Simulação: Obtem informação sobre a pastas /var/www/leantime] **********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Teste: A pasta /var/www/leantime existe e tem as permissões certas?] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; {</b>
+<b class=GRN>    "changed": false,</b>
+<b class=GRN>    "msg": "SUCESSO: Permissões correctas no site leantime"</b>
+<b class=GRN>}</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=GRN>ubuntu-20.04</b>               : <b class=GRN>ok=14  </b> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<b class=BLU>INFO    </b> Verifier completed successfully.
+admlocal@devOps:~/leantime_ansible$ exit
+exit
+</pre>
+</body>
+</html>

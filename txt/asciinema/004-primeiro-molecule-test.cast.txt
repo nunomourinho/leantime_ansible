@@ -1,0 +1,124 @@
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule test
+[34mINFO    [0m default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, verify, cleanup, destroy
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
+[31mWARNING [0m Skipping, missing the requirements file.
+[31mWARNING [0m Skipping, missing the requirements file.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mlint[0m
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcleanup[0m
+[31mWARNING [0m Skipping, cleanup playbook not configured.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdestroy[0m
+
+PLAY [Destroy] ************************************************************************
+
+TASK [Destroy molecule instance(s)] ***************************************************
+[32mok: [localhost] => (item=ubuntu-20.04)[0m
+
+TASK [Populate instance config] *******************************************************
+[32mok: [localhost][0m
+
+TASK [Dump instance config] ***********************************************************
+[36mskipping: [localhost][0m
+
+PLAY RECAP ****************************************************************************
+[32mlocalhost[0m                  : [32mok=2   [0m changed=0    unreachable=0    failed=0    [36mskipped=1   [0m rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32msyntax[0m
+
+playbook: /home/admlocal/leantime_ansible/molecule/default/converge.yml
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcreate[0m
+
+PLAY [Create] *************************************************************************
+
+TASK [Create molecule instance(s)] ****************************************************
+[33mchanged: [localhost] => (item=ubuntu-20.04)[0m
+
+TASK [Populate instance config dict] **************************************************
+[32mok: [localhost] => (item={'changed': True, 'log': '/home/admlocal/.cache/molecule/leantime_ansible/default/vagrant-ubuntu-20.04.out', 'Host': 'ubuntu-20.04', 'HostName': '127.0.0.1', 'User': 'vagrant', 'Port': '2222', 'UserKnownHostsFile': '/dev/null', 'StrictHostKeyChecking': 'no', 'PasswordAuthentication': 'no', 'IdentityFile': '/home/admlocal/.cache/molecule/leantime_ansible/default/.vagrant/machines/ubuntu-20.04/virtualbox/private_key', 'IdentitiesOnly': 'yes', 'LogLevel': 'FATAL', 'invocation': {'module_args': {'instance_name': 'ubuntu-20.04', 'instance_interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'platform_box': 'ubuntu/focal64', 'provider_memory': 2048, 'provider_cpus': 2, 'state': 'up', 'config_options': {}, 'provider_name': 'virtualbox', 'provider_options': {}, 'provision': False, 'force_stop': False, 'platform_box_version': None, 'platform_box_url': None, 'provider_override_args': None, 'provider_raw_config_args': None, 'workdir': None}}, 'failed': False, 'item': {'box': 'ubuntu/focal64', 'cpus': 2, 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'memory': 2048, 'name': 'ubuntu-20.04'}, 'ansible_loop_var': 'item'})[0m
+
+TASK [Convert instance config dict to a list] *****************************************
+[32mok: [localhost][0m
+
+TASK [Dump instance config] ***********************************************************
+[33mchanged: [localhost][0m
+
+PLAY RECAP ****************************************************************************
+[33mlocalhost[0m                  : [32mok=4   [0m [33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mprepare[0m
+
+PLAY [Prepare] ************************************************************************
+
+TASK [Bootstrap python for Ansible] ***************************************************
+[32mok: [ubuntu-20.04][0m
+
+PLAY RECAP ****************************************************************************
+[32mubuntu-20.04[0m               : [32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mconverge[0m
+
+PLAY [Converge] ***********************************************************************
+
+TASK [Gathering Facts] ****************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Include leantime_ansible] *******************************************************
+
+PLAY RECAP ****************************************************************************
+[32mubuntu-20.04[0m               : [32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32midempotence[0m
+
+PLAY [Converge] ***********************************************************************
+
+TASK [Gathering Facts] ****************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Include leantime_ansible] *******************************************************
+
+PLAY RECAP ****************************************************************************
+[32mubuntu-20.04[0m               : [32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m Idempotence completed successfully.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mverify[0m
+[34mINFO    [0m Running Ansible Verifier
+
+PLAY [Verify] *************************************************************************
+
+TASK [Example assertion] **************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "All assertions passed"[0m
+[32m}[0m
+
+PLAY RECAP ****************************************************************************
+[32mubuntu-20.04[0m               : [32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m Verifier completed successfully.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcleanup[0m
+[31mWARNING [0m Skipping, cleanup playbook not configured.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdestroy[0m
+
+PLAY [Destroy] ************************************************************************
+
+TASK [Destroy molecule instance(s)] ***************************************************
+[33mchanged: [localhost] => (item=ubuntu-20.04)[0m
+
+TASK [Populate instance config] *******************************************************
+[32mok: [localhost][0m
+
+TASK [Dump instance config] ***********************************************************
+[33mchanged: [localhost][0m
+
+PLAY RECAP ****************************************************************************
+[33mlocalhost[0m                  : [32mok=3   [0m [33mchanged=2   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[34mINFO    [0m Pruning extra files from scenario ephemeral directory
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit

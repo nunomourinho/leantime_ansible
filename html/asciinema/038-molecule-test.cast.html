@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {background-color: black;}
+pre {
+	font-weight: normal;
+	color: #bbb;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+b {font-weight: normal}
+b.BOLD {color: #fff}
+b.ITA {font-style: italic}
+b.UND {text-decoration: underline}
+b.STR {text-decoration: line-through}
+b.UNDSTR {text-decoration: underline line-through}
+b.BLK {color: #000000}
+b.RED {color: #aa0000}
+b.GRN {color: #00aa00}
+b.YEL {color: #aa5500}
+b.BLU {color: #0000aa}
+b.MAG {color: #aa00aa}
+b.CYN {color: #00aaaa}
+b.WHI {color: #aaaaaa}
+b.HIK {color: #555555}
+b.HIR {color: #ff5555}
+b.HIG {color: #55ff55}
+b.HIY {color: #ffff55}
+b.HIB {color: #5555ff}
+b.HIM {color: #ff55ff}
+b.HIC {color: #55ffff}
+b.HIW {color: #ffffff}
+b.BBLK {background-color: #000000}
+b.BRED {background-color: #aa0000}
+b.BGRN {background-color: #00aa00}
+b.BYEL {background-color: #aa5500}
+b.BBLU {background-color: #0000aa}
+b.BMAG {background-color: #aa00aa}
+b.BCYN {background-color: #00aaaa}
+b.BWHI {background-color: #aaaaaa}
+</style>
+</head>
+<body>
+<pre>admlocal@devOps:~/leantime_ansible$ exit&#x232B;&#x232B;&#x232B;&#x232B;molecule test --destroy never
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, verify, cleanup, destroy
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>lint</b>
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>cleanup</b>
+<b class=RED>WARNING </b> Skipping, cleanup playbook not configured.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>destroy</b>
+<b class=RED>WARNING </b> Skipping, <b class=GRN>'--</b><b class=GRN>destroy</b><b class=GRN>=</b><b class=GRN>never</b><b class=GRN>'</b> requested.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>syntax</b>
+
+playbook: /home/admlocal/leantime_ansible/molecule/default/converge.yml
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>create</b>
+
+PLAY [Create] ****************************************************************************************************************************
+
+TASK [Create molecule instance(s)] *******************************************************************************************************
+<b class=YEL>changed: [localhost] =&gt; (item=ubuntu-20.04)</b>
+
+TASK [Populate instance config dict] *****************************************************************************************************
+<b class=GRN>ok: [localhost] =&gt; (item={'changed': True, 'log': '/home/admlocal/.cache/molecule/leantime_ansible/default/vagrant-ubuntu-20.04.out', 'Host': 'ubuntu-20.04', 'HostName': '127.0.0.1', 'User': 'vagrant', 'Port': '2222', 'UserKnownHostsFile': '/dev/null', 'StrictHostKeyChecking': 'no', 'PasswordAuthentication': 'no', 'IdentityFile': '/home/admlocal/.cache/molecule/leantime_ansible/default/.vagrant/machines/ubuntu-20.04/virtualbox/private_key', 'IdentitiesOnly': 'yes', 'LogLevel': 'FATAL', 'invocation': {'module_args': {'instance_name': 'ubuntu-20.04', 'instance_interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'platform_box': 'ubuntu/focal64', 'provider_memory': 2048, 'provider_cpus': 2, 'state': 'up', 'config_options': {}, 'provider_name': 'virtualbox', 'provider_options': {}, 'provision': False, 'force_stop': False, 'platform_box_version': None, 'platform_box_url': None, 'provider_override_args': None, 'provider_raw_config_args': None, 'workdir': None}}, 'failed': False, 'item': {'box': 'ubuntu/focal64', 'cpus': 2, 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'memory': 2048, 'name': 'ubuntu-20.04'}, 'ansible_loop_var': 'item'})</b>
+
+TASK [Convert instance config dict to a list] ********************************************************************************************
+<b class=GRN>ok: [localhost]</b>
+
+TASK [Dump instance config] **************************************************************************************************************
+<b class=YEL>changed: [localhost]</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=YEL>localhost</b>                  : <b class=GRN>ok=4   </b> <b class=YEL>changed=2   </b> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>prepare</b>
+
+PLAY [Prepare] ***************************************************************************************************************************
+
+TASK [Bootstrap python for Ansible] ******************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=GRN>ubuntu-20.04</b>               : <b class=GRN>ok=1   </b> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>converge</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})</b>
+<b class=YEL>changed: [ubuntu-20.04] =&gt; (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})</b>
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+<b class=YEL>changed: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+<b class=RED>fatal: [ubuntu-20.04]: FAILED! =&gt; {"changed": false, "connection": "close", "content": "&lt;!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;404 Not Found&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Not Found&lt;/h1&gt;\n&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;\n&lt;hr&gt;\n&lt;address&gt;Apache/2.4.41 (Ubuntu) Server at localhost Port 80&lt;/address&gt;\n&lt;/body&gt;&lt;/html&gt;\n", "content_length": "271", "content_type": "text/html; charset=iso-8859-1", "date": "Wed, 26 May 2021 14:17:22 GMT", "elapsed": 0, "msg": "Status code was 404 and not [200]: HTTP Error 404: Not Found", "redirected": false, "server": "Apache/2.4.41 (Ubuntu)", "status": 404, "url": "http://localhost/install"}</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=RED>ubuntu-20.04</b>               : <b class=GRN>ok=20  </b> <b class=YEL>changed=17  </b> unreachable=0    <b class=RED>failed=1   </b> skipped=0    rescued=0    ignored=0
+
+
+<b class=HIR>CRITICAL</b> Ansible return code was <b class=HIC>2</b>, command was: ansible-playbook --inventory <b class=MAG>/home/admlocal/.cache/molecule/leantime_ansible/default/</b><b style="color:#ff55ff;">inventory</b> --skip-tags molecule-notest,notest <b class=MAG>/home/admlocal/leantime_ansible/molecule/default/</b><b style="color:#ff55ff;">converge.yml</b>
+admlocal@devOps:~/leantime_ansible$ molecule login
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>login</b>
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-72-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed May 26 14:17:33 UTC 2021
+
+  System load:  1.17              Processes:               130
+  Usage of /:   6.9% of 38.71GB   Users logged in:         0
+  Memory usage: 33%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%                IPv4 address for enp0s8: 172.28.128.29
+
+
+
+
+
+*** System restart required ***
+Last login: Wed May 26 14:17:21 2021 from 10.0.2.2&crarr;
+
+vagrant@ubuntu-20:~$ sudo -i
+root@ubuntu-20:~# ls /etc/apache2/sites-available/
+000-default.conf  default-ssl.conf  <b class=HIG>leantime.conf</b>
+root@ubuntu-20:~# ls /etc/apache2/sites-available/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;&#x232B;/&#x232B;e/&#x232B;n/&#x232B;a/&#x232B;b/&#x232B;l/&#x232B;e/&#x232B;d/&#x232B;
+<b class=HIC>leantime.conf</b>
+root@ubuntu-20:~# exit
+logout
+vagrant@ubuntu-20:~$ exit
+logout
+Connection to 127.0.0.1 closed.&crarr;
+
+admlocal@devOps:~/leantime_ansible$ molecule converge
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, create, prepare, converge
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>create</b>
+<b class=RED>WARNING </b> Skipping, instances already created.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>prepare</b>
+<b class=RED>WARNING </b> Skipping, instances already prepared.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>converge</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})</b>
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+<b class=RED>fatal: [ubuntu-20.04]: FAILED! =&gt; {"changed": false, "connection": "close", "content": "&lt;!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"&gt;\n&lt;html&gt;&lt;head&gt;\n&lt;title&gt;404 Not Found&lt;/title&gt;\n&lt;/head&gt;&lt;body&gt;\n&lt;h1&gt;Not Found&lt;/h1&gt;\n&lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;\n&lt;hr&gt;\n&lt;address&gt;Apache/2.4.41 (Ubuntu) Server at localhost Port 80&lt;/address&gt;\n&lt;/body&gt;&lt;/html&gt;\n", "content_length": "271", "content_type": "text/html; charset=iso-8859-1", "date": "Wed, 26 May 2021 14:19:56 GMT", "elapsed": 0, "msg": "Status code was 404 and not [200]: HTTP Error 404: Not Found", "redirected": false, "server": "Apache/2.4.41 (Ubuntu)", "status": 404, "url": "http://localhost/install"}</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=RED>ubuntu-20.04</b>               : <b class=GRN>ok=20  </b> changed=0    unreachable=0    <b class=RED>failed=1   </b> skipped=0    rescued=0    ignored=0
+
+
+<b class=HIR>CRITICAL</b> Ansible return code was <b class=HIC>2</b>, command was: ansible-playbook --inventory <b class=MAG>/home/admlocal/.cache/molecule/leantime_ansible/default/</b><b style="color:#ff55ff;">inventory</b> --skip-tags molecule-notest,notest <b class=MAG>/home/admlocal/leantime_ansible/molecule/default/</b><b style="color:#ff55ff;">converge.yml</b>
+admlocal@devOps:~/leantime_ansible$ molecule converge&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;login
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>login</b>
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-72-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed May 26 14:20:03 UTC 2021
+
+  System load:  0.33              Processes:               127
+  Usage of /:   6.9% of 38.71GB   Users logged in:         0
+  Memory usage: 33%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%                IPv4 address for enp0s8: 172.28.128.29
+
+
+
+
+
+*** System restart required ***
+Last login: Wed May 26 14:19:56 2021 from 10.0.2.2&crarr;
+
+vagrant@ubuntu-20:~$ exit&#x232B;&#x232B;&#x232B;&#x232B;sudo -i&#x266A;
+root@ubuntu-20:~# service apache2 reload
+root@ubuntu-20:~# exit
+logout
+vagrant@ubuntu-20:~$ exit
+logout
+Connection to 127.0.0.1 closed.&crarr;
+
+admlocal@devOps:~/leantime_ansible$ molecule login&#x232B;&#x232B;&#x232B;&#x232B;&#x232B;converge
+<b class=BLU>INFO    </b> default scenario test matrix: dependency, create, prepare, converge
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>dependency</b>
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=RED>WARNING </b> Skipping, missing the requirements file.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>create</b>
+<b class=RED>WARNING </b> Skipping, instances already created.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>prepare</b>
+<b class=RED>WARNING </b> Skipping, instances already prepared.
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>converge</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})</b>
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=GRN>ubuntu-20.04</b>               : <b class=GRN>ok=21  </b> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+admlocal@devOps:~/leantime_ansible$ molecule idempotence
+<b class=BLU>INFO    </b> default scenario test matrix: idempotence
+<b class=BLU>INFO    </b> Performing prerun<b class=YEL>...</b>
+<b class=BLU>INFO    </b> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<b class=BLU>INFO    </b> Added <b class=YEL>ANSIBLE_ROLES_PATH</b>=~<b class=MAG>/.ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/usr/share/ansible/</b><b style="color:#ff55ff;">roles</b>:<b class=MAG>/etc/ansible/</b><b style="color:#ff55ff;">roles</b>:.<b class=MAG>/.cache/</b><b style="color:#ff55ff;">roles</b>
+<b class=BLU>INFO    </b> <b class=HIK>Running </b><b class=HIK>default</b><b class=HIK> &gt; </b><b class=HIK>idempotence</b>
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</b>
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</b>
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})</b>
+<b class=GRN>ok: [ubuntu-20.04] =&gt; (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})</b>
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+<b class=GRN>ok: [ubuntu-20.04]</b>
+
+PLAY RECAP *******************************************************************************************************************************
+<b class=GRN>ubuntu-20.04</b>               : <b class=GRN>ok=21  </b> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<b class=BLU>INFO    </b> Idempotence completed successfully.
+admlocal@devOps:~/leantime_ansible$ exit
+exit
+</pre>
+</body>
+</html>
