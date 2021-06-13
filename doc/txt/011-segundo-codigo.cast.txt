@@ -1,78 +1,78 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml 
-[?2004h[?1049h[22;0;0t[1;33r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[31;38H(B[0;7m[ A ler... ](B[m[31;35H(B[0;7m[ 5 linhas lidas ](B[m[H(B[0;7m  GNU nano 4.8                       tasks/tasks.yml                                   [1;86H(B[m[32d(B[0;7m^G(B[m Ajuda[15G(B[0;7m^O(B[m Gravar     (B[0;7m^W(B[m Procurar   (B[0;7m^K(B[m Cortar txt (B[0;7m^J(B[m Justificar (B[0;7m^C(B[m Pos cursor[33d(B[0;7m^X(B[m Sair[15G(B[0;7m^R(B[m Carregar   (B[0;7m^\(B[m Substituir (B[0;7m^U(B[m Colar txt  (B[0;7m^T(B[m Ortografia (B[0;7m^_(B[m Ir p/ linha[31d[2d[39;49m(B[m---[3d- name: Atualiza a cache (equivalente a apt update)[4;6Hapt:[5dupdate_cache: true[6;8Hcache_valid_time: 3600[2d[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[6d[?12l[?25h[?25l[7d[?12l[?25h[?25l[1;76H(B[0;7mModificado(B[m[8d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25l[?12l[?25h[?25l"A[?12l[?25h[?25lA[?12l[?25h[?25lt[?12l[?25h[?25lu[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25li[31d[K[8;19H[?12l[?25h[?25lz[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l[9d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l[10d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lf[?12l[?25h[?25le[?12l[?25h[?25l[11d[?12l[?25h[?25l[32;15H       (B[0;7mM-D(B[m Formato DOS      (B[0;7mM-A(B[m Anexar           (B[0;7mM-B(B[m Segurança[K[33;2H(B[0;7mC(B[m Cancelar          (B[0;7mM-M(B[m Formato Mac      (B[0;7mM-P(B[m Prepor           (B[0;7m^T(B[m P/ ficheiros[K[31d(B[0;7mNome do ficheiro onde escrever: tasks/tasks.yml                                        [31;1H(B[m[31;48H[?12l[?25h[?25l[31;35H[1K (B[0;7m[ A escrever... ](B[m[K[1;76H(B[0;7m          (B[m[31;34H(B[0;7m[ 9 linhas escritas ](B[m[32;15H(B[0;7m^O(B[m Gravar     (B[0;7m^W(B[m Procurar   (B[0;7m^K(B[m Cortar txt (B[0;7m^J(B[m Justificar (B[0;7m^C(B[m Pos cursor[33;2H(B[0;7mX(B[m Sair       (B[0;7m^R(B[m Carregar   (B[0;7m^\(B[m Substituir (B[0;7m^U(B[m Colar txt  (B[0;7m^T(B[m Ortografia (B[0;7m^_(B[m Ir p/ linha[31d[11d[?12l[?25h[?25l[31d[J[33d[?12l[?25h[33;1H[?1049l[23;0;0t[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint
-[34mINFO    [0m default scenario test matrix: dependency, lint
-[34mINFO    [0m Performing prerun[33m...[0m
-[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
-[31mWARNING [0m Skipping, missing the requirements file.
-[31mWARNING [0m Skipping, missing the requirements file.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mlint[0m
+admlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml 
+BBB[ A ler... ]BB[ 5 linhas lidas ]BB  GNU nano 4.8                       tasks/tasks.yml                                   BB^GB AjudaB^OB Gravar     B^WB Procurar   B^KB Cortar txt B^JB Justificar B^CB Pos cursorB^XB SairB^RB Carregar   B^\B Substituir B^UB Colar txt  B^TB Ortografia B^_B Ir p/ linhaB---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600BModificadoB   - name: A"AAtualiza o sistema operativo"      apt:       upgrade: true    safe       BM-DB Formato DOS      BM-AB Anexar           BM-BB SegurançaBCB Cancelar          BM-MB Formato Mac      BM-PB Prepor           B^TB P/ ficheirosBNome do ficheiro onde escrever: tasks/tasks.yml                                        B B[ A escrever... ]BB          BB[ 9 linhas escritas ]BB^OB Gravar     B^WB Procurar   B^KB Cortar txt B^JB Justificar B^CB Pos cursorBXB Sair       B^RB Carregar   B^\B Substituir B^UB Colar txt  B^TB Ortografia B^_B Ir p/ linhaadmlocal@devOps:~/leantime_ansible$ molecule lint
+INFO     default scenario test matrix: dependency, lint
+INFO     Performing prerun...
+INFO     Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:./.cache/roles
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > lint
 COMMAND: set -e
 yamllint .
 ansible-lint
 
 Loading custom .yamllint config file, this extends our internal yamllint config.
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ o[Kmolecule converge
-[34mINFO    [0m default scenario test matrix: dependency, create, prepare, converge
-[34mINFO    [0m Performing prerun[33m...[0m
-[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
-[31mWARNING [0m Skipping, missing the requirements file.
-[31mWARNING [0m Skipping, missing the requirements file.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcreate[0m
-[31mWARNING [0m Skipping, instances already created.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mprepare[0m
-[31mWARNING [0m Skipping, instances already prepared.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mconverge[0m
+admlocal@devOps:~/leantime_ansible$ omolecule converge
+INFO     default scenario test matrix: dependency, create, prepare, converge
+INFO     Performing prerun...
+INFO     Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:./.cache/roles
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > create
+WARNING  Skipping, instances already created.
+INFO     Running default > prepare
+WARNING  Skipping, instances already prepared.
+INFO     Running default > converge
 
 PLAY [Converge] ***********************************************************************
 
 TASK [Gathering Facts] ****************************************************************
-[32mok: [ubuntu-20.04][0m
+ok: [ubuntu-20.04]
 
 TASK [Include leantime_ansible] *******************************************************
 
 TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] *****************
-[32mok: [ubuntu-20.04][0m
+ok: [ubuntu-20.04]
 
 TASK [leantime_ansible : Atualiza o sistema operativo] ********************************
-[33mchanged: [ubuntu-20.04][0m
+changed: [ubuntu-20.04]
 
 PLAY RECAP ****************************************************************************
-[33mubuntu-20.04[0m               : [32mok=3   [0m [33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu-20.04               : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
-[34mINFO    [0m default scenario test matrix: verify
-[34mINFO    [0m Performing prerun[33m...[0m
-[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mverify[0m
-[34mINFO    [0m Running Ansible Verifier
+admlocal@devOps:~/leantime_ansible$ molecule verify
+INFO     default scenario test matrix: verify
+INFO     Performing prerun...
+INFO     Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:./.cache/roles
+INFO     Running default > verify
+INFO     Running Ansible Verifier
 
 PLAY [Infraestrutura conduzida por testes] ********************************************
 
 TASK [Simulação: Atualizar a cache do sistema] ****************************************
-[32mok: [ubuntu-20.04][0m
+ok: [ubuntu-20.04]
 
 TASK [teste: a cache encontra-se actualizada?] ****************************************
-[32mok: [ubuntu-20.04] => {[0m
-[32m    "changed": false,[0m
-[32m    "msg": "SUCESSO: A cache está atualizada"[0m
-[32m}[0m
+ok: [ubuntu-20.04] => {
+    "changed": false,
+    "msg": "SUCESSO: A cache está atualizada"
+}
 
 TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] **********************
-[32mok: [ubuntu-20.04][0m
+ok: [ubuntu-20.04]
 
 TASK [teste: o sistema operativo encontra-se atualizado?] *****************************
-[32mok: [ubuntu-20.04] => {[0m
-[32m    "changed": false,[0m
-[32m    "msg": "SUCESSO: O sistema operativo está atualizado"[0m
-[32m}[0m
+ok: [ubuntu-20.04] => {
+    "changed": false,
+    "msg": "SUCESSO: O sistema operativo está atualizado"
+}
 
 PLAY RECAP ****************************************************************************
-[32mubuntu-20.04[0m               : [32mok=4   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu-20.04               : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-[34mINFO    [0m Verifier completed successfully.
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+INFO     Verifier completed successfully.
+admlocal@devOps:~/leantime_ansible$ exit

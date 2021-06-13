@@ -1,0 +1,378 @@
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano moel[K[Klecule/veri[K[K[K[Kf[Kdefault/verify.yml 
+[?2004h[?1049h[22;0;0t[1;39r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[37;64H(B[0;7m[ A ler... ](B[m[37;60H(B[0;7m[ 264 linhas lidas ](B[m[H(B[0;7m  GNU nano 4.8                                          molecule/default/verify.yml                                                       [1;137H(B[m[38d(B[0;7m^G(B[m Ajuda[38;18H(B[0;7m^O(B[m Gravar[38;35H(B[0;7m^W(B[m Procurar[52G(B[0;7m^K(B[m Cortar txt    (B[0;7m^J(B[m Justificar    (B[0;7m^C(B[m Pos cursor    (B[0;7mM-U(B[m Desfazer     (B[0;7mM-A(B[m Marcar txt[39d(B[0;7m^X(B[m Sair[39;18H(B[0;7m^R(B[m Carregar[35G(B[0;7m^\(B[m Substituir    (B[0;7m^U(B[m Colar txt     (B[0;7m^T(B[m Ortografia    (B[0;7m^_(B[m Ir p/ linha   (B[0;7mM-E(B[m Refazer[120G(B[0;7mM-6(B[m Copiar txt[37d[2d[39;49m(B[m---[3d[36m# Tutorial de inspiração para a infraestrutura conduzida por teste no site[4d# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/[6d[39m(B[m- name: "Infraestrutura conduzida por testes"[7;3Hhosts: all[8;3Hgather_facts: false[9;3Hbecome: true[11;3Htasks:[12;3H- name: Variáveis[13;5Hinclude_vars:[14;7Hfile: ../../vars/main.yml[16;3H- name: "Simulação: Atualizar a cache do sistema"[17;5Hapt:[18dupdate_cache: true[19;7Hcache_valid_time: 3600[20;5Hcheck_mode: true[21;5Hregister: estado[23;3H- name: "teste: a cache encontra-se actualizada?"[24;5Hassert:[25;7Hthat:[26;7H- not estado.changed[27;7Hsuccess_msg: "SUCESSO: A cache está atualizada"[28;7Hfail_msg: "ERRO: Existem actualizações pendentes"[30;3H- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"[31;5Hapt:[32dupgrade: safe[33;5Hcheck_mode: true[34;5Hregister: estado[36;3H- name: "teste: o sistema operativo encontra-se atualizado?"[2d[?12l[?25h[?25l[K[3d  - name: "teste: o sistema operativo encontra-se atualizado?"[K[4d    assert:[K[5;7Hthat:[6;6H[1K - not estado.changed[K[7;3H    success_msg: "SUCESSO: O sistema operativo está atualizado"[8;3H    fail_msg: "ERRO: Existem actualizações pendentes"[9d[K[10d  - name: "Teste: a cache encontra-se atualizada?"[11;3H  assert:[12;3H    that:[K[13;5H  - not estado.changed[14;7Hsuccess_msg: "SUCESSO: A cache está atualizada"[15;7Hfail_msg: "ERRO: Existem atualizações pendentes"[16d[K[17d  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"[18;5Hapt:[K[19dpkg:[K[20;5H  - mc[K[21;5H  - screen[K[22;7H- git[23;3H    - apache2[K[24;5H  - mysql-server[25;7H- php[26;9Hphp-mysql[K[27;7H- php-ldap[K[28;7H- php-cli[K[29;7H- php-soap[30;3H    - php-json[K[31;5H  - graphviz[32;7H- php-xml[K[33;5H  - php-gd[K[34;5H  - php-zip[K[35;7H- libapache2-mod-php[36;3H    - php-dev[K[2d[?12l[?25h[?25l[7G- libapache2-mod-php[3;3H    - php-dev[K[4;5H  - libmcrypt-dev[5;7H- gcc[6;9Hmake[K[7;7H- autoconf[K[8;7H- libc-dev[K[9;7H- pkg-config[10;3H    - pwgen[K[11;5H  - curl[12;7H- unzip[13;9Hzip[K[14;7H- php-mbstring[K[15;7H- expect[K[16;7H- net-tools[17;3H    - python3-mysqldb[K[18;5H  - python3-apt[19;7H- python3-pycurl[20;5Hcheck_mode: true[21;5Hregister: estado[22d[K[23d  - name: "Teste: as dependencias encontra-se instaladas?"[24;5Hassert:[K[25;7Hthat:[26;9Hnot estado.changed[27;7Hsuccess_msg: "SUCESSO: As dependencias estavam instaladas"[28;7Hfail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"[29d[K[30d[36m  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html[31;3H[39m(B[m- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"[32;5Hservice:[K[33;7Hname: apache2[34;7Hstate: started[35;7Henabled: true[K[36;5Hcheck_mode: true[2d[?12l[?25h[?25l[2;36r[36;1H[17S[1;39r[2;7Henabled: true[K[6dO serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"[10;30HO serviço apache2 está correctamente instalado e inicia com o arranque do sistema"[11;24HO serviço apache2 não se encontra correcta[25P[13;10H[36m: https://www.mydailytutorials.com/using-[58G-find-module-search-filesfolder[39m(B[m[K[14;12HRotina Auxiliar> Procura o caminho do ficheiro php.ini do servidor apache2"[K[15;5Hfind:[K[16;7Hpaths: /etc[K[17;7Hpatterns: "php.ini"[18;7Hrecurse[19;5Hregister: caminho_php_ini[21d[36m  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html[22;3H[39m(B[m- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."[23;5Hansible.builtin.lineinfile:[24;7Hpath: "{{ caminho_php_ini.files[0].path }}"[25;7Hregexp: "{{ item.regexp  }}"[26;7Hline: "{{ item.line }}"[27;5Hwith_items:[28;7H- regexp: "^file_uploads"[29;9Hline: "file_uploads = 1"[30;7H- regexp: "^upload_max_filesize"[31;9Hline: "upload_max_filesize = 1G"[32;7H- regexp: "^max_file_uploads"[33;9Hline: "max_file_uploads = 20"[34;7H- regexp: "^post_max_size"[35;9Hline: "post_max_size = 2G"[36;7H- regexp: "^memory_limit"[2d[?12l[?25h[?25l7[2;17r8[4T[1;39r[2;9Hline: "post_max_size = 2G"[3;7H- regexp: "^memory_limit"[4;9Hline: "memory_limit = 2G"[5;7H- regexp: "^max_input_time"[6;7H  line: "max_input_time = 3600"[10;19HAs linhas do php.ini encontram-se alteradas ?"[K[14;32Hficheiro php.ini foi alterado com sucesso"[K[15;24HAlgumas alterações ao ficheiro php.ini não tiveram sucesso"[17;5H[36mO site deve existir na pasta /var/www/leantime. Este teste visa determinar se a pasta[18d  # existe e se temas permissões certas[19d  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html[20;3H[39m(B[m- name: "Simulação: Obtem informação sobre a pastas /var/www/leantime"[21d    stat:[K[22;3H    path: "/var/www/leantime"[K[23;5Hregister: pasta[K[24d[K[25d  - name: "Teste: A pasta /var/www/leantime existe e tem as permissões certas?"[26;5Hassert:[K[27;5H  that:[K[28;7H  - pasta.stat.exists[K[29;9H- pasta.stat.isdir[K[30;7H  - pasta.stat.mode == "0755"[K[31;9H- pasta.stat.pw_name == "www-data"[32;7H  - pasta.stat.gr_name == "www-data"[33;7Hsuccess_msg: "SUCESSO: Permissões correctas no site leantime"[34;7Hfail_msg: "ERRO: Permissões incorrectas no site leantime ou site não existente"[35d[K[36d[36m  # Outro dos requesitos é a existência de uma base de dados para o site.[2d[39m(B[m[?12l[?25h[?25l[14;36r[14;1H[8T[1;39r[2;1H[K[3d[36m  # Outro dos requesitos é a existência de uma base de dados para o site.[4d  # Esta base de dados deve ser criada, logo tem de ser testada para determinar se ela existe ou não.[5d  # Fonte de inspiração: https://serverfault.com/questions/173978/from-a-shell-script-how-can-i-check-whether-a-mysql-database-exists[6;3H[39m(B[m- name: "Simulação: Verifica se é necessário criar a base de dados leantime_database"[7;5Hshell: "mysql -u root -e 'use leantime_database'"[8;15Hresult[9;5Hfailed_when: false[10;3H  changed_when: false[K[11d[K[12d  - name: "Teste: A base de dados leantime_database existe ?"[13;5Hassert:[K[14;7Hthat:[15;7H- result.rc == 0[16;7Hsuccess_msg: "SUCESSO: A base de dados leantime_database já se encontra criada"[17;7Hfail_msg: "ERRO: Não existe a base de dados leantime_database"[19d[36m  # Teste: O download do software leantime deve ser possível, a partir do site do leantime[20;3H[39m(B[m- name: "Simulação e Teste: Verifica se o endereço git para a versão de leantime existe"[21;5Huri:[22durl: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip[23;5Hregister: resultado[K[25;5H[36mTeste: D[25;25Ho ficheiro configuration.php no site do leantime. A existência deste ficheiro[26;5H       com as permissões certas indica que o processo de unzip correu bem[27;5HDocumentação oficial em: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html[28;46H[39m(B[mo ficheiro /var/www/leantime/config/configuration.php"[30;31H/config/configuration.php"[31;15Hficheiro[33;19HO ficheiro /var/www/leantime/config/configuration.php existe e tem as permissões certas?"[36;11Hficheiro.stat.exists[2d[?12l[?25h[?25l[7Gthat:[3;8H[1K - ficheiro.stat.exists[K[4;8H[1K - ficheiro.stat.isreg[K[5;8H[1K - ficheiro.stat.mode == "0755"[K[6;8H[1K - ficheiro.stat.pw_name == "www-data"[K[7;5H    - ficheiro.stat.gr_name == "www-data"[K[8;5H  success_msg: "SUCESSO: Permissões correctas e ficheiro configuration.php existente"[9;5H  fail_msg: "ERRO: Permissões incorrectas ou ficheiro configuration.php não existente"[10d[K[11d[36m  # Teste: O ficheiro /var/www/leantime/config/configuration.php necessita de ser alterado.[12d  # As variáveis dbuser, dbDatabase, e dbPassword necessitam de estar configuradas.[13d  # Por simulação o sistema vai determinar se estas estão configuradas com o valor esperado.[14d  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html[15;3H[39m(B[m- name: "Simulação: Testa se o dbuser foi alterado no ficheiro configuration.php utilizando o módulo replace."[16;5Hansible.builtin.replace:[K[17;7Hpath: /var/www/leantime/config/configuration.php[K[18;7Hregexp: 'dbUser=""'[19;6H[1K replace: 'dbUser="{{ login_leantime }}"'[K[20;3H  check_mode: yes[K[21;5Hregister: conf[22;5Hfailed_when: false[K[23d[K[24d  - name: "Teste: O dbUser foi alterado?"[25d    assert:[K[26;6H[1K that:[K[27;6H[1K - conf is not changed[K[28;3H    - conf is not failed[K[29;5H  success_msg: "SUCESSO: O dbUser foi alterado no ficheiro configuration.php"[30;7Hfail_msg: "ERRO: O dbUser não foi alterado no ficheiro configuration.php"[31d[K[33d[36m  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html[39m(B[m[K[34;3H- name: "Simulação: Testa se o dbDatabase foi alterado no ficheiro configuration.php utilizando o módulo replace."[35;5Hansible.builtin.replace:[36;7Hpath: /var/www/leantime/config/configuration.php[2d[?12l[?25h[?25l    ansible.builtin.replace:[3;7Hpath: /var/www/leantime/config/configuration.php[4;7Hregexp: 'dbDatabase=""'[5;7Hreplace: 'dbDatabase="leantime_database"'[6;5Hcheck_mode: yes[K[7;5Hregister: conf[K[8;5Hfailed_when: false[K[9d[K[10d  - name: "Teste: a variável dbDatabase foi alterada?"[11d    assert:[K[12;6H[1K that:[K[13;6H[1K - conf is not changed[K[14;6H[1K - conf is not failed[K[15;3H    success_msg: "SUCESSO: O dbDatabase foi alterado no ficheiro configuration.php"[K[16;5H  fail_msg: "ERRO: O dbDatabase não foi alterado no ficheiro configuration.php"[17d[K[18d[36m  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html[19;3H[39m(B[m- name: "Simulação: Testa se o dbPassword foi alterado no ficheiro configuration.php utilizando o módulo replace."[20;5Hansible.builtin.replace:[21;5H  path: /var/www/leantime/config/configuration.php[22;5H  regexp: 'dbPassword=""'[23;7Hreplace: 'dbPassword="{{ password_leantime }}"'[24;3H  check_mode: yes[K[25;5Hregister: conf[26;5Hfailed_when: false[27d[K[28d  - name: "Teste: O dbPassword foi alterado?"[29;5Hassert:[K[30;7Hthat:[K[31;7H- conf is not changed[32;7H- conf is not failed[33;6H[1K success_msg: "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"[K[34;3H    fail_msg: "ERRO: O dbPassword não foi alterado no ficheiro configuration.php"[K[35d[K[36d[K[2d[?12l[?25h[?25l[K[3d[K[4d[K[5d[K[6d[K[7d[K[8d[K[10d[K[11d[K[12d[K[13d[K[14d[K[15d[K[16d[K[18d[K[19d[K[20d[K[21d[K[22d[K[23d[K[24d[K[25d[K[26d[K[28d[K[29d[K[30d[K[31d[K[32d[K[33d[K[34d[K[2d[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[7Gfail_msg: "ERRO: O dbPassword não foi alterado no ficheiro configuration.php"[?12l[?25h[?25l7[2;36r8M[1;39r[2;7Hsuccess_msg: "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"[?12l[?25h[?25l7[2;36r8M[1;39r[2;7H- conf is not failed[?12l[?25h[?25l[3d[?12l[?25h[?25l[4d[?12l[?25h[?25l[5d[?12l[?25h[?25l[?12l[?25h[?25l[1;127H(B[0;7mModificado(B[m[6d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[36m  #[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mA[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mc[37d[39m(B[m[K[6;8H[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mf[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mg[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mç[39m(B[m[?12l[?25h[?25l[36mã[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mq[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mj[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mv[39m(B[m[?12l[?25h[?25l[36mé[39m(B[m[?12l[?25h[?25l[36m~s[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mf[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[7d[?12l[?25h[?25l  [?12l[?25h[?25l[36m  #[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mf[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mg[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mç[39m(B[m[?12l[?25h[?25l[36mã[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m,[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mp[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36map[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m2[39m(B[m[?12l[?25h[?25l[36m.[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mD[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mv[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mx[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mf[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mf[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mg[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mr[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mç[39m(B[m[?12l[?25h[?25l[36mã[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[8d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[36m  #[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36m([39m(B[m[?12l[?25h[?25l[36m&[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mp[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m2[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36m-[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mv[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mb[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[9d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[36m  #[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mF[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m:[39m(B[m[?12l[?25h[?25l[36m [39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mp[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36m:[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36m.[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mb[39m(B[m[?12l[?25h[?25l[A[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[1P[?12l[?25h[?25l[36m/etc/apache2/sites-available[8;19H[39m(B[m[?12l[?25h[?25l[9d[?12l[?25h[?25l[9;30H[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m.[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mb[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36mc[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mb[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36mb[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mi[39m(B[m[?12l[?25h[?25l[36mn[39m(B[m[?12l[?25h[?25l[36m/[39m(B[m[?12l[?25h[?25l[36ms[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36ma[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36m_[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36mo[39m(B[m[?12l[?25h[?25l[36md[39m(B[m[?12l[?25h[?25l[36mu[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[36me[39m(B[m[?12l[?25h[?25l[36m.[39m(B[m[?12l[?25h[?25l[36mh[39m(B[m[?12l[?25h[?25l[36mt[39m(B[m[?12l[?25h[?25l[36mm[39m(B[m[?12l[?25h[?25l[36ml[39m(B[m[?12l[?25h[?25l[10d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lO[?12l[?25h[?25lb[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25lb[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25lc[?12l[?25h[?25l/[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l/[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l-[?12l[?25h[?25la[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25l"[?12l[?25h[?25l[11d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l[12d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l/[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25lc[?12l[?25h[?25l/[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l/[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l-[?12l[?25h[?25la[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25l"[?12l[?25h[?25l[13d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l[14d[?12l[?25h[?25l [?12l[?25h[?25l[15d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lT[?12l[?25h[?25le[?12l[?25h[?25lst[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lO[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25lc[?12l[?25h[?25l/[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l/[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l-[?12l[?25h[?25la[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l?[?12l[?25h[?25l"[?12l[?25h[?25l[16d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l[17d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l[18d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25ls[?12l[?25h[?25l[19d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25l[20d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l0[?12l[?25h[?25l7[?12l[?25h[?25l5[?12l[?25h[?25l5[?12l[?25h[?25l"[?12l[?25h[?25l[21d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25lp[?12l[?25h[?25lw[?12l[?25h[?25l_[?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25l"[?12l[?25h[?25l[22d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l.[?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25l_[?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lw[?12l[?25h[?25lw[?12l[?25h[?25lw[?12l[?25h[?25l-[?12l[?25h[?25ld[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25l"[?12l[?25h[?25l[23d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25lU[?12l[?25h[?25lC[?12l[?25h[?25lE[?12l[?25h[?25lS[?12l[?25h[?25lS[?12l[?25h[?25lO[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lP[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l[24d[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lE[?12l[?25h[?25lR[?12l[?25h[?25lR[?12l[?25h[?25lO[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lP[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l[25d[?12l[?25h[?25l[26d[?12l[?25h[?25l[?12l[?25h[?25l[A[?12l[?25h[?25l[38;18H         [38;35H(B[0;7mM-D(B[m Formato DOS[19X[38;69H(B[0;7mM-A(B[m Anexar[20X[38;105H(B[0;7mB(B[m Segurança[K[39;2H(B[0;7mC(B[m Cancelar[18G           [35G(B[0;7mM-M(B[m Formato Mac[19X[39;69H(B[0;7mM-P(B[m Prepor[24X[39;103H(B[0;7m^T(B[m P/ ficheiros[K[37d(B[0;7mNome do ficheiro onde escrever: molecule/default/verify.yml                                                                               [37;1H(B[m[37;60H[?12l[?25h[?25l[1K (B[0;7m[ A escrever... ](B[m[K[1;127H(B[0;7m          (B[m[37;58H(B[0;7m[ 284 linhas escritas ](B[m[38;18H(B[0;7m^O(B[m Gravar[38;35H(B[0;7m^W(B[m Procurar      (B[0;7m^K(B[m Cortar txt    (B[0;7m^J(B[m Justificar    (B[0;7m^C(B[m Pos cursor[105G(B[0;7mU(B[m Desfazer     (B[0;7mM-A(B[m Marcar txt[39;2H(B[0;7mX(B[m Sair    [18G(B[0;7m^R(B[m Carregar[35G(B[0;7m^\(B[m Substituir    (B[0;7m^U(B[m Colar txt     (B[0;7m^T(B[m Ortografia    (B[0;7m^_(B[m Ir p/ linha   (B[0;7mM-E(B[m Refazer      (B[0;7mM-6(B[m Copiar txt[37d[25d[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[37d[J[39d[?12l[?25h[39;1H[?1049l[23;0;0t[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ls
+[0m[01;34masciinema[0m  [01;34mdefaults[0m  [01;34mfiles[0m  [01;34mhandlers[0m  [01;34mhtml[0m  [01;34mlatex[0m  [01;34mmeta[0m  [01;34mmolecule[0m  README.md  [01;34mtasks[0m  [01;34mtemplates[0m  [01;34mtests[0m  [01;34mvars[0m
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule
+[33mUsage: [0mmolecule [OPTIONS] COMMAND [ARGS]...
+
+  Molecule aids in the development and testing of Ansible roles.
+
+  Enable autocomplete issue:
+
+    eval "$(_MOLECULE_COMPLETE=source molecule)"
+
+[33mOptions[0m:
+  [32m--debug / --no-debug[0m    Enable or disable debug mode. Default is disabled.
+  [32m-v, --verbose[0m           Increase Ansible verbosity level. Default is 0.
+  [32m-c, --base-config TEXT[0m  Path to a base config (can be specified multiple times). If provided, Molecule will first load and deep merge
+                          the configurations in the specified order, and deep merge each scenario's molecule.yml on top. By default
+                          Molecule is looking for '.config/molecule/config.yml' in current VCS repository and if not found it will look
+                          in user home. (None).
+  [32m-e, --env-file TEXT[0m     The file to read variables from when rendering molecule.yml. (.env.yml)
+  [32m--version[0m
+  [32m--help[0m                  Show this message and exit.
+
+[33mCommands[0m:
+  [32mcheck[0m        Use the provisioner to perform a Dry-Run (destroy, dependency, create, prepare, converge).
+  [32mcleanup[0m      Use the provisioner to cleanup any changes made to external systems during the stages of testing.
+  [32mconverge[0m     Use the provisioner to configure instances (dependency, create, prepare converge).
+  [32mcreate[0m       Use the provisioner to start the instances.
+  [32mdependency[0m   Manage the role's dependencies.
+  [32mdestroy[0m      Use the provisioner to destroy the instances.
+  [34mdrivers[0m      List drivers.
+  [32midempotence[0m  Use the provisioner to configure the instances and parse the output to determine idempotence.
+  [34minit[0m         Initialize a new role or scenario.
+  [32mlint[0m         Lint the role (dependency, lint).
+  [34mlist[0m         List status of instances.
+  [93mlogin[0m        Log in to one instance.
+  [34mmatrix[0m       List matrix of steps used to test instances.
+  [32mprepare[0m      Use the provisioner to prepare the instances into a particular starting state.
+  [34mreset[0m        Reset molecule temporary folders.
+  [32mside-effect[0m  Use the provisioner to perform side-effects to the instances.
+  [32msyntax[0m       Use the provisioner to syntax check the role.
+  [93mtest[0m         Test (dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify,
+               cleanup,...
+  [32mverify[0m       Run automated tests against instances.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint
+[34mINFO    [0m default scenario test matrix: dependency, lint
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
+[31mWARNING [0m Skipping, missing the requirements file.
+[31mWARNING [0m Skipping, missing the requirements file.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mlint[0m
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+[34mINFO    [0m default scenario test matrix: verify
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mverify[0m
+[34mINFO    [0m Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
+
+TASK [Variáveis] *************************************************************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
+[33mchanged: [ubuntu-20.04][0m
+
+TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
+[31mfatal: [ubuntu-20.04]: FAILED! => {[0m
+[31m    "assertion": "not estado.changed",[0m
+[31m    "changed": false,[0m
+[31m    "evaluated_to": false,[0m
+[31m    "msg": "ERRO: Existem actualizações pendentes"[0m
+[31m}[0m
+
+PLAY RECAP *******************************************************************************************************************************
+[31mubuntu-20.04[0m               : [32mok=2   [0m [33mchanged=1   [0m unreachable=0    [31mfailed=1   [0m skipped=0    rescued=0    ignored=0
+
+
+[1;31mCRITICAL[0m Ansible return code was [1;36m2[0m, command was: ansible-playbook --inventory [35m/home/admlocal/.cache/molecule/leantime_ansible/default/[0m[95minventory[0m --skip-tags molecule-notest,notest [35m/home/admlocal/leantime_ansible/molecule/default/[0m[95mverify.yml[0m
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify[K[K[K[K[K[Kconverge
+[34mINFO    [0m default scenario test matrix: dependency, create, prepare, converge
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
+[31mWARNING [0m Skipping, missing the requirements file.
+[31mWARNING [0m Skipping, missing the requirements file.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcreate[0m
+[31mWARNING [0m Skipping, instances already created.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mprepare[0m
+[31mWARNING [0m Skipping, instances already prepared.
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mconverge[0m
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+[33mchanged: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+[32mok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})[0m
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+[32mok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})[0m
+[32mok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})[0m
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+[1;35m[WARNING]: Module did not set no_log for update_password[0m
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})[0m
+
+PLAY RECAP *******************************************************************************************************************************
+[33mubuntu-20.04[0m               : [32mok=14  [0m [33mchanged=1   [0m unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence
+[34mINFO    [0m default scenario test matrix: idempotence
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32midempotence[0m
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+[32mok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})[0m
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+[32mok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})[0m
+[32mok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})[0m
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+[1;35m[WARNING]: Module did not set no_log for update_password[0m
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})[0m
+
+PLAY RECAP *******************************************************************************************************************************
+[32mubuntu-20.04[0m               : [32mok=14  [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+[34mINFO    [0m Idempotence completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence[K[K[K[K[K[K[K[K[K[K[Kverify
+[34mINFO    [0m default scenario test matrix: verify
+[34mINFO    [0m Performing prerun[33m...[0m
+[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
+[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mverify[0m
+[34mINFO    [0m Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
+
+TASK [Variáveis] *************************************************************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: A cache está atualizada"[0m
+[32m}[0m
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O sistema operativo está atualizado"[0m
+[32m}[0m
+
+TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: A cache está atualizada"[0m
+[32m}[0m
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: As dependencias estavam instaladas"[0m
+[32m}[0m
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"[0m
+[32m}[0m
+
+TASK [Rotina Auxiliar> Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************
+[32mok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})[0m
+[32mok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})[0m
+
+TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O ficheiro php.ini foi alterado com sucesso"[0m
+[32m}[0m
+
+TASK [Simulação: Obtem informação sobre a pastas /var/www/leantime] **********************************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: A pasta /var/www/leantime existe e tem as permissões certas?] ***************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: Permissões correctas no site leantime"[0m
+[32m}[0m
+
+TASK [Simulação: Verifica se é necessário criar a base de dados leantime_database] *******************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: A base de dados leantime_database existe ?] *********************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: A base de dados leantime_database já se encontra criada"[0m
+[32m}[0m
+
+TASK [Simulação e Teste: Verifica se o endereço git para a versão de leantime existe] ****************************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Simulação: Obtem informação sobre o ficheiro /var/www/leantime/config/configuration.php] *******************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: O ficheiro /var/www/leantime/config/configuration.php existe e tem as permissões certas?] ***********************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: Permissões correctas e ficheiro configuration.php existente"[0m
+[32m}[0m
+
+TASK [Simulação: Testa se o dbuser foi alterado no ficheiro configuration.php utilizando o módulo replace.] ******************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: O dbUser foi alterado?] *****************************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O dbUser foi alterado no ficheiro configuration.php"[0m
+[32m}[0m
+
+TASK [Simulação: Testa se o dbDatabase foi alterado no ficheiro configuration.php utilizando o módulo replace.] **************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: a variável dbDatabase foi alterada?] ****************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O dbDatabase foi alterado no ficheiro configuration.php"[0m
+[32m}[0m
+
+TASK [Simulação: Testa se o dbPassword foi alterado no ficheiro configuration.php utilizando o módulo replace.] **************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: O dbPassword foi alterado?] *************************************************************************************************
+[32mok: [ubuntu-20.04] => {[0m
+[32m    "changed": false,[0m
+[32m    "msg": "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"[0m
+[32m}[0m
+
+TASK [Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-available/leantime.conf] *******************************************
+[32mok: [ubuntu-20.04][0m
+
+TASK [Teste: O ficheiro /etc/apache2/sites-available/leantime.conf existe e tem as permissões certas?] ***********************************
+[31mfatal: [ubuntu-20.04]: FAILED! => {[0m
+[31m    "assertion": "ficheiro.stat.exists",[0m
+[31m    "changed": false,[0m
+[31m    "evaluated_to": false,[0m
+[31m    "msg": "ERRO: Permissões incorrectas"[0m
+[31m}[0m
+
+PLAY RECAP *******************************************************************************************************************************
+[31mubuntu-20.04[0m               : [32mok=27  [0m changed=0    unreachable=0    [31mfailed=1   [0m skipped=0    rescued=0    ignored=0
+
+
+[1;31mCRITICAL[0m Ansible return code was [1;36m2[0m, command was: ansible-playbook --inventory [35m/home/admlocal/.cache/molecule/leantime_ansible/default/[0m[95minventory[0m --skip-tags molecule-notest,notest [35m/home/admlocal/leantime_ansible/molecule/default/[0m[95mverify.yml[0m
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exiy[K
+
+O comando 'exi' não foi encontrado, mas existem 13 semelhantes.
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit

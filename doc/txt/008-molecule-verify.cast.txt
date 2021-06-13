@@ -1,27 +1,27 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
-[34mINFO    [0m default scenario test matrix: verify
-[34mINFO    [0m Performing prerun[33m...[0m
-[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mverify[0m
-[34mINFO    [0m Running Ansible Verifier
+admlocal@devOps:~/leantime_ansible$ molecule verify
+INFO     default scenario test matrix: verify
+INFO     Performing prerun...
+INFO     Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:./.cache/roles
+INFO     Running default > verify
+INFO     Running Ansible Verifier
 
 PLAY [Infraestrutura conduzida por testes] ********************************************
 
 TASK [Simulação: Atualizar a cache do sistema] ****************************************
-[33mchanged: [ubuntu-20.04][0m
+changed: [ubuntu-20.04]
 
 TASK [teste: a cache encontra-se actualizada?] ****************************************
-[31mfatal: [ubuntu-20.04]: FAILED! => {[0m
-[31m    "assertion": "not estado.changed",[0m
-[31m    "changed": false,[0m
-[31m    "evaluated_to": false,[0m
-[31m    "msg": "ERRO: Existem actualizações pendentes"[0m
-[31m}[0m
+fatal: [ubuntu-20.04]: FAILED! => {
+    "assertion": "not estado.changed",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "ERRO: Existem actualizações pendentes"
+}
 
 PLAY RECAP ****************************************************************************
-[31mubuntu-20.04[0m               : [32mok=1   [0m [33mchanged=1   [0m unreachable=0    [31mfailed=1   [0m skipped=0    rescued=0    ignored=0
+ubuntu-20.04               : ok=1    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 
 
-[1;31mCRITICAL[0m Ansible return code was [1;36m2[0m, command was: ansible-playbook --inventory [35m/home/admlocal/.cache/molecule/leantime_ansible/default/[0m[95minventory[0m --skip-tags molecule-notest,notest [35m/home/admlocal/leantime_ansible/molecule/default/[0m[95mverify.yml[0m
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+CRITICAL Ansible return code was 2, command was: ansible-playbook --inventory /home/admlocal/.cache/molecule/leantime_ansible/default/inventory --skip-tags molecule-notest,notest /home/admlocal/leantime_ansible/molecule/default/verify.yml
+admlocal@devOps:~/leantime_ansible$ exit

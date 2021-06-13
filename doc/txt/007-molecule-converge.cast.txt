@@ -1,25 +1,25 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
-[34mINFO    [0m default scenario test matrix: dependency, create, prepare, converge
-[34mINFO    [0m Performing prerun[33m...[0m
-[34mINFO    [0m Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-[34mINFO    [0m Added [33mANSIBLE_ROLES_PATH[0m=~[35m/.ansible/[0m[95mroles[0m:[35m/usr/share/ansible/[0m[95mroles[0m:[35m/etc/ansible/[0m[95mroles[0m:.[35m/.cache/[0m[95mroles[0m
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mdependency[0m
-[31mWARNING [0m Skipping, missing the requirements file.
-[31mWARNING [0m Skipping, missing the requirements file.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mcreate[0m
-[31mWARNING [0m Skipping, instances already created.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mprepare[0m
-[31mWARNING [0m Skipping, instances already prepared.
-[34mINFO    [0m [2;36mRunning [0m[2;32mdefault[0m[2;36m > [0m[2;32mconverge[0m
+admlocal@devOps:~/leantime_ansible$ molecule converge
+INFO     default scenario test matrix: dependency, create, prepare, converge
+INFO     Performing prerun...
+INFO     Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Added ANSIBLE_ROLES_PATH=~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:./.cache/roles
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > create
+WARNING  Skipping, instances already created.
+INFO     Running default > prepare
+WARNING  Skipping, instances already prepared.
+INFO     Running default > converge
 
 PLAY [Converge] ***********************************************************************
 
 TASK [Gathering Facts] ****************************************************************
-[32mok: [ubuntu-20.04][0m
+ok: [ubuntu-20.04]
 
 TASK [Include leantime_ansible] *******************************************************
 
 PLAY RECAP ****************************************************************************
-[32mubuntu-20.04[0m               : [32mok=1   [0m changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu-20.04               : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+admlocal@devOps:~/leantime_ansible$ molecule convergeexit

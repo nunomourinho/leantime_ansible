@@ -1,0 +1,34 @@
+admlocal@devOps:~/leantime_ansible$ asc[K[Knsible-lint 
+WARNING  Computed fully qualified role name of leantime_ansible does not follow current galaxy requirements.
+Please edit meta/main.yml and assure we can correctly determine full role name:
+
+galaxy_info:
+role_name: my_name  # if absent directory name hosting role is used instead
+namespace: my_galaxy_namespace  # if absent, author is used instead
+
+Namespace: https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations
+Role: https://galaxy.ansible.com/docs/contributing/creating_role.html#role-names
+
+As an alternative, you can add 'role-name' to either skip_list or warn_list.
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+WARNING  Listing 4 violation(s) that are fatal
+[91mmeta-no-info[0m[2m:[0m [31mRole info should contain platforms[0m
+[34mmeta/main.yml[0m:0
+
+[91mmeta-incorrect[0m[2m:[0m [31mShould change default metadata: author[0m
+[34mmeta/main.yml[0m:1
+
+[91mmeta-incorrect[0m[2m:[0m [31mShould change default metadata: company[0m
+[34mmeta/main.yml[0m:1
+
+[91mmeta-incorrect[0m[2m:[0m [31mShould change default metadata: license[0m
+[34mmeta/main.yml[0m:1
+
+You can skip specific rules or tags by adding them to your configuration file:
+[2m# .ansible-lint[0m
+[94mwarn_list[0m:  [2m# or 'skip_list' to silence them completely[0m
+  - meta-incorrect  [2m# meta/main.yml default values should be changed[0m
+  - meta-no-info  [2m# meta/main.yml should contain relevant info[0m
+Finished with [1;36m4[0m failure[1m([0ms[1m)[0m, [1;36m0[0m warning[1m([0ms[1m)[0m on [1;36m14[0m files.
+admlocal@devOps:~/leantime_ansible$ exit
