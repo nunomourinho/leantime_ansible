@@ -1,35 +1,35 @@
-<span id="line-0">admlocal@devOps:~/leantime_ansible$ ascnsible-lint </span><br>
-<span id="line-1">WARNING  Computed fully qualified role name of leantime_ansible does not follow current galaxy requirements.</span><br>
-<span id="line-2">Please edit meta/main.yml and assure we can correctly determine full role name:</span><br>
-<span id="line-3"></span><br>
-<span id="line-4">galaxy_info:</span><br>
-<span id="line-5">role_name: my_name  # if absent directory name hosting role is used instead</span><br>
-<span id="line-6">namespace: my_galaxy_namespace  # if absent, author is used instead</span><br>
-<span id="line-7"></span><br>
-<span id="line-8">Namespace: https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations</span><br>
-<span id="line-9">Role: https://galaxy.ansible.com/docs/contributing/creating_role.html#role-names</span><br>
-<span id="line-10"></span><br>
-<span id="line-11">As an alternative, you can add 'role-name' to either skip_list or warn_list.</span><br>
-<span id="line-12"></span><br>
-<span id="line-13">Loading custom .yamllint config file, this extends our internal yamllint config.</span><br>
-<span id="line-14">WARNING  Listing 4 violation(s) that are fatal</span><br>
-<span id="line-15"><span style="color: #ea4040">meta-no-info</span><br><span style="font-weight: lighter">:</span><br> <span style="color: #aa0000">Role info should contain platforms</span><br></span><br>
-<span id="line-16"><span style="color: #0000aa">meta/main.yml</span><br>:0</span><br>
-<span id="line-17"></span><br>
-<span id="line-18"><span style="color: #ea4040">meta-incorrect</span><br><span style="font-weight: lighter">:</span><br> <span style="color: #aa0000">Should change default metadata: author</span><br></span><br>
-<span id="line-19"><span style="color: #0000aa">meta/main.yml</span><br>:1</span><br>
-<span id="line-20"></span><br>
-<span id="line-21"><span style="color: #ea4040">meta-incorrect</span><br><span style="font-weight: lighter">:</span><br> <span style="color: #aa0000">Should change default metadata: company</span><br></span><br>
-<span id="line-22"><span style="color: #0000aa">meta/main.yml</span><br>:1</span><br>
-<span id="line-23"></span><br>
-<span id="line-24"><span style="color: #ea4040">meta-incorrect</span><br><span style="font-weight: lighter">:</span><br> <span style="color: #aa0000">Should change default metadata: license</span><br></span><br>
-<span id="line-25"><span style="color: #0000aa">meta/main.yml</span><br>:1</span><br>
-<span id="line-26"></span><br>
-<span id="line-27">You can skip specific rules or tags by adding them to your configuration file:</span><br>
-<span id="line-28"><span style="font-weight: lighter"># .ansible-lint</span><br></span><br>
-<span id="line-29"><span style="color: #4040ea">warn_list</span><br>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span><br></span><br>
-<span id="line-30">  - meta-incorrect  <span style="font-weight: lighter"># meta/main.yml default values should be changed</span><br></span><br>
-<span id="line-31">  - meta-no-info  <span style="font-weight: lighter"># meta/main.yml should contain relevant info</span><br></span><br>
-<span id="line-32">Finished with <span style="font-weight: bold; color: #00aaaa">4</span><br> failure<span style="font-weight: bold">(</span><br>s<span style="font-weight: bold">)</span><br>, <span style="font-weight: bold; color: #00aaaa">0</span><br> warning<span style="font-weight: bold">(</span><br>s<span style="font-weight: bold">)</span><br> on <span style="font-weight: bold; color: #00aaaa">14</span><br> files.</span><br>
-<span id="line-33">admlocal@devOps:~/leantime_ansible$ exit</span><br>
-<span id="line-34"></span><br>
+<br><span id="line-0">admlocal@devOps:~/leantime_ansible$ ascnsible-lint </span>
+<br><span id="line-1">WARNING  Computed fully qualified role name of leantime_ansible does not follow current galaxy requirements.</span>
+<br><span id="line-2">Please edit meta/main.yml and assure we can correctly determine full role name:</span>
+<br><span id="line-3"></span>
+<br><span id="line-4">galaxy_info:</span>
+<br><span id="line-5">role_name: my_name  # if absent directory name hosting role is used instead</span>
+<br><span id="line-6">namespace: my_galaxy_namespace  # if absent, author is used instead</span>
+<br><span id="line-7"></span>
+<br><span id="line-8">Namespace: https://galaxy.ansible.com/docs/contributing/namespaces.html#galaxy-namespace-limitations</span>
+<br><span id="line-9">Role: https://galaxy.ansible.com/docs/contributing/creating_role.html#role-names</span>
+<br><span id="line-10"></span>
+<br><span id="line-11">As an alternative, you can add 'role-name' to either skip_list or warn_list.</span>
+<br><span id="line-12"></span>
+<br><span id="line-13">Loading custom .yamllint config file, this extends our internal yamllint config.</span>
+<br><span id="line-14">WARNING  Listing 4 violation(s) that are fatal</span>
+<br><span id="line-15"><span style="color: #ea4040">meta-no-info</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Role info should contain platforms</span></span>
+<br><span id="line-16"><span style="color: #0000aa">meta/main.yml</span>:0</span>
+<br><span id="line-17"></span>
+<br><span id="line-18"><span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: author</span></span>
+<br><span id="line-19"><span style="color: #0000aa">meta/main.yml</span>:1</span>
+<br><span id="line-20"></span>
+<br><span id="line-21"><span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: company</span></span>
+<br><span id="line-22"><span style="color: #0000aa">meta/main.yml</span>:1</span>
+<br><span id="line-23"></span>
+<br><span id="line-24"><span style="color: #ea4040">meta-incorrect</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Should change default metadata: license</span></span>
+<br><span id="line-25"><span style="color: #0000aa">meta/main.yml</span>:1</span>
+<br><span id="line-26"></span>
+<br><span id="line-27">You can skip specific rules or tags by adding them to your configuration file:</span>
+<br><span id="line-28"><span style="font-weight: lighter"># .ansible-lint</span></span>
+<br><span id="line-29"><span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span></span>
+<br><span id="line-30">  - meta-incorrect  <span style="font-weight: lighter"># meta/main.yml default values should be changed</span></span>
+<br><span id="line-31">  - meta-no-info  <span style="font-weight: lighter"># meta/main.yml should contain relevant info</span></span>
+<br><span id="line-32">Finished with <span style="font-weight: bold; color: #00aaaa">4</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">14</span> files.</span>
+<br><span id="line-33">admlocal@devOps:~/leantime_ansible$ exit</span>
+<br><span id="line-34"></span>
