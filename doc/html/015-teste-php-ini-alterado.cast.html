@@ -1,472 +1,473 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exitnano molecule/default/verify.yml 
-[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 108 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span>
-<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt
-<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt
----
-<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
-# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
-</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"
-[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
-  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"
-  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf
-[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
-<span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
-  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:
-[?12l[?25h[?25lO serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"O serviço apache2 não se encontra correcta
-[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
- [?12l[?25h[?25l [?12l[?25h[?25l
-<span style="color: #00aaaa">  #</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">F</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">p</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa">/
-</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">y</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">y</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">g</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lR[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lu[?12l[?25h[?25lx[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25l&gt;[?12l[?25h[?25l [?12l[?25h[?25lP[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lv[?12l[?25h[?25li[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25l:[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25lc[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l
-[?12l[?25h[?25l[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l
-<span style="color: #00aaaa">  #</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">F</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">p</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">_</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25lp[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l,[?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25ló[?12l[?25h[?25ld[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25lb[?12l[?25h[?25lu[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25l.[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l.[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l[[?12l[?25h[?25l0[?12l[?25h[?25l][?12l[?25h[?25l.[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l.[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l.[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lw[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25l0[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lp[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lp[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l3[?12l[?25h[?25l6[?12l[?25h[?25l0[?12l[?25h[?25l0[?12l[?25h[?25l"[?12l[?25h[?25l
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lk[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l78
-
-[?12l[?25h[?25l[?12l[?25h[?25l78
-
-[?12l[?25h[?25l[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lT[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l?[?12l[?25h[?25l"[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25ld[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25lU[?12l[?25h[?25lC[?12l[?25h[?25lE[?12l[?25h[?25lS[?12l[?25h[?25lS[?12l[?25h[?25lO[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lO[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25lo[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l78
-
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lE[?12l[?25h[?25lR[?12l[?25h[?25lR[?12l[?25h[?25lO[?12l[?25h[?25l: [?12l[?25h[?25lA[?12l[?25h[?25ll[?12l[?25h[?25lg[?12l[?25h[?25lu[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l78
-
-[?12l[?25h[?25l78
-[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
-[?12l[?25h[?25l[?12l[?25h[?1049l
-[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansinano molecule/default/verify.yml [1@a[1@n[1@s[1@i[1@b[1@l[1@e[1@/[1@l[1@i[1@n[1@t[1@-
-Loading custom .yamllint config file, this extends our internal yamllint config.
-WARNING  Listing 1 violation(s) that are fatal
-<span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span>
-<span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span>
-<span style="font-weight: lighter">the implicit localhost does not match 'all'</span>
-<span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span>
-<span style="font-weight: lighter">  found a tab character that violate indentation</span>
-
-<span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 114, column 1, but may</span>
-<span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span>
-
-<span style="font-weight: lighter">The offending line appears to be:</span>
-
-<span style="font-weight: lighter">    register: caminho_php_ini</span>
-
-<span style="font-weight: lighter">^ here</span>
-<span style="font-weight: lighter">There appears to be a tab character at the start of the line.</span>
-
-<span style="font-weight: lighter">YAML does not use tabs for formatting. Tabs should be replaced with spaces.</span>
-
-<span style="font-weight: lighter">For example:</span>
-<span style="font-weight: lighter">    - name: update tooling</span>
-<span style="font-weight: lighter">      vars:</span>
-<span style="font-weight: lighter">        version: 1.2.3</span>
-<span style="font-weight: lighter">#    ^--- there is a tab there.</span>
-
-<span style="font-weight: lighter">Should be written as:</span>
-<span style="font-weight: lighter">    - name: update tooling</span>
-<span style="font-weight: lighter">      vars:</span>
-<span style="font-weight: lighter">        version: 1.2.3</span>
-<span style="font-weight: lighter"># ^--- all spaces here.</span>
-
-
-You can skip specific rules or tags by adding them to your configuration file:
-<span style="font-weight: lighter"># .ansible-lint</span>
-<span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span>
-  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span>
-Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml 
-nano
-[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 146 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span>
-<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt
-<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt
----
-<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
-# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
-</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"
-[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
-  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"
-  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf
-[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
-<span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
-  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:
-[?12l[?25h[?25l  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
-<span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini
-<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."  ansible.builtin.lineinfile:  path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:- regexp: "^file_uploads"line: "file_uploads = 1" - regexp: "^upload_max_filesize" line: "upload_max_filesize = 1G"  - regexp: "^max_file_uploads"  line: "max_file_uploads = 20"- regexp: "^post_max_size"  line: "post_max_size = 2G"  - regexp: "^memory_limit"    line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"check_mode: true
-[?12l[?25h[?25l78line: "max_input_time = 3600"check_mode: trueregister: estadoAs linhas do php.ini encontram-se alteradas ?"ficheiro php.ini foi alterado com sucesso"Algumas alterações ao ficheiro php.ini não tiveram sucesso"
-[?12l[?25h[?25l78
-M- regexp: "^max_input_time"[?12l[?25h[?25l78
-Mline: "memory_limit = 2G"[?12l[?25h[?25l78
-M- regexp: "^memory_limit"[?12l[?25h[?25l78
-Mline: "post_max_size = 2G"[?12l[?25h[?25l78
-M- regexp: "^post_max_size"[?12l[?25h[?25l78
-Mline: "max_file_uploads = 20"[?12l[?25h[?25l78
-M- regexp: "^max_file_uploads"[?12l[?25h[?25l78
-Mline: "upload_max_filesize = 1G"[?12l[?25h[?25l78
-M- regexp: "^upload_max_filesize"[?12l[?25h[?25l78
-Mline: "file_uploads = 1"[?12l[?25h[?25l78
-M- regexp: "^file_uploads"[?12l[?25h[?25l78
-Mwith_items:[?12l[?25h[?25l78
-Mline: "{{ item.line }}"[?12l[?25h[?25l78
-Mregexp: "{{ item.regexp  }}"[?12l[?25h[?25l78
-Mpath: "{{ caminho_php_ini.files[0].path }}"[?12l[?25h[?25l78
-Mansible.builtin.lineinfile:[?12l[?25h[?25l78
-M- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."[?12l[?25h[?25l78
-M<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>[?12l[?25h[?25l78
-M[?12l[?25h[?25l78Mregister: caminho_php_ini[?12l[?25h[?25l78
-Mrecurse: true[?12l[?25h[?25l78
-Mpatterns: "php.ini"[?12l[?25h[?25l78
-Mpaths: /etc[?12l[?25h[?25l78
-Mfind:[?12l[?25h[?25l78
-M- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"[?12l[?25h[?25l78
-M<span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>[?12l[?25h[?25l78
-M[?12l[?25h[?25l78Mfail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"[?12l[?25h[?25l78
-Msuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"[?12l[?25h[?25l[?12l[?25h[?25l
-[?12l[?25h[?25l78M- not estado.changed
-[?12l[?25h[?25l78Mthat:
-[?12l[?25h[?25l78Massert:
-[?12l[?25h[?25l78M- name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"
-[?12l[?25h[?25l78M[?12l[?25h[?25l78Mregister: estado
-[?12l[?25h[?25l78Mcheck_mode: true
-[?12l[?25h[?25l78Menabled: true
-[?12l[?25h[?25l78Mstate: started
-[?12l[?25h[?25l78Mname: apache2
-[?12l[?25h[?25l78Mservice:
-[?12l[?25h[?25l78M- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"
-[?12l[?25h[?25l78M<span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
-</span>[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
-[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
-[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l
-[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
-
-- regexp: "^max_file_uploads"[?12l[?25h[?25l78
-
-line: "max_file_uploads = 20"[?12l[?25h[?25l78
-
-- regexp: "^post_max_size"[?12l[?25h[?25l78
-
-line: "post_max_size = 2G"[?12l[?25h[?25l78
-
-- regexp: "^memory_limit"[?12l[?25h[?25l78
-
-line: "memory_limit = 2G"[?12l[?25h[?25l78
-
-- regexp: "^max_input_time"[?12l[?25h[?25l78
-
-line: "max_input_time = 3600"[?12l[?25h[?25l78
-
-check_mode: true[?12l[?25h[?25l78
-
-register: estado[?12l[?25h[?25l78
-
-    [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
-[?12l[?25h[?25l[?12l[?25h[?25l
-[?12l[?25h[?25l78
-[?12l[?25h[?25l78
-- name: "Teste: As linhas do php.ini encontram-se alteradas ?"
-[?12l[?25h[?25l78
-[?12l[?25h[?25l
-that:
-[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
-- not estado.changed
-[?12l[?25h[?25l78
-success_msg: "SUCESSO: O ficheiro php.ini foi alterado com sucesso"
-[?12l[?25h[?25l78
-fail_msg: "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"
-[?12l[?25h[?25l78
-[?12l[?25h[?25l78
-[?12l[?25h[?25l78
-[?12l[?25h[?25l78
-[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
-<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                               </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt
-[?12l[?25h[?25l[?12l[?25h[?1049l
-[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml [8@ansible-lint
-Loading custom .yamllint config file, this extends our internal yamllint config.
-WARNING  Listing 1 violation(s) that are fatal
-<span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span>
-<span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span>
-<span style="font-weight: lighter">the implicit localhost does not match 'all'</span>
-<span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span>
-<span style="font-weight: lighter">  found a tab character that violate indentation</span>
-
-<span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 136, column 1, but may</span>
-<span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span>
-
-<span style="font-weight: lighter">The offending line appears to be:</span>
-
-<span style="font-weight: lighter">    register: estado</span>
-
-<span style="font-weight: lighter">^ here</span>
-<span style="font-weight: lighter">There appears to be a tab character at the start of the line.</span>
-
-<span style="font-weight: lighter">YAML does not use tabs for formatting. Tabs should be replaced with spaces.</span>
-
-<span style="font-weight: lighter">For example:</span>
-<span style="font-weight: lighter">    - name: update tooling</span>
-<span style="font-weight: lighter">      vars:</span>
-<span style="font-weight: lighter">        version: 1.2.3</span>
-<span style="font-weight: lighter">#    ^--- there is a tab there.</span>
-
-<span style="font-weight: lighter">Should be written as:</span>
-<span style="font-weight: lighter">    - name: update tooling</span>
-<span style="font-weight: lighter">      vars:</span>
-<span style="font-weight: lighter">        version: 1.2.3</span>
-<span style="font-weight: lighter"># ^--- all spaces here.</span>
-
-
-You can skip specific rules or tags by adding them to your configuration file:
-<span style="font-weight: lighter"># .ansible-lint</span>
-<span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span>
-  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span>
-Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml 
-nano
-[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span>
-<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt
-<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt
----
-<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
-# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
-</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"
-[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
-  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"
-  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf
-[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
-<span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
-  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:
-[?12l[?25h[?25l  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
-<span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini
-<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."  ansible.builtin.lineinfile:  path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:- regexp: "^file_uploads"line: "file_uploads = 1" - regexp: "^upload_max_filesize" line: "upload_max_filesize = 1G"  - regexp: "^max_file_uploads"  line: "max_file_uploads = 20"- regexp: "^post_max_size"  line: "post_max_size = 2G"  - regexp: "^memory_limit"    line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"check_mode: true
-[?12l[?25h[?25l78line: "max_input_time = 3600"check_mode: trueregister: estadoAs linhas do php.ini encontram-se alteradas ?"ficheiro php.ini foi alterado com sucesso"Algumas alterações ao ficheiro php.ini não tiveram sucesso"
-[?12l[?25h[?25l78M- regexp: "^max_input_time"
-[?12l[?25h[?25l78Mline: "memory_limit = 2G"
-[?12l[?25h[?25l78M- regexp: "^memory_limit"
-[?12l[?25h[?25l78Mline: "post_max_size = 2G"
-[?12l[?25h[?25l78M- regexp: "^post_max_size"
-[?12l[?25h[?25l78Mline: "max_file_uploads = 20"
-[?12l[?25h[?25l[?12l[?25h[?25l78
-M- regexp: "^max_file_uploads"[?12l[?25h[?25l78
-Mline: "upload_max_filesize = 1G"[?12l[?25h[?25l78
-M- regexp: "^upload_max_filesize"[?12l[?25h[?25l78
-Mline: "file_uploads = 1"[?12l[?25h[?25l78
-M- regexp: "^file_uploads"[?12l[?25h[?25l78
-Mwith_items:[?12l[?25h[?25l78
-Mline: "{{ item.line }}"[?12l[?25h[?25l78
-M[?12l[?25h[?25l78
-Mpath: "{{ caminho_php_ini.files[0].path }}"[?12l[?25h[?25l78
-Mansible.builtin.lineinfile:[?12l[?25h[?25l78
-M- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."[?12l[?25h[?25l78
-M<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
-[?12l[?25h[?25l
-[?12l[?25h[?25l78
-M[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
-<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                               </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt
-[?12l[?25h[?25l[?12l[?25h[?1049l
-[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml [8@ansible-lint
-Loading custom .yamllint config file, this extends our internal yamllint config.
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
-<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
-
-PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
-
-TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
-<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
-
-TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
-<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
-<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
-<span style="color: #aa0000">    "changed": false,</span>
-<span style="color: #aa0000">    "evaluated_to": false,</span>
-<span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span>
-<span style="color: #aa0000">}</span>
-
-PLAY RECAP *******************************************************************************************************************************
-<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
-
-
-<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
-<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
-
-PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
-
-TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************
-<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
-
-TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************
-<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
-<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
-<span style="color: #aa0000">    "changed": false,</span>
-<span style="color: #aa0000">    "evaluated_to": false,</span>
-<span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span>
-<span style="color: #aa0000">}</span>
-
-PLAY RECAP *******************************************************************************************************************************
-<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=3   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
-
-
-<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span>
-<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
-<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span>
-<span style="color: #aa0000">WARNING </span> Skipping, instances already created.
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span>
-<span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span>
-
-PLAY [Converge] **************************************************************************************************************************
-
-TASK [Gathering Facts] *******************************************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [Include leantime_ansible] **********************************************************************************************************
-
-TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
-<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
-
-TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-PLAY RECAP *******************************************************************************************************************************
-<span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=5   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule convergeverify
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
-<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
-
-PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
-
-TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
-<span style="color: #00aa00">    "changed": false,</span>
-<span style="color: #00aa00">    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"</span>
-<span style="color: #00aa00">}</span>
-
-TASK [Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************
-<span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span>
-<span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span>
-<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span>
-<span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span>
-<span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span>
-<span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span>
-
-TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************
-<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
-<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
-<span style="color: #aa0000">    "changed": false,</span>
-<span style="color: #aa0000">    "evaluated_to": false,</span>
-<span style="color: #aa0000">    "msg": "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"</span>
-<span style="color: #aa0000">}</span>
-
-PLAY RECAP *******************************************************************************************************************************
-<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=11  </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
-
-
-<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
-exit
+<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exitnano molecule/default/verify.yml </span>
+<span id="line-1">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 108 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span></span>
+<span id="line-2"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt</span>
+<span id="line-3"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
+<span id="line-4">---</span>
+<span id="line-5"><span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site</span>
+<span id="line-6"># https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/</span>
+<span id="line-7"></span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"</span>
+<span id="line-8">[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"</span>
+<span id="line-9">  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"</span>
+<span id="line-10">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf</span>
+<span id="line-11">[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"</span>
+<span id="line-12"><span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado</span>
+<span id="line-13">  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:</span>
+<span id="line-14">[?12l[?25h[?25lO serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"O serviço apache2 não se encontra correcta</span>
+<span id="line-15">[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
+<span id="line-16"> [?12l[?25h[?25l [?12l[?25h[?25l</span>
+<span id="line-17"><span style="color: #00aaaa">  #</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">F</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">p</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>
+<span id="line-18"></span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">w</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">y</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">y</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">g</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">-</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">r</span>[?12l[?25h[?25l</span>
+<span id="line-19">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lR[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lu[?12l[?25h[?25lx[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25l&gt;[?12l[?25h[?25l [?12l[?25h[?25lP[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lv[?12l[?25h[?25li[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-20">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25l:[?12l[?25h[?25l</span>
+<span id="line-21">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25lc[?12l[?25h[?25l</span>
+<span id="line-22">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-23">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l</span>
+<span id="line-24">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l</span>
+<span id="line-25">[?12l[?25h[?25l[?12l[?25h[?25l</span>
+<span id="line-26">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l</span>
+<span id="line-27"><span style="color: #00aaaa">  #</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">F</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa"> </span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">p</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">:</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">c</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">a</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">s</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">b</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">/</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">n</span>[?12l[?25h[?25l<span style="color: #00aaaa">f</span>[?12l[?25h[?25l<span style="color: #00aaaa">i</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">_</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">o</span>[?12l[?25h[?25l<span style="color: #00aaaa">d</span>[?12l[?25h[?25l<span style="color: #00aaaa">u</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l<span style="color: #00aaaa">e</span>[?12l[?25h[?25l<span style="color: #00aaaa">.</span>[?12l[?25h[?25l<span style="color: #00aaaa">h</span>[?12l[?25h[?25l<span style="color: #00aaaa">t</span>[?12l[?25h[?25l<span style="color: #00aaaa">m</span>[?12l[?25h[?25l<span style="color: #00aaaa">l</span>[?12l[?25h[?25l</span>
+<span id="line-28">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25lp[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l,[?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25ló[?12l[?25h[?25ld[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-29">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l.[?12l[?25h[?25lb[?12l[?25h[?25lu[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25l.[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l</span>
+<span id="line-30">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l.[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l[[?12l[?25h[?25l0[?12l[?25h[?25l][?12l[?25h[?25l.[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-31">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l.[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-32">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25l.[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-33">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lw[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l</span>
+<span id="line-34">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-35">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-36">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-37">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l1[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-38">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-39">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25l0[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-40">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-41">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-42">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-43">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l2[?12l[?25h[?25lG[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-44">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l^[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lp[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-45">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lx[?12l[?25h[?25l_[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lp[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l=[?12l[?25h[?25l [?12l[?25h[?25l3[?12l[?25h[?25l6[?12l[?25h[?25l0[?12l[?25h[?25l0[?12l[?25h[?25l"[?12l[?25h[?25l</span>
+<span id="line-46">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lk[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l78</span>
+<span id="line-47"></span>
+<span id="line-48">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l78</span>
+<span id="line-49"></span>
+<span id="line-50">[?12l[?25h[?25l[?12l[?25h[?25l78</span>
+<span id="line-51"></span>
+<span id="line-52">[?12l[?25h[?25l[?12l[?25h[?25l78</span>
+<span id="line-53"></span>
+<span id="line-54">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lT[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l?[?12l[?25h[?25l"[?12l[?25h[?25l78</span>
+<span id="line-55"></span>
+<span id="line-56">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l78</span>
+<span id="line-57"></span>
+<span id="line-58">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l78</span>
+<span id="line-59"></span>
+<span id="line-60">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25lt[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25ld[?12l[?25h[?25l78</span>
+<span id="line-61"></span>
+<span id="line-62">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25lU[?12l[?25h[?25lC[?12l[?25h[?25lE[?12l[?25h[?25lS[?12l[?25h[?25lS[?12l[?25h[?25lO[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lO[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25lo[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l78</span>
+<span id="line-63"></span>
+<span id="line-64">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25la[?12l[?25h[?25li[?12l[?25h[?25ll[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25ls[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lE[?12l[?25h[?25lR[?12l[?25h[?25lR[?12l[?25h[?25lO[?12l[?25h[?25l: [?12l[?25h[?25lA[?12l[?25h[?25ll[?12l[?25h[?25lg[?12l[?25h[?25lu[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l.[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lu[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l78</span>
+<span id="line-65"></span>
+<span id="line-66">[?12l[?25h[?25l78</span>
+<span id="line-67">[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
+<span id="line-68">[?12l[?25h[?25l[?12l[?25h[?1049l</span>
+<span id="line-69">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansinano molecule/default/verify.yml [1@a[1@n[1@s[1@i[1@b[1@l[1@e[1@/[1@l[1@i[1@n[1@t[1@-</span>
+<span id="line-70">Loading custom .yamllint config file, this extends our internal yamllint config.</span>
+<span id="line-71">WARNING  Listing 1 violation(s) that are fatal</span>
+<span id="line-72"><span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span></span>
+<span id="line-73"><span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span></span>
+<span id="line-74"><span style="font-weight: lighter">the implicit localhost does not match 'all'</span></span>
+<span id="line-75"><span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span></span>
+<span id="line-76"><span style="font-weight: lighter">  found a tab character that violate indentation</span></span>
+<span id="line-77"></span>
+<span id="line-78"><span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 114, column 1, but may</span></span>
+<span id="line-79"><span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span></span>
+<span id="line-80"></span>
+<span id="line-81"><span style="font-weight: lighter">The offending line appears to be:</span></span>
+<span id="line-82"></span>
+<span id="line-83"><span style="font-weight: lighter">    register: caminho_php_ini</span></span>
+<span id="line-84"></span>
+<span id="line-85"><span style="font-weight: lighter">^ here</span></span>
+<span id="line-86"><span style="font-weight: lighter">There appears to be a tab character at the start of the line.</span></span>
+<span id="line-87"></span>
+<span id="line-88"><span style="font-weight: lighter">YAML does not use tabs for formatting. Tabs should be replaced with spaces.</span></span>
+<span id="line-89"></span>
+<span id="line-90"><span style="font-weight: lighter">For example:</span></span>
+<span id="line-91"><span style="font-weight: lighter">    - name: update tooling</span></span>
+<span id="line-92"><span style="font-weight: lighter">      vars:</span></span>
+<span id="line-93"><span style="font-weight: lighter">        version: 1.2.3</span></span>
+<span id="line-94"><span style="font-weight: lighter">#    ^--- there is a tab there.</span></span>
+<span id="line-95"></span>
+<span id="line-96"><span style="font-weight: lighter">Should be written as:</span></span>
+<span id="line-97"><span style="font-weight: lighter">    - name: update tooling</span></span>
+<span id="line-98"><span style="font-weight: lighter">      vars:</span></span>
+<span id="line-99"><span style="font-weight: lighter">        version: 1.2.3</span></span>
+<span id="line-100"><span style="font-weight: lighter"># ^--- all spaces here.</span></span>
+<span id="line-101"></span>
+<span id="line-102"></span>
+<span id="line-103">You can skip specific rules or tags by adding them to your configuration file:</span>
+<span id="line-104"><span style="font-weight: lighter"># .ansible-lint</span></span>
+<span id="line-105"><span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span></span>
+<span id="line-106">  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span></span>
+<span id="line-107">Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.</span>
+<span id="line-108">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml </span>
+<span id="line-109">nano</span>
+<span id="line-110">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 146 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span></span>
+<span id="line-111"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt</span>
+<span id="line-112"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
+<span id="line-113">---</span>
+<span id="line-114"><span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site</span>
+<span id="line-115"># https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/</span>
+<span id="line-116"></span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"</span>
+<span id="line-117">[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"</span>
+<span id="line-118">  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"</span>
+<span id="line-119">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf</span>
+<span id="line-120">[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"</span>
+<span id="line-121"><span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado</span>
+<span id="line-122">  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:</span>
+<span id="line-123">[?12l[?25h[?25l  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"</span>
+<span id="line-124"><span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini</span>
+<span id="line-125"><span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."  ansible.builtin.lineinfile:  path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:- regexp: "^file_uploads"line: "file_uploads = 1" - regexp: "^upload_max_filesize" line: "upload_max_filesize = 1G"  - regexp: "^max_file_uploads"  line: "max_file_uploads = 20"- regexp: "^post_max_size"  line: "post_max_size = 2G"  - regexp: "^memory_limit"    line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"check_mode: true</span>
+<span id="line-126">[?12l[?25h[?25l78line: "max_input_time = 3600"check_mode: trueregister: estadoAs linhas do php.ini encontram-se alteradas ?"ficheiro php.ini foi alterado com sucesso"Algumas alterações ao ficheiro php.ini não tiveram sucesso"</span>
+<span id="line-127">[?12l[?25h[?25l78</span>
+<span id="line-128">M- regexp: "^max_input_time"[?12l[?25h[?25l78</span>
+<span id="line-129">Mline: "memory_limit = 2G"[?12l[?25h[?25l78</span>
+<span id="line-130">M- regexp: "^memory_limit"[?12l[?25h[?25l78</span>
+<span id="line-131">Mline: "post_max_size = 2G"[?12l[?25h[?25l78</span>
+<span id="line-132">M- regexp: "^post_max_size"[?12l[?25h[?25l78</span>
+<span id="line-133">Mline: "max_file_uploads = 20"[?12l[?25h[?25l78</span>
+<span id="line-134">M- regexp: "^max_file_uploads"[?12l[?25h[?25l78</span>
+<span id="line-135">Mline: "upload_max_filesize = 1G"[?12l[?25h[?25l78</span>
+<span id="line-136">M- regexp: "^upload_max_filesize"[?12l[?25h[?25l78</span>
+<span id="line-137">Mline: "file_uploads = 1"[?12l[?25h[?25l78</span>
+<span id="line-138">M- regexp: "^file_uploads"[?12l[?25h[?25l78</span>
+<span id="line-139">Mwith_items:[?12l[?25h[?25l78</span>
+<span id="line-140">Mline: "{{ item.line }}"[?12l[?25h[?25l78</span>
+<span id="line-141">Mregexp: "{{ item.regexp  }}"[?12l[?25h[?25l78</span>
+<span id="line-142">Mpath: "{{ caminho_php_ini.files[0].path }}"[?12l[?25h[?25l78</span>
+<span id="line-143">Mansible.builtin.lineinfile:[?12l[?25h[?25l78</span>
+<span id="line-144">M- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."[?12l[?25h[?25l78</span>
+<span id="line-145">M<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>[?12l[?25h[?25l78</span>
+<span id="line-146">M[?12l[?25h[?25l78Mregister: caminho_php_ini[?12l[?25h[?25l78</span>
+<span id="line-147">Mrecurse: true[?12l[?25h[?25l78</span>
+<span id="line-148">Mpatterns: "php.ini"[?12l[?25h[?25l78</span>
+<span id="line-149">Mpaths: /etc[?12l[?25h[?25l78</span>
+<span id="line-150">Mfind:[?12l[?25h[?25l78</span>
+<span id="line-151">M- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"[?12l[?25h[?25l78</span>
+<span id="line-152">M<span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>[?12l[?25h[?25l78</span>
+<span id="line-153">M[?12l[?25h[?25l78Mfail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"[?12l[?25h[?25l78</span>
+<span id="line-154">Msuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"[?12l[?25h[?25l[?12l[?25h[?25l</span>
+<span id="line-155">[?12l[?25h[?25l78M- not estado.changed</span>
+<span id="line-156">[?12l[?25h[?25l78Mthat:</span>
+<span id="line-157">[?12l[?25h[?25l78Massert:</span>
+<span id="line-158">[?12l[?25h[?25l78M- name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"</span>
+<span id="line-159">[?12l[?25h[?25l78M[?12l[?25h[?25l78Mregister: estado</span>
+<span id="line-160">[?12l[?25h[?25l78Mcheck_mode: true</span>
+<span id="line-161">[?12l[?25h[?25l78Menabled: true</span>
+<span id="line-162">[?12l[?25h[?25l78Mstate: started</span>
+<span id="line-163">[?12l[?25h[?25l78Mname: apache2</span>
+<span id="line-164">[?12l[?25h[?25l78Mservice:</span>
+<span id="line-165">[?12l[?25h[?25l78M- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"</span>
+<span id="line-166">[?12l[?25h[?25l78M<span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>
+<span id="line-167"></span>[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l</span>
+<span id="line-168">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
+<span id="line-169">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l</span>
+<span id="line-170">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78</span>
+<span id="line-171"></span>
+<span id="line-172">- regexp: "^max_file_uploads"[?12l[?25h[?25l78</span>
+<span id="line-173"></span>
+<span id="line-174">line: "max_file_uploads = 20"[?12l[?25h[?25l78</span>
+<span id="line-175"></span>
+<span id="line-176">- regexp: "^post_max_size"[?12l[?25h[?25l78</span>
+<span id="line-177"></span>
+<span id="line-178">line: "post_max_size = 2G"[?12l[?25h[?25l78</span>
+<span id="line-179"></span>
+<span id="line-180">- regexp: "^memory_limit"[?12l[?25h[?25l78</span>
+<span id="line-181"></span>
+<span id="line-182">line: "memory_limit = 2G"[?12l[?25h[?25l78</span>
+<span id="line-183"></span>
+<span id="line-184">- regexp: "^max_input_time"[?12l[?25h[?25l78</span>
+<span id="line-185"></span>
+<span id="line-186">line: "max_input_time = 3600"[?12l[?25h[?25l78</span>
+<span id="line-187"></span>
+<span id="line-188">check_mode: true[?12l[?25h[?25l78</span>
+<span id="line-189"></span>
+<span id="line-190">register: estado[?12l[?25h[?25l78</span>
+<span id="line-191"></span>
+<span id="line-192">    [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l</span>
+<span id="line-193">[?12l[?25h[?25l[?12l[?25h[?25l</span>
+<span id="line-194">[?12l[?25h[?25l78</span>
+<span id="line-195">[?12l[?25h[?25l78</span>
+<span id="line-196">- name: "Teste: As linhas do php.ini encontram-se alteradas ?"</span>
+<span id="line-197">[?12l[?25h[?25l78</span>
+<span id="line-198">[?12l[?25h[?25l</span>
+<span id="line-199">that:</span>
+<span id="line-200">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78</span>
+<span id="line-201">- not estado.changed</span>
+<span id="line-202">[?12l[?25h[?25l78</span>
+<span id="line-203">success_msg: "SUCESSO: O ficheiro php.ini foi alterado com sucesso"</span>
+<span id="line-204">[?12l[?25h[?25l78</span>
+<span id="line-205">fail_msg: "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"</span>
+<span id="line-206">[?12l[?25h[?25l78</span>
+<span id="line-207">[?12l[?25h[?25l78</span>
+<span id="line-208">[?12l[?25h[?25l78</span>
+<span id="line-209">[?12l[?25h[?25l78</span>
+<span id="line-210">[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
+<span id="line-211"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                               </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
+<span id="line-212">[?12l[?25h[?25l[?12l[?25h[?1049l</span>
+<span id="line-213">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml [8@ansible-lint</span>
+<span id="line-214">Loading custom .yamllint config file, this extends our internal yamllint config.</span>
+<span id="line-215">WARNING  Listing 1 violation(s) that are fatal</span>
+<span id="line-216"><span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span></span>
+<span id="line-217"><span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span></span>
+<span id="line-218"><span style="font-weight: lighter">the implicit localhost does not match 'all'</span></span>
+<span id="line-219"><span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span></span>
+<span id="line-220"><span style="font-weight: lighter">  found a tab character that violate indentation</span></span>
+<span id="line-221"></span>
+<span id="line-222"><span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 136, column 1, but may</span></span>
+<span id="line-223"><span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span></span>
+<span id="line-224"></span>
+<span id="line-225"><span style="font-weight: lighter">The offending line appears to be:</span></span>
+<span id="line-226"></span>
+<span id="line-227"><span style="font-weight: lighter">    register: estado</span></span>
+<span id="line-228"></span>
+<span id="line-229"><span style="font-weight: lighter">^ here</span></span>
+<span id="line-230"><span style="font-weight: lighter">There appears to be a tab character at the start of the line.</span></span>
+<span id="line-231"></span>
+<span id="line-232"><span style="font-weight: lighter">YAML does not use tabs for formatting. Tabs should be replaced with spaces.</span></span>
+<span id="line-233"></span>
+<span id="line-234"><span style="font-weight: lighter">For example:</span></span>
+<span id="line-235"><span style="font-weight: lighter">    - name: update tooling</span></span>
+<span id="line-236"><span style="font-weight: lighter">      vars:</span></span>
+<span id="line-237"><span style="font-weight: lighter">        version: 1.2.3</span></span>
+<span id="line-238"><span style="font-weight: lighter">#    ^--- there is a tab there.</span></span>
+<span id="line-239"></span>
+<span id="line-240"><span style="font-weight: lighter">Should be written as:</span></span>
+<span id="line-241"><span style="font-weight: lighter">    - name: update tooling</span></span>
+<span id="line-242"><span style="font-weight: lighter">      vars:</span></span>
+<span id="line-243"><span style="font-weight: lighter">        version: 1.2.3</span></span>
+<span id="line-244"><span style="font-weight: lighter"># ^--- all spaces here.</span></span>
+<span id="line-245"></span>
+<span id="line-246"></span>
+<span id="line-247">You can skip specific rules or tags by adding them to your configuration file:</span>
+<span id="line-248"><span style="font-weight: lighter"># .ansible-lint</span></span>
+<span id="line-249"><span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span></span>
+<span id="line-250">  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span></span>
+<span id="line-251">Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.</span>
+<span id="line-252">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml </span>
+<span id="line-253">nano</span>
+<span id="line-254">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                          molecule/default/verify.yml                                                       </span></span>
+<span id="line-255"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt</span>
+<span id="line-256"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
+<span id="line-257">---</span>
+<span id="line-258"><span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site</span>
+<span id="line-259"># https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/</span>
+<span id="line-260"></span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"</span>
+<span id="line-261">[?12l[?25h[?25l - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"</span>
+<span id="line-262">  - name: "Teste: a cache encontra-se atualizada?"  assert:    that:    - not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"    fail_msg: "ERRO: Existem atualizações pendentes"</span>
+<span id="line-263">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:  - mc  - screen- git    - apache2  - mysql-server- phpphp-mysql- php-ldap- php-cli- php-soap    - php-json  - graphviz- php-xml  - php-gd  - php-zip- libapache2-mod-php    - php-dev  - libmcrypt-dev- gccmake- autoconf</span>
+<span id="line-264">[?12l[?25h[?25l78- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-aptpython3-pycurlcheck_mode: trueregister: estados dependencias encontra-se instaladas?"s dependencias estavam instaladas"Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"</span>
+<span id="line-265"><span style="color: #00aaaa">  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado</span>
+<span id="line-266">  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:</span>
+<span id="line-267">[?12l[?25h[?25l  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"</span>
+<span id="line-268"><span style="color: #00aaaa">  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>- name: "Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini</span>
+<span id="line-269"><span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."  ansible.builtin.lineinfile:  path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:- regexp: "^file_uploads"line: "file_uploads = 1" - regexp: "^upload_max_filesize" line: "upload_max_filesize = 1G"  - regexp: "^max_file_uploads"  line: "max_file_uploads = 20"- regexp: "^post_max_size"  line: "post_max_size = 2G"  - regexp: "^memory_limit"    line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"check_mode: true</span>
+<span id="line-270">[?12l[?25h[?25l78line: "max_input_time = 3600"check_mode: trueregister: estadoAs linhas do php.ini encontram-se alteradas ?"ficheiro php.ini foi alterado com sucesso"Algumas alterações ao ficheiro php.ini não tiveram sucesso"</span>
+<span id="line-271">[?12l[?25h[?25l78M- regexp: "^max_input_time"</span>
+<span id="line-272">[?12l[?25h[?25l78Mline: "memory_limit = 2G"</span>
+<span id="line-273">[?12l[?25h[?25l78M- regexp: "^memory_limit"</span>
+<span id="line-274">[?12l[?25h[?25l78Mline: "post_max_size = 2G"</span>
+<span id="line-275">[?12l[?25h[?25l78M- regexp: "^post_max_size"</span>
+<span id="line-276">[?12l[?25h[?25l78Mline: "max_file_uploads = 20"</span>
+<span id="line-277">[?12l[?25h[?25l[?12l[?25h[?25l78</span>
+<span id="line-278">M- regexp: "^max_file_uploads"[?12l[?25h[?25l78</span>
+<span id="line-279">Mline: "upload_max_filesize = 1G"[?12l[?25h[?25l78</span>
+<span id="line-280">M- regexp: "^upload_max_filesize"[?12l[?25h[?25l78</span>
+<span id="line-281">Mline: "file_uploads = 1"[?12l[?25h[?25l78</span>
+<span id="line-282">M- regexp: "^file_uploads"[?12l[?25h[?25l78</span>
+<span id="line-283">Mwith_items:[?12l[?25h[?25l78</span>
+<span id="line-284">Mline: "{{ item.line }}"[?12l[?25h[?25l78</span>
+<span id="line-285">M[?12l[?25h[?25l78</span>
+<span id="line-286">Mpath: "{{ caminho_php_ini.files[0].path }}"[?12l[?25h[?25l78</span>
+<span id="line-287">Mansible.builtin.lineinfile:[?12l[?25h[?25l78</span>
+<span id="line-288">M- name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."[?12l[?25h[?25l78</span>
+<span id="line-289">M<span style="color: #00aaaa">  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
+<span id="line-290">[?12l[?25h[?25l</span>
+<span id="line-291">[?12l[?25h[?25l78</span>
+<span id="line-292">M[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
+<span id="line-293"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                               </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 142 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
+<span id="line-294">[?12l[?25h[?25l[?12l[?25h[?1049l</span>
+<span id="line-295">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml [8@ansible-lint</span>
+<span id="line-296">Loading custom .yamllint config file, this extends our internal yamllint config.</span>
+<span id="line-297">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span>
+<span id="line-298"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
+<span id="line-299"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-300"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-301"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-302"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
+<span id="line-303"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
+<span id="line-304"></span>
+<span id="line-305">PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************</span>
+<span id="line-306"></span>
+<span id="line-307">TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************</span>
+<span id="line-308"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
+<span id="line-309"></span>
+<span id="line-310">TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************</span>
+<span id="line-311"><span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span></span>
+<span id="line-312"><span style="color: #aa0000">    "assertion": "not estado.changed",</span></span>
+<span id="line-313"><span style="color: #aa0000">    "changed": false,</span></span>
+<span id="line-314"><span style="color: #aa0000">    "evaluated_to": false,</span></span>
+<span id="line-315"><span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span></span>
+<span id="line-316"><span style="color: #aa0000">}</span></span>
+<span id="line-317"></span>
+<span id="line-318">PLAY RECAP *******************************************************************************************************************************</span>
+<span id="line-319"><span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0</span>
+<span id="line-320"></span>
+<span id="line-321"></span>
+<span id="line-322"><span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span></span>
+<span id="line-323">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span>
+<span id="line-324"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
+<span id="line-325"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-326"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-327"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-328"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
+<span id="line-329"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
+<span id="line-330"></span>
+<span id="line-331">PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************</span>
+<span id="line-332"></span>
+<span id="line-333">TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************</span>
+<span id="line-334"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-335"></span>
+<span id="line-336">TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************</span>
+<span id="line-337"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-338"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-339"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
+<span id="line-340"><span style="color: #00aa00">}</span></span>
+<span id="line-341"></span>
+<span id="line-342">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************</span>
+<span id="line-343"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
+<span id="line-344"></span>
+<span id="line-345">TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************</span>
+<span id="line-346"><span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span></span>
+<span id="line-347"><span style="color: #aa0000">    "assertion": "not estado.changed",</span></span>
+<span id="line-348"><span style="color: #aa0000">    "changed": false,</span></span>
+<span id="line-349"><span style="color: #aa0000">    "evaluated_to": false,</span></span>
+<span id="line-350"><span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span></span>
+<span id="line-351"><span style="color: #aa0000">}</span></span>
+<span id="line-352"></span>
+<span id="line-353">PLAY RECAP *******************************************************************************************************************************</span>
+<span id="line-354"><span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=3   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0</span>
+<span id="line-355"></span>
+<span id="line-356"></span>
+<span id="line-357"><span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span></span>
+<span id="line-358">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge</span>
+<span id="line-359"><span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge</span>
+<span id="line-360"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-361"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-362"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-363"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span></span>
+<span id="line-364"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
+<span id="line-365"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
+<span id="line-366"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span></span>
+<span id="line-367"><span style="color: #aa0000">WARNING </span> Skipping, instances already created.</span>
+<span id="line-368"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span></span>
+<span id="line-369"><span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.</span>
+<span id="line-370"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span></span>
+<span id="line-371"></span>
+<span id="line-372">PLAY [Converge] **************************************************************************************************************************</span>
+<span id="line-373"></span>
+<span id="line-374">TASK [Gathering Facts] *******************************************************************************************************************</span>
+<span id="line-375"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-376"></span>
+<span id="line-377">TASK [Include leantime_ansible] **********************************************************************************************************</span>
+<span id="line-378"></span>
+<span id="line-379">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************</span>
+<span id="line-380"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-381"></span>
+<span id="line-382">TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************</span>
+<span id="line-383"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
+<span id="line-384"></span>
+<span id="line-385">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************</span>
+<span id="line-386"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-387"></span>
+<span id="line-388">TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************</span>
+<span id="line-389"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-390"></span>
+<span id="line-391">PLAY RECAP *******************************************************************************************************************************</span>
+<span id="line-392"><span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=5   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
+<span id="line-393"></span>
+<span id="line-394">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule convergeverify</span>
+<span id="line-395"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
+<span id="line-396"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-397"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-398"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-399"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
+<span id="line-400"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
+<span id="line-401"></span>
+<span id="line-402">PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************</span>
+<span id="line-403"></span>
+<span id="line-404">TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************</span>
+<span id="line-405"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-406"></span>
+<span id="line-407">TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************</span>
+<span id="line-408"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-409"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-410"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
+<span id="line-411"><span style="color: #00aa00">}</span></span>
+<span id="line-412"></span>
+<span id="line-413">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************</span>
+<span id="line-414"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-415"></span>
+<span id="line-416">TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************</span>
+<span id="line-417"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-418"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-419"><span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span></span>
+<span id="line-420"><span style="color: #00aa00">}</span></span>
+<span id="line-421"></span>
+<span id="line-422">TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************</span>
+<span id="line-423"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-424"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-425"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
+<span id="line-426"><span style="color: #00aa00">}</span></span>
+<span id="line-427"></span>
+<span id="line-428">TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************</span>
+<span id="line-429"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-430"></span>
+<span id="line-431">TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************</span>
+<span id="line-432"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-433"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-434"><span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span></span>
+<span id="line-435"><span style="color: #00aa00">}</span></span>
+<span id="line-436"></span>
+<span id="line-437">TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************</span>
+<span id="line-438"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-439"></span>
+<span id="line-440">TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************</span>
+<span id="line-441"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
+<span id="line-442"><span style="color: #00aa00">    "changed": false,</span></span>
+<span id="line-443"><span style="color: #00aa00">    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"</span></span>
+<span id="line-444"><span style="color: #00aa00">}</span></span>
+<span id="line-445"></span>
+<span id="line-446">TASK [Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************</span>
+<span id="line-447"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-448"></span>
+<span id="line-449">TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************</span>
+<span id="line-450"><span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span></span>
+<span id="line-451"><span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span></span>
+<span id="line-452"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span></span>
+<span id="line-453"><span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span></span>
+<span id="line-454"><span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span></span>
+<span id="line-455"><span style="color: #aa5500">changed: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span></span>
+<span id="line-456"></span>
+<span id="line-457">TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************</span>
+<span id="line-458"><span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span></span>
+<span id="line-459"><span style="color: #aa0000">    "assertion": "not estado.changed",</span></span>
+<span id="line-460"><span style="color: #aa0000">    "changed": false,</span></span>
+<span id="line-461"><span style="color: #aa0000">    "evaluated_to": false,</span></span>
+<span id="line-462"><span style="color: #aa0000">    "msg": "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"</span></span>
+<span id="line-463"><span style="color: #aa0000">}</span></span>
+<span id="line-464"></span>
+<span id="line-465">PLAY RECAP *******************************************************************************************************************************</span>
+<span id="line-466"><span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=11  </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0</span>
+<span id="line-467"></span>
+<span id="line-468"></span>
+<span id="line-469"><span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span></span>
+<span id="line-470">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span>
+<span id="line-471">exit</span>
+<span id="line-472"></span>

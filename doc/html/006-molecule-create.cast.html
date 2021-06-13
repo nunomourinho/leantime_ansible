@@ -1,38 +1,39 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule create
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span>
-<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
-<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span>
-
-PLAY [Create] *************************************************************************
-
-TASK [Create molecule instance(s)] ****************************************************
-<span style="color: #aa5500">changed: [localhost] =&gt; (item=ubuntu-20.04)</span>
-
-TASK [Populate instance config dict] **************************************************
-<span style="color: #00aa00">ok: [localhost] =&gt; (item={'changed': True, 'log': '/home/admlocal/.cache/molecule/leantime_ansible/default/vagrant-ubuntu-20.04.out', 'Host': 'ubuntu-20.04', 'HostName': '127.0.0.1', 'User': 'vagrant', 'Port': '2222', 'UserKnownHostsFile': '/dev/null', 'StrictHostKeyChecking': 'no', 'PasswordAuthentication': 'no', 'IdentityFile': '/home/admlocal/.cache/molecule/leantime_ansible/default/.vagrant/machines/ubuntu-20.04/virtualbox/private_key', 'IdentitiesOnly': 'yes', 'LogLevel': 'FATAL', 'invocation': {'module_args': {'instance_name': 'ubuntu-20.04', 'instance_interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'platform_box': 'ubuntu/focal64', 'provider_memory': 2048, 'provider_cpus': 2, 'state': 'up', 'config_options': {}, 'provider_name': 'virtualbox', 'provider_options': {}, 'provision': False, 'force_stop': False, 'platform_box_version': None, 'platform_box_url': None, 'provider_override_args': None, 'provider_raw_config_args': None, 'workdir': None}}, 'failed': False, 'item': {'box': 'ubuntu/focal64', 'cpus': 2, 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'memory': 2048, 'name': 'ubuntu-20.04'}, 'ansible_loop_var': 'item'})</span>
-
-TASK [Convert instance config dict to a list] *****************************************
-<span style="color: #00aa00">ok: [localhost]</span>
-
-TASK [Dump instance config] ***********************************************************
-<span style="color: #aa5500">changed: [localhost]</span>
-
-PLAY RECAP ****************************************************************************
-<span style="color: #aa5500">localhost</span>                  : <span style="color: #00aa00">ok=4   </span> <span style="color: #aa5500">changed=2   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span>
-
-PLAY [Prepare] ************************************************************************
-
-TASK [Bootstrap python for Ansible] ***************************************************
-<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
-
-PLAY RECAP ****************************************************************************
-<span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule create</span>
+<span id="line-1"><span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare</span>
+<span id="line-2"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-3"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-4"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-5"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span></span>
+<span id="line-6"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
+<span id="line-7"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
+<span id="line-8"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span></span>
+<span id="line-9"></span>
+<span id="line-10">PLAY [Create] *************************************************************************</span>
+<span id="line-11"></span>
+<span id="line-12">TASK [Create molecule instance(s)] ****************************************************</span>
+<span id="line-13"><span style="color: #aa5500">changed: [localhost] =&gt; (item=ubuntu-20.04)</span></span>
+<span id="line-14"></span>
+<span id="line-15">TASK [Populate instance config dict] **************************************************</span>
+<span id="line-16"><span style="color: #00aa00">ok: [localhost] =&gt; (item={'changed': True, 'log': '/home/admlocal/.cache/molecule/leantime_ansible/default/vagrant-ubuntu-20.04.out', 'Host': 'ubuntu-20.04', 'HostName': '127.0.0.1', 'User': 'vagrant', 'Port': '2222', 'UserKnownHostsFile': '/dev/null', 'StrictHostKeyChecking': 'no', 'PasswordAuthentication': 'no', 'IdentityFile': '/home/admlocal/.cache/molecule/leantime_ansible/default/.vagrant/machines/ubuntu-20.04/virtualbox/private_key', 'IdentitiesOnly': 'yes', 'LogLevel': 'FATAL', 'invocation': {'module_args': {'instance_name': 'ubuntu-20.04', 'instance_interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'platform_box': 'ubuntu/focal64', 'provider_memory': 2048, 'provider_cpus': 2, 'state': 'up', 'config_options': {}, 'provider_name': 'virtualbox', 'provider_options': {}, 'provision': False, 'force_stop': False, 'platform_box_version': None, 'platform_box_url': None, 'provider_override_args': None, 'provider_raw_config_args': None, 'workdir': None}}, 'failed': False, 'item': {'box': 'ubuntu/focal64', 'cpus': 2, 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'memory': 2048, 'name': 'ubuntu-20.04'}, 'ansible_loop_var': 'item'})</span></span>
+<span id="line-17"></span>
+<span id="line-18">TASK [Convert instance config dict to a list] *****************************************</span>
+<span id="line-19"><span style="color: #00aa00">ok: [localhost]</span></span>
+<span id="line-20"></span>
+<span id="line-21">TASK [Dump instance config] ***********************************************************</span>
+<span id="line-22"><span style="color: #aa5500">changed: [localhost]</span></span>
+<span id="line-23"></span>
+<span id="line-24">PLAY RECAP ****************************************************************************</span>
+<span id="line-25"><span style="color: #aa5500">localhost</span>                  : <span style="color: #00aa00">ok=4   </span> <span style="color: #aa5500">changed=2   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
+<span id="line-26"></span>
+<span id="line-27"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span></span>
+<span id="line-28"></span>
+<span id="line-29">PLAY [Prepare] ************************************************************************</span>
+<span id="line-30"></span>
+<span id="line-31">TASK [Bootstrap python for Ansible] ***************************************************</span>
+<span id="line-32"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
+<span id="line-33"></span>
+<span id="line-34">PLAY RECAP ****************************************************************************</span>
+<span id="line-35"><span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
+<span id="line-36"></span>
+<span id="line-37">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span>
+<span id="line-38"></span>

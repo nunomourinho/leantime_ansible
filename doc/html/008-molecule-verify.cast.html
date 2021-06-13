@@ -1,27 +1,28 @@
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
-<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
-<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
-<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
-<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
-<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
-<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
-
-PLAY [Infraestrutura conduzida por testes] ********************************************
-
-TASK [Simulação: Atualizar a cache do sistema] ****************************************
-<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
-
-TASK [teste: a cache encontra-se actualizada?] ****************************************
-<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
-<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
-<span style="color: #aa0000">    "changed": false,</span>
-<span style="color: #aa0000">    "evaluated_to": false,</span>
-<span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span>
-<span style="color: #aa0000">}</span>
-
-PLAY RECAP ****************************************************************************
-<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
-
-
-<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
-]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span>
+<span id="line-1"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
+<span id="line-2"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
+<span id="line-3"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
+<span id="line-4"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
+<span id="line-5"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
+<span id="line-6"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
+<span id="line-7"></span>
+<span id="line-8">PLAY [Infraestrutura conduzida por testes] ********************************************</span>
+<span id="line-9"></span>
+<span id="line-10">TASK [Simulação: Atualizar a cache do sistema] ****************************************</span>
+<span id="line-11"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
+<span id="line-12"></span>
+<span id="line-13">TASK [teste: a cache encontra-se actualizada?] ****************************************</span>
+<span id="line-14"><span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span></span>
+<span id="line-15"><span style="color: #aa0000">    "assertion": "not estado.changed",</span></span>
+<span id="line-16"><span style="color: #aa0000">    "changed": false,</span></span>
+<span id="line-17"><span style="color: #aa0000">    "evaluated_to": false,</span></span>
+<span id="line-18"><span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span></span>
+<span id="line-19"><span style="color: #aa0000">}</span></span>
+<span id="line-20"></span>
+<span id="line-21">PLAY RECAP ****************************************************************************</span>
+<span id="line-22"><span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0</span>
+<span id="line-23"></span>
+<span id="line-24"></span>
+<span id="line-25"><span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span></span>
+<span id="line-26">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span>
+<span id="line-27"></span>
