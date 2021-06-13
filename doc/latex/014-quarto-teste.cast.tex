@@ -1,0 +1,511 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/qdefault/verify.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 89 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                                    molecule/default/verify.yml                                                                                }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---
+\textcolor{ansi36}{# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+}- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Teste: a cache encontra-se atualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:
+[?12l[?25h[?25l  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+    apt: pkg:- mc - screen    - git    - apache2    - mysql-server- php    - php-mysql    - php-ldap  - php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-devlibmcrypt-dev- gcc- make- autoconf    - libc-dev  - pkg-config- pwgen  - curl  - unzip- zip    - php-mbstring  - expect- net-toolspython3-mysqldb- python3-apt- python3-pycurlcheck_mode: true  register: estado
+  - name: "Teste: as dependencias encontra-se instaladas?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+[?12l[?25h[?25l      fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+[?12l[?25h[?25l78Msuccess_msg: "SUCESSO: As dependencias estavam instaladas"
+[?12l[?25h[?25l78M- not estado.changed
+[?12l[?25h[?25l78Mthat:
+[?12l[?25h[?25l78Massert:
+[?12l[?25h[?25l78M- name: "Teste: as dependencias encontra-se instaladas?"
+[?12l[?25h[?25l78M[?12l[?25h[?25l78Mregister: estado
+[?12l[?25h[?25l78Mcheck_mode: true
+[?12l[?25h[?25l78M- python3-pycurl
+[?12l[?25h[?25l78M- python3-apt
+[?12l[?25h[?25l78M- python3-mysqldb
+[?12l[?25h[?25l78M- net-tools
+[?12l[?25h[?25l78M- expect
+[?12l[?25h[?25l78M- php-mbstring
+[?12l[?25h[?25l78M- zip
+[?12l[?25h[?25l78M- unzip
+[?12l[?25h[?25l78M- curl
+[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l
+\textcolor{ansi36}{  #}[?12l[?25h[?25l\textcolor{ansi36}{ }[?12l[?25h[?25l\textcolor{ansi36}{F}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{:}[?12l[?25h[?25l [?12l[?25h[?25l\textcolor{ansi36}{ }[?12l[?25h[?25l\textcolor{ansi36}{d}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{ }[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{p}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{r}[?12l[?25h[?25l\textcolor{ansi36}{a}[?12l[?25h[?25l\textcolor{ansi36}{ç}[?12l[?25h[?25l\textcolor{ansi36}{ã}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{:}[?12l[?25h[?25l\textcolor{ansi36}{ }[?12l[?25h[?25l\textcolor{ansi36}{h}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{p}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{:}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{d}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{.}[?12l[?25h[?25l\textcolor{ansi36}{a}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{b}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{.}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{m}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{a}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{b}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{a}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{(}[?12l[?25h[?25l [?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{a}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{b}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{b}[?12l[?25h[?25l\textcolor{ansi36}{u}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{n}[?12l[?25h[?25l\textcolor{ansi36}{/}[?12l[?25h[?25l\textcolor{ansi36}{s}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{r}[?12l[?25h[?25l\textcolor{ansi36}{v}[?12l[?25h[?25l\textcolor{ansi36}{i}[?12l[?25h[?25l\textcolor{ansi36}{c}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{_}[?12l[?25h[?25l\textcolor{ansi36}{m}[?12l[?25h[?25l\textcolor{ansi36}{o}[?12l[?25h[?25l\textcolor{ansi36}{d}[?12l[?25h[?25l\textcolor{ansi36}{u}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l\textcolor{ansi36}{e}[?12l[?25h[?25l\textcolor{ansi36}{.}[?12l[?25h[?25l\textcolor{ansi36}{h}[?12l[?25h[?25l\textcolor{ansi36}{t}[?12l[?25h[?25l\textcolor{ansi36}{m}[?12l[?25h[?25l\textcolor{ansi36}{l}[?12l[?25h[?25l[?12l[?25h[?25lS[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lT[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lv[?12l[?25h[?25li[?12l[?25h[?25lç[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l,[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l"[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lv[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25l2[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l   [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ld[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lb[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ld[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lk[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{[ Marcação feita ]}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{- name: "Teste: as dependencias encontra-se instaladas?"
+  }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{  assert:
+  }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    that:
+  }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    - not estado.changed
+  }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    success_msg: "SUCESSO: As dependencias estavam instaladas"
+  }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+}[?12l[?25h[?25l    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"}[?12l[?25h[?25l  [?12l[?25h[?25l- name: "Teste: as dependencias encontra-se instaladas?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25led[?12l[?25h[?25l[?12l[?25h[?25le[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25lO?"[?12l[?25h[?25l ?"[?12l[?25h[?25ls?"[?12l[?25h[?25le?"[?12l[?25h[?25lr?"[?12l[?25h[?25lv?"[?12l[?25h[?25li?"[?12l[?25h[?25lç?"[?12l[?25h[?25lo?"[?12l[?25h[?25l ?"[?12l[?25h[?25la?"[?12l[?25h[?25lp?"[?12l[?25h[?25la?"[?12l[?25h[?25lc?"[?12l[?25h[?25lh?"[?12l[?25h[?25le?"[?12l[?25h[?25l2?"[?12l[?25h[?25l ?"[?12l[?25h[?25le?"[?12l[?25h[?25ln?"[?12l[?25h[?25lc?"[?12l[?25h[?25lo?"[?12l[?25h[?25ln?"[?12l[?25h[?25lt?"[?12l[?25h[?25lr?"[?12l[?25h[?25la?"[?12l[?25h[?25l-?"[?12l[?25h[?25ls?"[?12l[?25h[?25le?"[?12l[?25h[?25l ?"[?12l[?25h[?25li?"[?12l[?25h[?25ln?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25la?"[?12l[?25h[?25lt?"[?12l[?25h[?25li?"[?12l[?25h[?25lv?"[?12l[?25h[?25lo?"[?12l[?25h[?25l ?"[?12l[?25h[?25ln?"[?12l[?25h[?25lo?"[?12l[?25h[?25l ?"[?12l[?25h[?25la?"[?12l[?25h[?25lr?"[?12l[?25h[?25lrr?"[?12l[?25h[?25la?"[?12l[?25h[?25ln?"[?12l[?25h[?25lq?"[?12l[?25h[?25lu?"[?12l[?25h[?25le?"[?12l[?25h[?25l ?"[?12l[?25h[?25ln?"[?12l[?25h[?25lo?"[?12l[?25h[?25l ?"[?12l[?25h[?25ls?"[?12l[?25h[?25li?"[?12l[?25h[?25ls?"[?12l[?25h[?25lt?"[?12l[?25h[?25le?"[?12l[?25h[?25lm?"[?12l[?25h[?25la?"[?12l[?25h[?25l,?"[?12l[?25h[?25l ?"[?12l[?25h[?25le?"[?12l[?25h[?25l ?"[?12l[?25h[?25le?"[?12l[?25h[?25ls?"[?12l[?25h[?25lt?"[?12l[?25h[?25lá?"[?12l[?25h[?25l ?"[?12l[?25h[?25li?"[?12l[?25h[?25ln?"[?12l[?25h[?25li?"[?12l[?25h[?25lc?"[?12l[?25h[?25li?"[?12l[?25h[?25la?"[?12l[?25h[?25ld?"[?12l[?25h[?25lo?"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25lO"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25le"[?12l[?25h[?25lr"[?12l[?25h[?25lv"[?12l[?25h[?25li"[?12l[?25h[?25lç"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lp"[?12l[?25h[?25la"[?12l[?25h[?25lc"[?12l[?25h[?25lh"[?12l[?25h[?25le"[?12l[?25h[?25l2"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25lá"[?12l[?25h[?25l "[?12l[?25h[?25lc"[?12l[?25h[?25lo"[?12l[?25h[?25lr"[?12l[?25h[?25lrr"[?12l[?25h[?25le"[?12l[?25h[?25lc"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25lm"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25la"[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25li"[?12l[?25h[?25lc"[?12l[?25h[?25li"[?12l[?25h[?25la"[?12l[?25h[?25l "[?12l[?25h[?25lc"[?12l[?25h[?25lo"[?12l[?25h[?25lm"[?12l[?25h[?25l "[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25lrr"[?12l[?25h[?25la"[?12l[?25h[?25ln"[?12l[?25h[?25lq"[?12l[?25h[?25lu"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25li"[?12l[?25h[?25ls"[?12l[?25h[?25lr"[?12l[?25h[?25l"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25lm"[?12l[?25h[?25la"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25lO"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25le"[?12l[?25h[?25lr"[?12l[?25h[?25lv"[?12l[?25h[?25li"[?12l[?25h[?25lç"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lp"[?12l[?25h[?25la"[?12l[?25h[?25lc"[?12l[?25h[?25lh"[?12l[?25h[?25le"[?12l[?25h[?25l2"[?12l[?25h[?25l "[?12l[?25h[?25ln"[?12l[?25h[?25lã"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lc"[?12l[?25h[?25lo"[?12l[?25h[?25ln"[?12l[?25h[?25lt"[?12l[?25h[?25lr"[?12l[?25h[?25la"[?12l[?25h[?25l "[?12l[?25h[?25lc"[?12l[?25h[?25lo"[?12l[?25h[?25lr"[?12l[?25h[?25lrr"[?12l[?25h[?25le"[?12l[?25h[?25lc"[?12l[?25h[?25la"[?12l[?25h[?25lt"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25lm"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25ll[?12l[?25h[?25lado"[?12l[?25h[?25l
+[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                                                                                  }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 105 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"
+  [?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                                                                                  }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 105 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml [1@a[1@n[1@s[1@i[1@b[1@l[1@e[1@-[1@l[1@i[1@n[1@t
+Loading custom .yamllint config file, this extends our internal yamllint config.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] **************************************************************************************************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ****************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ***********************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] ***********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] ***************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] *******************************************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] **************************************************************************************************
+\textcolor{ansi31}{fatal: [ubuntu-20.04]: FAILED! => {}
+\textcolor{ansi31}{    "assertion": "not estado.changed",}
+\textcolor{ansi31}{    "changed": false,}
+\textcolor{ansi31}{    "evaluated_to": false,}
+\textcolor{ansi31}{    "msg": "ERRO: O serviço apache2 não se encontra correctamente instalado"}
+\textcolor{ansi31}{}}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi31}{ubuntu-20.04}               : \textcolor{ansi32}{ok=8   } \textcolor{ansi33}{changed=1   } unreachable=0    \textcolor{ansi31}{failed=1   } skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{verify.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano -F tasks/tasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 46 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                                          tasks/tasks.yml                                                                                      }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl
+[?12l[?25h[?25l - python3-apt    - python3-pycurl
+[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l                                \textcolor{inv_background inv_foreground}{M-F} Novo buffer\textcolor{inv_background inv_foreground}{^X} Executar comando\textcolor{inv_background inv_foreground}{C} Cancelar           \textcolor{inv_background inv_foreground}{M-N} Sem conversão       \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Ficheiro a ler para o novo buffer [de ./]:                                                                                                                                                   }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{m
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{o
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{l
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{cule/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{v
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{r
+}[?12l[?25h[?25l
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{d
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{f
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ault/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{v
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{r
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ify.yml
+}[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 105 linhas lidas ]}\textcolor{inv_background inv_foreground}{[2/2]       molecule/default/verify.yml          }\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Fechar  \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---
+\textcolor{ansi36}{# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+}- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Teste: a cache encontra-se atualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:
+[?12l[?25h[?25l  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+    apt: pkg:- mc - screen    - git    - apache2    - mysql-server- php    - php-mysql    - php-ldap  - php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-devlibmcrypt-dev- gcc- make- autoconf    - libc-dev  - pkg-config- pwgen  - curl  - unzip- zip    - php-mbstring  - expect- net-toolspython3-mysqldb- python3-apt- python3-pycurlcheck_mode: true  register: estado
+  - name: "Teste: as dependencias encontra-se instaladas?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+[?12l[?25h[?25l      fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apach2state: startedenabled: truecheck_mode: trueregister: estado
+  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}e2[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                                                                                  }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 105 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Fechar  \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{1      tasks/tasks.yml      Modificado}\textcolor{inv_background inv_foreground}{[ tasks.yml -- 47 linhas ]}\textcolor{inv_background inv_foreground}{1}Sair  
+ - python3-apt- python3-pycurl
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Gravar buffer modificado?                                                                                                                                                                     S} Sim
+\textcolor{inv_background inv_foreground}{ N} Não \textcolor{inv_background inv_foreground}{^C} Cancelar[?12l[?25h[?25l
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança
+\textcolor{inv_background inv_foreground}{^C} Cancelar\textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor\textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml
+}[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 47 linhas escritas ]}
+[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano -F tasks/tasks.yml molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] **************************************************************************************************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ****************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ***********************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] ***********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] ***************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] **************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"}
+\textcolor{ansi32}{}}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=9   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] **************************************************************************************************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ****************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ***********************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] ***********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] ***************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] **************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"}
+\textcolor{ansi32}{}}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=9   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verifynano -F tasks/tasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 47 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                                          tasks/tasks.yml                                                                                      }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl
+[?12l[?25h[?25l - python3-apt    - python3-pycurl
+[?12l[?25h[?25l[?12l[?25h[?25l                                \textcolor{inv_background inv_foreground}{M-F} Novo buffer\textcolor{inv_background inv_foreground}{^X} Executar comando\textcolor{inv_background inv_foreground}{C} Cancelar           \textcolor{inv_background inv_foreground}{M-N} Sem conversão       \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Ficheiro a ler para o novo buffer [de ./]:                                                                                                                                                   }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{m
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{o
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{l
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{cule/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{d
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{f
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ault/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{t
+}[?12l[?25h[?25l
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{v
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{r
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ify.yml
+}[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 105 linhas lidas ]}\textcolor{inv_background inv_foreground}{[2/2]       molecule/default/verify.yml}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Fechar  \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---
+\textcolor{ansi36}{# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+}- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Teste: a cache encontra-se atualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:
+[?12l[?25h[?25l  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+    apt: pkg:- mc - screen    - git    - apache2    - mysql-server- php    - php-mysql    - php-ldap  - php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-devlibmcrypt-dev- gcc- make- autoconf    - libc-dev  - pkg-config- pwgen  - curl  - unzip- zip    - php-mbstring  - expect- net-toolspython3-mysqldb- python3-apt- python3-pycurlcheck_mode: true  register: estado
+  - name: "Teste: as dependencias encontra-se instaladas?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"    fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+[?12l[?25h[?25l      fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
+  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
+[?12l[?25h[?25l[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ Marcação feita ]}
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{  - name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    service:
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      name: apache2
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      state: started
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      enabled: true
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    check_mode: true
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    register: estado
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}[?12l[?25h[?25l\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
+[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: molecule/default/verify.yml                                                                                                                                  }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 105 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Fechar  \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{1      tasks/tasks.yml      }\textcolor{inv_background inv_foreground}{[ tasks.yml -- 47 linhas ]}\textcolor{inv_background inv_foreground}{1}Sair  
+ - python3-apt- python3-pycurl
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"service:name: apache2state: startedenabled: truecheck_mode: trueregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25lI"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25la"[?12l[?25h[?25l "[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25le"[?12l[?25h[?25lr"[?12l[?25h[?25lv"[?12l[?25h[?25li"[?12l[?25h[?25lc"[?12l[?25h[?25l"[?12l[?25h[?25lç"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lp"[?12l[?25h[?25la"[?12l[?25h[?25lc"[?12l[?25h[?25lh"[?12l[?25h[?25le"[?12l[?25h[?25l2"[?12l[?25h[?25l "[?12l[?25h[?25ln"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25lrr"[?12l[?25h[?25la"[?12l[?25h[?25ln"[?12l[?25h[?25lq"[?12l[?25h[?25lu"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25li"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25lm"[?12l[?25h[?25la"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25ld[?12l[?25h[?25l[?12l[?25h[?25le[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                                                                              }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 55 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                                                                              }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 53 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] *************************************************************************************************************************************************************
+\textcolor{ansi31}{ERROR! Syntax Error while loading YAML.}
+\textcolor{ansi31}{  did not find expected <document start>}
+
+\textcolor{ansi31}{The error appears to be in '/home/admlocal/leantime_ansible/tasks/tasks.yml': line 49, column 3, but may}
+\textcolor{ansi31}{be elsewhere in the file depending on the exact syntax problem.}
+
+\textcolor{ansi31}{The offending line appears to be:}
+
+\textcolor{ansi31}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}
+\textcolor{ansi31}{  - name: "Instala o serviço apache2 no arranque do sistema"}
+\textcolor{ansi31}{  ^ here}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=1   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{converge.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ñano tasks/[1@ntasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 53 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                                          tasks/tasks.yml                                                                                      }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl
+[?12l[?25h[?25l - python3-apt    - python3-pycurl
+\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Instala o serviço apache2 no arranque do sistema"service:   name: apache2 state: startedenabled: true
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l
+---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600
+- name: "Atualiza o sistema operativo"apt: upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev- pkg-config- pwgen- curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl[?12l[?25h[?25l
+[?12l[?25h[?25l  [?12l[?25h[?25l - python3-apt    - python3-pycurl
+\textcolor{ansi36}{  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Instala o serviço apache2 no arranque do sistema"service:   name: apache2 state: startedenabled: true
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+\textcolor{ansi36}{   # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+   }[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+   - name: "Instala o serviço apache2 no arranque do sistema"
+   [?12l[?25h[?25l[?12l[?25h[?25l
+     service:[?12l[?25h[?25l[?12l[?25h[?25l
+ name: apache2[?12l[?25h[?25l[?12l[?25h[?25l
+ state: started
+[?12l[?25h[?25l[?12l[?25h[?25l
+ enabled: true[?12l[?25h[?25l                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                                                                              }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 53 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?12l[?25h[?25l
+[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml molecule converge
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] *************************************************************************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ***********************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] **************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] **********************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=5   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] **************************************************************************************************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] **********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ****************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ***********************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] ***********************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] ***************************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] **************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"}
+\textcolor{ansi32}{}}
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=9   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit
+
+\end{Verbatim}
+\end{document}

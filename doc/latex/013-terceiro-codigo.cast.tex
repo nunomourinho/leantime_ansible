@@ -1,0 +1,287 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 9 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                               tasks/tasks.yml                                            }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor \textcolor{inv_background inv_foreground}{M-U} Desfazer
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha\textcolor{inv_background inv_foreground}{M-E} Refazer
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml [1@-[1@F[1@ 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 9 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                               tasks/tasks.yml                                            }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor \textcolor{inv_background inv_foreground}{M-U} Desfazer
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha\textcolor{inv_background inv_foreground}{M-E} Refazer
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{M-F} Novo buffer\textcolor{inv_background inv_foreground}{^X} Executar comando\textcolor{inv_background inv_foreground}{C} Cancelar\textcolor{inv_background inv_foreground}{M-N} Sem conversão\textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Ficheiro a ler para o novo buffer [de ./]:                                                              }[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{m
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{o
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{l
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{cule/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{v
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{r
+}[?12l[?25h[?25l
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ 
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{d
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{fault/
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{v
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{e
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{r
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{ify.yml
+}[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 89 linhas lidas ]}\textcolor{inv_background inv_foreground}{[2/2]       molecule/default/verify.yml          }\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor \textcolor{inv_background inv_foreground}{M-U} Desfazer\textcolor{inv_background inv_foreground}{X} Fechar     \textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha\textcolor{inv_background inv_foreground}{M-E} Refazer
+\textcolor{ansi36}{# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+}- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: true
+  tasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:
+[?12l[?25h[?25l    assert: that: - not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"TSimulação: testa se as aplicações dependencia do software leantime se encontram instaladas"pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-dev
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ Marcação feita ]}
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{    apt:
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      pkg:
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - mc
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - screen
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - git
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - apache2
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - mysql-server
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-mysql
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-ldap
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-cli
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-soap
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-json
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - graphviz
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-xml
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-gd
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - php-zip
+}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{      - libapache2-mod-php
+}[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - php-dev}- libmcrypt-dev
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - libmcrypt-dev}- gcc
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - gcc}- make
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - make}- autoconf
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - autoconf}- libc-dev
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - libc-dev}- pkg-config
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - pkg-config}- pwgen
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - pwgen}- curl
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - curl}- unzip
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - unzip}- zip
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - zip}- php-mbstring
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - php-mbstring}- expect
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - expect}- net-tools
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - net-tools}- python3-mysqldb
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - python3-mysqldb}- python3-apt
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - python3-apt}- python3-pycurl
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{      - python3-pycurl}check_mode: true
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{    check_mode: true}register: estado
+[?12l[?25h[?25l78
+\textcolor{inv_background inv_foreground}{    register: estado
+}[?12l[?25h[?25l78
+    check_mode: true
+[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+    register: estado
+  - name: "teste: a cache encontra-se actualizada?"
+    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"
+    apt: upgrade: safe
+    check_mode: true
+    register: estado
+  - name: "teste: o sistema operativo encontra-se atualizado?"
+    assert: that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Teste: a cache encontra-se atualizada?"
+    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l  - libmcrypt-dev- gcc    - make  - autoconf- libc-devpkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expectet-tools- python3-mysqldb- python3-apt- python3-pycurlassert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instala\textcolor{inv_background inv_foreground}{>}[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Gravar buffer modificado?                                                                                S} Sim
+\textcolor{inv_background inv_foreground}{ N} Não          \textcolor{inv_background inv_foreground}{^C} Cancelar[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{1      tasks/tasks.yml      } \textcolor{inv_background inv_foreground}{[ tasks.yml -- 10 linhas ]}\textcolor{inv_background inv_foreground}{1}
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor \textcolor{inv_background inv_foreground}{M-U} Desfazer
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha\textcolor{inv_background inv_foreground}{M-E} Refazer
+---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600
+- name: "Atualiza o sistema operativo"apt: upgrade: safe
+[?12l[?25h[?25l - libmcrypt-dev   - gcc - make- autoconf- libc-dev- pkg-config   - pwgen - curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl
+[?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600
+- name: "Atualiza o sistema operativo"apt: upgrade: safe
+  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:mcscreengit- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make
+[?12l[?25h[?25l   - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l     apt:
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l pkg:
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mc
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - screen
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - git
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - apache2
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mysql-server
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-mysql
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-ldap
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-cli
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-soap
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-json
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - graphviz
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-xml
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-gd
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-zip
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libapache2-mod-php
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libmcrypt-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - gcc
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - make
+ [?12l[?25h[?25l78
+- autoconf
+ [?12l[?25h[?25l[?12l[?25h[?25l - autoconf
+ [?12l[?25h[?25l78
+- libc-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l - libc-dev
+ [?12l[?25h[?25l78
+- pkg-config
+ [?12l[?25h[?25l[?12l[?25h[?25l - pkg-config
+ [?12l[?25h[?25l78
+- pwgen
+ [?12l[?25h[?25l[?12l[?25h[?25l - pwgen
+ [?12l[?25h[?25l78
+- curl
+ [?12l[?25h[?25l[?12l[?25h[?25l - curl
+ [?12l[?25h[?25l78
+- unzip
+ [?12l[?25h[?25l[?12l[?25h[?25l - unzip
+ [?12l[?25h[?25l78
+- zip
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l - zip
+  [?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l - php-mbstring
+ [?12l[?25h[?25l78
+- expect
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l - expect
+  [?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l - net-tools
+ [?12l[?25h[?25l78
+- python3-mysqldb
+ [?12l[?25h[?25l78
+- python3-apt
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l - python3-mysqldb
+  [?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l - python3-apt
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - python3-pycurl
+ [?12l[?25h[?25l78
+ [?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:- mc
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lIdependencia do software leantime se encontram instaladas"[?12l[?25h[?25lndependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ltdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lldependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25lddependencia do software leantime se encontram instaladas"[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25ls do software leantime se encontram instaladas"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l n[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l: [?12l[?25h[?25l"[?12l[?25h[?25lI[?12l[?25h[?25lns[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lr as dependencias do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lndo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lcdo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lsdo software leantime"[?12l[?25h[?25lssdo software leantime"[?12l[?25h[?25ládo software leantime"[?12l[?25h[?25lrdo software leantime"[?12l[?25h[?25lido software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25lodo software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lp leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25lo leantime"[?12l[?25h[?25lg leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25lm leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25l            \textcolor{inv_background inv_foreground}{M-D} Formato DOS           \textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar\textcolor{inv_background inv_foreground}{M-M} Formato Mac           \textcolor{inv_background inv_foreground}{M-P} Prepor\textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                         }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 46 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor \textcolor{inv_background inv_foreground}{M-U} Desfazer\textcolor{inv_background inv_foreground}{X} Sair       \textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha\textcolor{inv_background inv_foreground}{M-E} Refazer
+[?12l[?25h[?25l
+[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] ****************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] ************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] **********************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] *************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *********************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+PLAY RECAP *********************************************************************************************
+\textcolor{ansi33}{ubuntu-20.04}               : \textcolor{ansi32}{ok=4   } \textcolor{ansi33}{changed=2   } unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] *************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] *********************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] *********************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] **********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] **********************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ******
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] **************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+PLAY RECAP *********************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=7   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit
+
+\end{Verbatim}
+\end{document}

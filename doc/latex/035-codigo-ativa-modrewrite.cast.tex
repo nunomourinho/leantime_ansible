@@ -1,0 +1,420 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 178 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                tasks/tasks.yml                                                             }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev
+[?12l[?25h[?25l - autoconf    - libc-dev  - pkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expect- net-tools    - python3-mysqldb  - python3-apt- python3-pycurl
+\textcolor{ansi36}{   # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html}- name: "Instala o serviço apache2 no arranque do sistema"service:name: apache2state: startedenabled: true
+\textcolor{ansi36}{   # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder}- name: "Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html}- name: "Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile."ansible.builtin.lineinfile:path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"
+[?12l[?25h[?25lregexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:regexp: "^file_uploads"  line: "file_uploads = 1"regexp: "^upload_max_filesize"  line: "upload_max_filesize = 1G"regexp: "^max_file_uploads"  line: "max_file_uploads = 20"regexp: "^post_max_size"  line: "post_max_size = 2G"regexp: "^memory_limit"  line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/2.7/modules/file_module.html}- name: Cria a directoria temporária leantime e a directoria de apache leantimefile:path: "{{ item.path }}"state: directory mode: 0755    owner: www-data  group: www-datawith_items:- path: "/tmp/leantime"- path: "/var/www/leantime"
+\textcolor{ansi36}{   # Fonte: Ansible for DevOps - Server and configuration management for humans de Jeff Geerling, página 98
+}   - name: "Cria a base de dados de mysql para o leantime"  mysql_db: "db=leantime_database state=present"
+- name: "Cria o utilizador para a base de dados leantime"mysql_user:namlogin_leantime }}"
+[?12l[?25h[?25lmysql_user:namlogin_leantime }}"  password: "{{ password_leantime }}"priv: "leantime_database.*:ALL"host: localhoststate: present
+- name: "Faz o download do software leantime a partir do repositório git"get_url:url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zipdest: /tmp/leantimemode: 0755
+\textcolor{ansi36}{   # O ficheiro Leantime-versao.zip necessita de ser descomprimido}- name: Descomprime o software leantimeunarchive: src: "/tmp/leantime/Leantime-{{ versao_leantime }}.zip"    dest: "/var/www/leantime"  owner: www-datagroup: www-datamode: 0755remote_src: true
+\textcolor{ansi36}{   # Após a descompressão, se o ficheiro configuration.php não existir, este necessita de ser
+   # criado a partir do ficheiro configuration.sample.php
+   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html}- name: Copia o ficheiro de configuração configuration.sample.phpansible.builtin.copy: src: /var/www/leantime/config/configuration.sample.php    dest: /var/www/leantime/config/configuration.php  owner: www-datagroup: www-data    mode: '0755'  remote_src: trueforce: false
+[?12l[?25h[?25l  remote_src: trueforce: false
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html}- name: Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.ansible.builtin.replace:path: /var/www/leantime/config/configuration.php    regexp: "{{ item.regexp  }}"  replace: "{{ item.line }}"with_items:- regexp: 'dbUser=""'  line: 'dbUser="{{ login_leantime }}"'- regexp: 'dbDatabase=""' line: 'dbDatabase="leantime_database"'    - regexp: 'dbPassword=""'    line: 'dbPassword="{{ password_leantime }}"'
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html}- name: Copia o template do site para a pásta /etc/apache2/sites-availableansible.builtin.template:src: leantime.template.j2dest: /etc/apache2/sites-available/leantime.confowner: root group: www-data mode: 0644 force: false
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html}- name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled"ansible.builtin.file:src: /etc/apache2/sites-available/leantime.confdest: /etc/apache2/sites-enabled/leantime.confstate: link
+\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+}[?12l[?25h[?25l\textcolor{ansi36}{   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html}- name: "Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled" ansible.builtin.file:    path: /etc/apache2/sites-available/leantime.conf  owner: rootgroup: www-datamode: '0777'
+- name: "Apaga o link 000-default.conf na pasta sites-enabled do apache2"ansible.builtin.file:path: /etc/apache2/sites-enabled/000-default.confstate: absent
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le
+[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25ló[?12l[?25h[?25ld[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25l_[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lw[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lw[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"Activa o módulo mod_rewrite no apache[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lt[?12l[?25h[?25l
+[?12l[?25h[?25l         \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar           \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor\textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 184 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor\textcolor{inv_background inv_foreground}{U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer      \textcolor{inv_background inv_foreground}{M-6} Copiar txt
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l         \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar           \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor\textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           }[?12l[?25h[?25l \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 183 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor\textcolor{inv_background inv_foreground}{U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer      \textcolor{inv_background inv_foreground}{M-6} Copiar txt
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, lint
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{lint}
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule deploy
+Usage: molecule [OPTIONS] COMMAND [ARGS]...
+Try "molecule --help" for help.
+
+Error: No such command "deploy".
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converger
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textbf{\textcolor{ansi35}{[WARNING]: Module did not set no_log for update_password}}
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi33}{ubuntu-20.04}               : \textcolor{ansi32}{ok=19  } \textcolor{ansi33}{changed=1   } unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence
+\textcolor{ansi34}{INFO    } default scenario test matrix: idempotence
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{idempotence}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textbf{\textcolor{ansi35}{[WARNING]: Module did not set no_log for update_password}}
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=19  } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+\textcolor{ansi34}{INFO    } Idempotence completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************
+
+TASK [Variáveis] *************************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O sistema operativo está atualizado"}
+\textcolor{ansi32}{}}
+
+TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: As dependencias estavam instaladas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"}
+\textcolor{ansi32}{}}
+
+TASK [Rotina Auxiliar> Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O ficheiro php.ini foi alterado com sucesso"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Obtem informação sobre a pastas /var/www/leantime] **********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: A pasta /var/www/leantime existe e tem as permissões certas?] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: Permissões correctas no site leantime"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Verifica se é necessário criar a base de dados leantime_database] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: A base de dados leantime_database existe ?] *********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A base de dados leantime_database já se encontra criada"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação e Teste: Verifica se o endereço git para a versão de leantime existe] ****************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Simulação: Obtem informação sobre o ficheiro /var/www/leantime/config/configuration.php] *******************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O ficheiro /var/www/leantime/config/configuration.php existe e tem as permissões certas?] ***********************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: Permissões correctas e ficheiro configuration.php existente"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testa se o dbuser foi alterado no ficheiro configuration.php utilizando o módulo replace.] ******************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O dbUser foi alterado?] *****************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O dbUser foi alterado no ficheiro configuration.php"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testa se o dbDatabase foi alterado no ficheiro configuration.php utilizando o módulo replace.] **************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: a variável dbDatabase foi alterada?] ****************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O dbDatabase foi alterado no ficheiro configuration.php"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Testa se o dbPassword foi alterado no ficheiro configuration.php utilizando o módulo replace.] **************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O dbPassword foi alterado?] *************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-available/leantime.conf] *******************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O ficheiro /etc/apache2/sites-available/leantime.conf existe e tem as permissões certas?] ***********************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: Permissões correctas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/leantime.conf] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O ficheiro /etc/apache2/sites-enabled/leantime.conf existe e tem as permissões certas?] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: Permissões correctas"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/000-default.conf] ******************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: O ficheiro /etc/apache2/sites-enabled/000-default.conf NÃO existe?] *********************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "All assertions passed"}
+\textcolor{ansi32}{}}
+
+TASK [Simulação: Activa o módulo mod_rewrite no apache] **********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Simulação: Activa o módulo mod_rewrite no apache] **********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Teste: o mod_rewrite do apache encontra-se ativo?] *********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: mod_rewrite encontra-se instalado e ativo"}
+\textcolor{ansi32}{}}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=35  } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit
+
+\end{Verbatim}
+\end{document}

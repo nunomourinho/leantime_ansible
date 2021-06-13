@@ -1,0 +1,43 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ********************************************
+
+TASK [Simulação: Atualizar a cache do sistema] ****************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] ****************************************
+\textcolor{ansi31}{fatal: [ubuntu-20.04]: FAILED! => {}
+\textcolor{ansi31}{    "assertion": "not estado.changed",}
+\textcolor{ansi31}{    "changed": false,}
+\textcolor{ansi31}{    "evaluated_to": false,}
+\textcolor{ansi31}{    "msg": "ERRO: Existem actualizações pendentes"}
+\textcolor{ansi31}{}}
+
+PLAY RECAP ****************************************************************************
+\textcolor{ansi31}{ubuntu-20.04}               : \textcolor{ansi32}{ok=1   } \textcolor{ansi33}{changed=1   } unreachable=0    \textcolor{ansi31}{failed=1   } skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{verify.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+
+\end{Verbatim}
+\end{document}

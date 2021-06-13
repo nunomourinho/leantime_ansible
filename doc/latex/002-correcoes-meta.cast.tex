@@ -1,0 +1,125 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+admlocal@devOps:~/leantime_ansible$ nano meta/main.yml 
+[?2004h)0[?7h[?25l[?1c\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 53 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                                                                           meta/main.yml                                                                                        }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar\textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+galaxy_info:author: your namedescription: your role descriptioncompany: your company (optional)
+\textcolor{ansi36}{  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+  # Choose a valid license ID from https://spdx.org - some suggested licenses:
+  # - BSD-3-Clause (default)
+  # - MIT
+  # - GPL-2.0-or-later
+  # - GPL-3.0-only
+  # - Apache-2.0
+  # - CC-BY-4.0}license: license (GPL-2.0-or-later, MIT, etc)min_ansible_version: 2.9
+\textcolor{ansi36}{  # If this a Container Enabled role, provide the minimum Ansible Container version.
+  # min_ansible_container_version:
+  #
+  # Provide a list of supported platforms, and for each platform a list of versions.
+  # If you don't wish to enumerate all versions for a particular platform, use 'all'.
+  # To view available platforms and versions (or releases), visit:
+  # https://galaxy.ansible.com/api/v1/platforms/
+  #
+  # platforms:
+  # - name: Fedora
+  #   versions:
+  #   - all
+  #   - 25
+  # - name: SomePlatform
+  #   versions:
+  #   - all
+  #   - 1.0
+  #   - 7
+  #   - 99.99}galaxy_tags: []
+\textcolor{ansi36}{    # List tags for your role here, one per line. A tag is a keyword that describes
+    # and categorizes the role. Users find roles by searching for tags. Be sure to
+    # remove the '[]' above, if you add tags to this list.
+}[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c\textcolor{inv_background inv_foreground}{Modificado} [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cN[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cM[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cr[?25h[?0c[?25l[?1ci[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ch[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cI[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1cs[?25h[?0c[?25l[?1ct[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cl[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cç[?25h[?0c[?25l[?1cã[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cd[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cs[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1cf[?25h[?0c[?25l[?1ct[?25h[?0c[?25l[?1cw[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cr[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cl[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ct[?25h[?0c[?25l[?1ci[?25h[?0c[?25l[?1cm[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cE[?25h[?0c[?25l[?1cS[?25h[?0c[?25l[?1cT[?25h[?0c[?25l[?1cI[?25h[?0c[?25l[?1cG[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cBEJ[?25h[?0c[?25l[?1cA[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c78
+M[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cr[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1cl[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c_[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1came[?25h[?0c[?25l[?1c:[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cl[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ct[?25h[?0c[?25l[?1ci[?25h[?0c[?25l[?1cm[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c_[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1cs[?25h[?0c[?25l[?1ci[?25h[?0c[?25l[?1cb[?25h[?0c[?25l[?1cl[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c78
+M[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cm[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1cs[?25h[?0c[?25l[?1cp[?25h[?0c[?25l[?1ca[?25h[?0c[?25l[?1cc[?25h[?0c[?25l[?1ce[?25h[?0c[?25l[?1c:[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cN[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1cm[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cr[?25h[?0c[?25l[?1ci[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ch[?25h[?0c[?25l[?1co[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c.0[?25h[?0c[?25l[?1c3.0[?25h[?0c[?25l[?1c.[?25h[?0c[?25l[?1c0[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c1[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c0[?25h[?0c[?25l[?1c                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: meta/main.yml                                                                                                                                                 }[?25h[?0c[?25l[?1c \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 55 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c\textcolor{inv_background inv_foreground}{Modificado}
+   platforms:
+  [?25h[?0c[?25l[?1c
+  [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+   - name: Fedora
+  [?25h[?0c[?25l[?1c
+  [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c   versions:
+  [?25h[?0c[?25l[?1c
+  [?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c   - all
+  [?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1cU[?25h[?0c[?25l[?1cb[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1cn[?25h[?0c[?25l[?1ct[?25h[?0c[?25l[?1cu[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c [?25h[?0c[?25l[?1c2[?25h[?0c[?25l[?1c0[?25h[?0c[?25l[?1c.[?25h[?0c[?25l[?1c0[?25h[?0c[?25l[?1c4[?25h[?0c[?25l[?1c78
+[?25h[?0c[?25l[?1c
+\textcolor{ansi36}{    # List tags for your role here, one per line. A tag is a keyword that describes
+}[?25h[?0c[?25l[?1c78M- 20.04
+[?25h[?0c[?25l[?1cM- 20.04
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c.04[?25h[?0c[?25l[?1c1.04[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c
+galaxy_tags: [][?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    # List tags for your role here, one per line. A tag is a keyword that describes}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    # and categorizes the role. Users find roles by searching for tags. Be sure to}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    # remove the '[]' above, if you add tags to this list.}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    #}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    # NOTE: A tag is limited to a single word comprised of alphanumeric characters.}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{    #       Maximum 20 tags per role.}[?25h[?0c[?25l[?1c78
+
+[?25h[?0c[?25l[?1c78
+dependencies: [][?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{  # List your role dependencies here, one per line. Be sure to remove the '[]' above,}[?25h[?0c[?25l[?1c78
+
+\textcolor{ansi36}{  # if you add dependencies to this list.}[?25h[?0c[?25l[?1c78
+
+[?25h[?0c[?25l[?1c78
+
+[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c78
+M\textcolor{ansi36}{  # Choose a valid license ID from https://spdx.org - some suggested licenses:}[?25h[?0c[?25l[?1c78
+M[?25h[?0c[?25l[?1c78M\textcolor{ansi36}{  # issue_tracker_url: http://example.com/issue/tracker}[?25h[?0c[?25l[?1c78
+M\textcolor{ansi36}{  # next line and provide a value}[?25h[?0c[?25l[?1c78
+M\textcolor{ansi36}{  # If the issue tracker for your role is not on github, uncomment the}[?25h[?0c[?25l[?1c78
+M[?25h[?0c[?25l[?1c78Mnamespace: nunomourinho[?25h[?0c[?25l[?1c78
+Mrole_name: leantime_ansible[?25h[?0c[?25l[?1c78
+Mcompany: ESTIG BEJA[?25h[?0c[?25l[?1c78
+Mdescription: Instalação do software leantime[?25h[?0c[?25l[?1c78
+Mauthor: Nuno Mourinho[?25h[?0c[?25l[?1c78
+Mgalaxy_info:[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c[?25h[?0c[?25l[?1c                      \textcolor{inv_background inv_foreground}{M-D} Formato DOS\textcolor{inv_background inv_foreground}{M-A} Anexar\textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar                        \textcolor{inv_background inv_foreground}{M-M} Formato Mac\textcolor{inv_background inv_foreground}{M-P} Prepor         \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+\textcolor{inv_background inv_foreground}{Nome do ficheiro onde escrever: meta/main.yml                                                                                                                                                 }[?25h[?0c[?25l[?1c \textcolor{inv_background inv_foreground}{[ A escrever... ]}\textcolor{inv_background inv_foreground}{          }\textcolor{inv_background inv_foreground}{[ 56 linhas escritas ]}\textcolor{inv_background inv_foreground}{^O} Gravar\textcolor{inv_background inv_foreground}{^W} Procurar      \textcolor{inv_background inv_foreground}{^K} Cortar txt    \textcolor{inv_background inv_foreground}{^J} Justificar    \textcolor{inv_background inv_foreground}{^C} Pos cursor    \textcolor{inv_background inv_foreground}{M-U} Desfazer     \textcolor{inv_background inv_foreground}{M-A} Marcar txt   \textcolor{inv_background inv_foreground}{M-]} Parênteses   \textcolor{inv_background inv_foreground}{M-Q} Anterior     \textcolor{inv_background inv_foreground}{^B} Recuar\textcolor{inv_background inv_foreground}{X} Sair    \textcolor{inv_background inv_foreground}{^R} Carregar\textcolor{inv_background inv_foreground}{^\} Substituir    \textcolor{inv_background inv_foreground}{^U} Colar txt     \textcolor{inv_background inv_foreground}{^T} Ortografia    \textcolor{inv_background inv_foreground}{^_} Ir p/ linha   \textcolor{inv_background inv_foreground}{M-E} Refazer\textcolor{inv_background inv_foreground}{M-6} Copiar txt   \textcolor{inv_background inv_foreground}{^Q} Onde antes    \textcolor{inv_background inv_foreground}{M-W} Seguinte     \textcolor{inv_background inv_foreground}{^F} Avançar
+[?25h[?0c[?25l[?1c
+[?25h[?0c
+[?2004ladmlocal@devOps:~/leantime_ansible$ ansible-lint 
+Loading custom .yamllint config file, this extends our internal yamllint config.
+admlocal@devOps:~/leantime_ansible$ exit
+
+\end{Verbatim}
+\end{document}

@@ -1,0 +1,90 @@
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 5 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                       tasks/tasks.yml                                   </span>
+<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor
+<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha
+---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lA[?12l[?25h[?25l[?12l[?25h[?25l"A[?12l[?25h[?25lA[?12l[?25h[?25lt[?12l[?25h[?25lu[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25li
+[?12l[?25h[?25lz[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25lo[?12l[?25h[?25l"[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lf[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l       <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS      <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar           <span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar          <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac      <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor           <span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
+<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: tasks/tasks.yml                                        </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 9 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, lint
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span>
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">lint</span>
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ omolecule converge
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span>
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span>
+<span style="color: #aa0000">WARNING </span> Skipping, instances already created.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span>
+<span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span>
+
+PLAY [Converge] ***********************************************************************
+
+TASK [Gathering Facts] ****************************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [Include leantime_ansible] *******************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] *****************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ********************************
+<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
+
+PLAY RECAP ****************************************************************************
+<span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=3   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ********************************************
+
+TASK [Simulação: Atualizar a cache do sistema] ****************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [teste: a cache encontra-se actualizada?] ****************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
+<span style="color: #00aa00">}</span>
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] **********************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [teste: o sistema operativo encontra-se atualizado?] *****************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span>
+<span style="color: #00aa00">}</span>
+
+PLAY RECAP ****************************************************************************
+<span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=4   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+<span style="color: #0000aa">INFO    </span> Verifier completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit

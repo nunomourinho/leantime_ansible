@@ -1,0 +1,485 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exitmolecule test --destroy never
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, verify, cleanup, destroy
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{lint}
+COMMAND: set -e
+yamllint .
+ansible-lint
+
+Loading custom .yamllint config file, this extends our internal yamllint config.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{cleanup}
+\textcolor{ansi31}{WARNING } Skipping, cleanup playbook not configured.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{destroy}
+\textcolor{ansi31}{WARNING } Skipping, \textcolor{ansi32}{'--}\textcolor{ansi32}{destroy}\textcolor{ansi32}{=}\textcolor{ansi32}{never}\textcolor{ansi32}{'} requested.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{syntax}
+
+playbook: /home/admlocal/leantime_ansible/molecule/default/converge.yml
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+
+PLAY [Create] ****************************************************************************************************************************
+
+TASK [Create molecule instance(s)] *******************************************************************************************************
+\textcolor{ansi33}{changed: [localhost] => (item=ubuntu-20.04)}
+
+TASK [Populate instance config dict] *****************************************************************************************************
+\textcolor{ansi32}{ok: [localhost] => (item={'changed': True, 'log': '/home/admlocal/.cache/molecule/leantime_ansible/default/vagrant-ubuntu-20.04.out', 'Host': 'ubuntu-20.04', 'HostName': '127.0.0.1', 'User': 'vagrant', 'Port': '2222', 'UserKnownHostsFile': '/dev/null', 'StrictHostKeyChecking': 'no', 'PasswordAuthentication': 'no', 'IdentityFile': '/home/admlocal/.cache/molecule/leantime_ansible/default/.vagrant/machines/ubuntu-20.04/virtualbox/private_key', 'IdentitiesOnly': 'yes', 'LogLevel': 'FATAL', 'invocation': {'module_args': {'instance_name': 'ubuntu-20.04', 'instance_interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'platform_box': 'ubuntu/focal64', 'provider_memory': 2048, 'provider_cpus': 2, 'state': 'up', 'config_options': {}, 'provider_name': 'virtualbox', 'provider_options': {}, 'provision': False, 'force_stop': False, 'platform_box_version': None, 'platform_box_url': None, 'provider_override_args': None, 'provider_raw_config_args': None, 'workdir': None}}, 'failed': False, 'item': {'box': 'ubuntu/focal64', 'cpus': 2, 'instance_raw_config_args': ["vm.network 'forwarded_port', guest: 80, host: 8080"], 'interfaces': [{'auto_config': True, 'network_name': 'private_network', 'type': 'dhcp'}], 'memory': 2048, 'name': 'ubuntu-20.04'}, 'ansible_loop_var': 'item'})}
+
+TASK [Convert instance config dict to a list] ********************************************************************************************
+\textcolor{ansi32}{ok: [localhost]}
+
+TASK [Dump instance config] **************************************************************************************************************
+\textcolor{ansi33}{changed: [localhost]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi33}{localhost}                  : \textcolor{ansi32}{ok=4   } \textcolor{ansi33}{changed=2   } unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+
+PLAY [Prepare] ***************************************************************************************************************************
+
+TASK [Bootstrap python for Ansible] ******************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=1   } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi33}{changed: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+\textcolor{ansi31}{fatal: [ubuntu-20.04]: FAILED! => {"changed": false, "connection": "close", "content": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n<hr>\n<address>Apache/2.4.41 (Ubuntu) Server at localhost Port 80</address>\n</body></html>\n", "content_length": "271", "content_type": "text/html; charset=iso-8859-1", "date": "Wed, 26 May 2021 14:17:22 GMT", "elapsed": 0, "msg": "Status code was 404 and not [200]: HTTP Error 404: Not Found", "redirected": false, "server": "Apache/2.4.41 (Ubuntu)", "status": 404, "url": "http://localhost/install"}}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi31}{ubuntu-20.04}               : \textcolor{ansi32}{ok=20  } \textcolor{ansi33}{changed=17  } unreachable=0    \textcolor{ansi31}{failed=1   } skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{converge.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule login
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{login}
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-72-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed May 26 14:17:33 UTC 2021
+
+  System load:  1.17              Processes:               130
+  Usage of /:   6.9% of 38.71GB   Users logged in:         0
+  Memory usage: 33%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%                IPv4 address for enp0s8: 172.28.128.29
+
+
+
+
+
+*** System restart required ***
+Last login: Wed May 26 14:17:21 2021 from 10.0.2.2
+
+]0;vagrant@ubuntu-20: ~vagrant@ubuntu-20:~$ sudo -i
+]0;root@ubuntu-20: ~root@ubuntu-20:~# ls /etc/apache2/sites-available/
+000-default.conf  default-ssl.conf  \textbf{\textcolor{ansi32}{leantime.conf}}
+]0;root@ubuntu-20: ~root@ubuntu-20:~# ls /etc/apache2/sites-available//////////e/n/a/b/l/e/d/
+\textbf{\textcolor{ansi36}{leantime.conf}}
+]0;root@ubuntu-20: ~root@ubuntu-20:~# exit
+logout
+]0;vagrant@ubuntu-20: ~vagrant@ubuntu-20:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+\textcolor{ansi31}{fatal: [ubuntu-20.04]: FAILED! => {"changed": false, "connection": "close", "content": "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>404 Not Found</title>\n</head><body>\n<h1>Not Found</h1>\n<p>The requested URL was not found on this server.</p>\n<hr>\n<address>Apache/2.4.41 (Ubuntu) Server at localhost Port 80</address>\n</body></html>\n", "content_length": "271", "content_type": "text/html; charset=iso-8859-1", "date": "Wed, 26 May 2021 14:19:56 GMT", "elapsed": 0, "msg": "Status code was 404 and not [200]: HTTP Error 404: Not Found", "redirected": false, "server": "Apache/2.4.41 (Ubuntu)", "status": 404, "url": "http://localhost/install"}}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi31}{ubuntu-20.04}               : \textcolor{ansi32}{ok=20  } changed=0    unreachable=0    \textcolor{ansi31}{failed=1   } skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{converge.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule convergelogin
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{login}
+Welcome to Ubuntu 20.04.2 LTS (GNU/Linux 5.4.0-72-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed May 26 14:20:03 UTC 2021
+
+  System load:  0.33              Processes:               127
+  Usage of /:   6.9% of 38.71GB   Users logged in:         0
+  Memory usage: 33%               IPv4 address for enp0s3: 10.0.2.15
+  Swap usage:   0%                IPv4 address for enp0s8: 172.28.128.29
+
+
+
+
+
+*** System restart required ***
+Last login: Wed May 26 14:19:56 2021 from 10.0.2.2
+
+]0;vagrant@ubuntu-20: ~vagrant@ubuntu-20:~$ exitsudo -i
+]0;root@ubuntu-20: ~root@ubuntu-20:~# service apache2 reload
+]0;root@ubuntu-20: ~root@ubuntu-20:~# exit
+logout
+]0;vagrant@ubuntu-20: ~vagrant@ubuntu-20:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule loginconverge
+\textcolor{ansi34}{INFO    } default scenario test matrix: dependency, create, prepare, converge
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{dependency}
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi31}{WARNING } Skipping, missing the requirements file.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{create}
+\textcolor{ansi31}{WARNING } Skipping, instances already created.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{prepare}
+\textcolor{ansi31}{WARNING } Skipping, instances already prepared.
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{converge}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=21  } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence
+\textcolor{ansi34}{INFO    } default scenario test matrix: idempotence
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{idempotence}
+
+PLAY [Converge] **************************************************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [Include leantime_ansible] **********************************************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})}
+
+TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/tmp/leantime'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'path': '/var/www/leantime'})}
+
+TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Descomprime o software leantime] ********************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Copia o ficheiro de configuração configuration.sample.php] ******************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Altera as variáveis dbuser, dbpassword e dbdatabase no ficheiro configuration.php utilizando o módulo replace.] ***
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbUser=""', 'line': 'dbUser="leantimeDBadmin"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbDatabase=""', 'line': 'dbDatabase="leantime_database"'})}
+\textcolor{ansi32}{ok: [ubuntu-20.04] => (item={'regexp': 'dbPassword=""', 'line': 'dbPassword="#S3gr3d0S3cr3t0#"'})}
+
+TASK [leantime_ansible : Copia o template do site para a pásta /etc/apache2/sites-available] *********************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria um link simbólico para o ficheiro leantime.conf na pasta /etc/apache/sites-enabled] ************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Apaga o link 000-default.conf na pasta sites-enabled do apache2] ************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Activa o módulo mod_rewrite no apache] **************************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [leantime_ansible : Cria o administrador da aplicação leantime] *********************************************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+PLAY RECAP *******************************************************************************************************************************
+\textcolor{ansi32}{ubuntu-20.04}               : \textcolor{ansi32}{ok=21  } changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+\textcolor{ansi34}{INFO    } Idempotence completed successfully.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit
+
+\end{Verbatim}
+\end{document}

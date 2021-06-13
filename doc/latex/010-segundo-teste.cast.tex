@@ -1,0 +1,85 @@
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyvrb}
+\usepackage[usenames,dvipsnames]{xcolor}
+% \definecolor{red-sd}{HTML}{7ed2d2}
+
+\title{}
+
+\fvset{commandchars=\\\{\}}
+
+\begin{document}
+
+\begin{Verbatim}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l\textcolor{inv_background inv_foreground}{[ A ler... ]}\textcolor{inv_background inv_foreground}{[ 23 linhas lidas ]}\textcolor{inv_background inv_foreground}{  GNU nano 4.8                 molecule/default/verify.yml                             }
+\textcolor{inv_background inv_foreground}{^G} Ajuda\textcolor{inv_background inv_foreground}{^O} Gravar     \textcolor{inv_background inv_foreground}{^W} Procurar   \textcolor{inv_background inv_foreground}{^K} Cortar txt \textcolor{inv_background inv_foreground}{^J} Justificar \textcolor{inv_background inv_foreground}{^C} Pos cursor
+\textcolor{inv_background inv_foreground}{^X} Sair\textcolor{inv_background inv_foreground}{^R} Carregar   \textcolor{inv_background inv_foreground}{^\} Substituir \textcolor{inv_background inv_foreground}{^U} Colar txt  \textcolor{inv_background inv_foreground}{^T} Ortografia \textcolor{inv_background inv_foreground}{^_} Ir p/ linha
+---
+\textcolor{ansi36}{# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansi}\textcolor{inv_background inv_foreground}{>}- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l\textcolor{inv_background inv_foreground}{Modificado}
+[?12l[?25h[?25l [?12l[?25h[?25l  [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25lA[?12l[?25h[?25lt[?12l[?25h[?25lu[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25l([?12l[?25h[?25le[?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25li[?12l[?25h[?25lv[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l-[?12l[?25h[?25lu[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l([?12l[?25h[?25l [?12l[?25h[?25l)[?12l[?25h[?25l"[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lp[?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lf[?12l[?25h[?25le[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l78Mcheck_mode: true
+[?12l[?25h[?25l    check_mode: true
+[?12l[?25h[?25l     check_mode: true
+ [?12l[?25h[?25l      check_mode: true
+  [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l
+[?12l[?25h[?25l
+[?12l[?25h[?25l
+[?12l[?25h[?25l
+[?12l[?25h[?25l
+[?12l[?25h[?25l- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l78Mregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78Mregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l    check_mode: true
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25la[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l "[?12l[?25h[?25lO"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25li"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25lm"[?12l[?25h[?25la"[?12l[?25h[?25l "[?12l[?25h[?25lo"[?12l[?25h[?25lp"[?12l[?25h[?25le"[?12l[?25h[?25lr"[?12l[?25h[?25la"[?12l[?25h[?25lt"[?12l[?25h[?25li"[?12l[?25h[?25lv"[?12l[?25h[?25lo"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25lá"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25lt"[?12l[?25h[?25lu"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25li"[?12l[?25h[?25lz"[?12l[?25h[?25la"[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l       \textcolor{inv_background inv_foreground}{M-D} Formato DOS      \textcolor{inv_background inv_foreground}{M-A} Anexar           \textcolor{inv_background inv_foreground}{M-B} Segurança\textcolor{inv_background inv_foreground}{C} Cancelar          \textcolor{inv_background inv_foreground}{M-M} Formato Mac      \textcolor{inv_background inv_foreground}{M-P} Prepor           \textcolor{inv_background inv_foreground}{^T} P/ ficheiros
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l>[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lintverify
+\textcolor{ansi34}{INFO    } default scenario test matrix: verify
+\textcolor{ansi34}{INFO    } Performing prerun\textcolor{ansi33}{...}
+\textcolor{ansi34}{INFO    } Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+\textcolor{ansi34}{INFO    } Added \textcolor{ansi33}{ANSIBLE_ROLES_PATH}=~\textcolor{ansi35}{/.ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/usr/share/ansible/}\textcolor{ansi95}{roles}:\textcolor{ansi35}{/etc/ansible/}\textcolor{ansi95}{roles}:.\textcolor{ansi35}{/.cache/}\textcolor{ansi95}{roles}
+\textcolor{ansi34}{INFO    } \textcolor{ansi2 ansi36}{Running }\textcolor{ansi2 ansi32}{default}\textcolor{ansi2 ansi36}{ > }\textcolor{ansi2 ansi32}{verify}
+\textcolor{ansi34}{INFO    } Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] ********************************************
+
+TASK [Simulação: Atualizar a cache do sistema] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04]}
+
+TASK [teste: a cache encontra-se actualizada?] ****************************************
+\textcolor{ansi32}{ok: [ubuntu-20.04] => {}
+\textcolor{ansi32}{    "changed": false,}
+\textcolor{ansi32}{    "msg": "SUCESSO: A cache está atualizada"}
+\textcolor{ansi32}{}}
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] **********************
+\textcolor{ansi33}{changed: [ubuntu-20.04]}
+
+TASK [teste: o sistema operativo encontra-se atualizado?] *****************************
+\textcolor{ansi31}{fatal: [ubuntu-20.04]: FAILED! => {}
+\textcolor{ansi31}{    "assertion": "not estado.changed",}
+\textcolor{ansi31}{    "changed": false,}
+\textcolor{ansi31}{    "evaluated_to": false,}
+\textcolor{ansi31}{    "msg": "ERRO: Existem actualizações pendentes"}
+\textcolor{ansi31}{}}
+
+PLAY RECAP ****************************************************************************
+\textcolor{ansi31}{ubuntu-20.04}               : \textcolor{ansi32}{ok=3   } \textcolor{ansi33}{changed=1   } unreachable=0    \textcolor{ansi31}{failed=1   } skipped=0    rescued=0    ignored=0
+
+
+\textbf{\textcolor{ansi31}{CRITICAL}} Ansible return code was \textbf{\textcolor{ansi36}{2}}, command was: ansible-playbook --inventory \textcolor{ansi35}{/home/admlocal/.cache/molecule/leantime_ansible/default/}\textcolor{ansi95}{inventory} --skip-tags molecule-notest,notest \textcolor{ansi35}{/home/admlocal/leantime_ansible/molecule/default/}\textcolor{ansi95}{verify.yml}
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+
+\end{Verbatim}
+\end{document}

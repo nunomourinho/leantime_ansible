@@ -1,9 +1,11 @@
-MYDIR = ./asciinema
-documento: $(MYDIR)/*.cast
+MYDIR = ./doc/asciinema
+documentacao: $(MYDIR)/*.cast
 	for file in $^ ; do \
-		asciinema cat $${file}  > ./txt/$${file}.txt; \
-		asciinema cat $${file}  | ansi2html > ./html/$${file}.html; \
+		texto=$${file##doc/asciinema/} ; \
+		echo $${texto} ; \
+		asciinema cat $${file}  > ./doc/txt/"$${texto}".txt  ; \
+		asciinema cat $${file}  | ansi2html -ip > ./doc/html/$${texto}.html ; \
+		wkhtmltopdf ./doc/html/$${texto}.html ./doc/pdf/$${texto}.pdf ; \
+		asciinema cat $${file}  | ansi2html -mL > ./doc/latex/$${texto}.tex; \
+		sed -i -e 's|textcolor{ansi1 \(ansi[0-9]*\)}\({[^}]*}\)|textbf{\\textcolor{\1}\2}|g' 		./doc/latex/$${texto}.tex; \
 	done
-	#asciinema cat $< | ansi2html -ip > html/$@
-	#asciinema cat $< | ansi2html -mL > latex/$@
-	#sed -i -e 's|textcolor{ansi1 \(ansi[0-9]*\)}\({[^}]*}\)|textbf{\\textcolor{\1}\2}|g' latex/$@

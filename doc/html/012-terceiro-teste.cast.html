@@ -1,0 +1,641 @@
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano moleecule/default/verify.yml 
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 44 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                         molecule/default/verify.yml                                      </span>
+<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer
+<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+---
+<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:
+[?12l[?25h[?25l[?12l[?25h[?25l    assert: that: - not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se a
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
+[?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lS[?12l[?25h[?25li
+[?12l[?25h[?25lm[?12l[?25h[?25lu[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lc[?12l[?25h[?25la[?12l[?25h[?25lç[?12l[?25h[?25lõ[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lã[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25lf[?12l[?25h[?25lt[?12l[?25h[?25lw[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25l [?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25ls[?12l[?25h[?25l
+<span style="background-color: #AAAAAA; color: #000000">&lt;</span> inst[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25l"[?12l[?25h[?25l
+ - name: "Simulação: testa se as aplicações que são dependencia do software leantime se encontram insta[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l [?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25lq[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25lsão dependencia do software leantime se encontram instal[?12l[?25h[?25lsão dependencia do software leantime se encontram instala[?12l[?25h[?25lsão dependencia do software leantime se encontram instalad[?12l[?25h[?25lsão dependencia do software leantime se encontram instalada[?12l[?25h[?25lão dependencia do software leantime se encontram instaladas"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lk[?12l[?25h[?25lg[?12l[?25h[?25l:[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25lc[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lc[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25ly[?12l[?25h[?25ls[?12l[?25h[?25lq[?12l[?25h[?25lç[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lm[?12l[?25h[?25ly[?12l[?25h[?25ls[?12l[?25h[?25lq[?12l[?25h[?25ll[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25ll[?12l[?25h[?25ld[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lc[?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lj[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lj[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l
+[?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lj[?12l[?25h[?25l[?12l[?25h[?25lhp-json[?12l[?25h[?25l[?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25lr[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lv[?12l[?25h[?25li[?12l[?25h[?25lz[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lx[?12l[?25h[?25lm[?12l[?25h[?25ll[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lg[?12l[?25h[?25ld[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lz[?12l[?25h[?25li[?12l[?25h[?25lp[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lb[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25l2[?12l[?25h[?25l-[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25l-[?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lv[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lb[?12l[?25h[?25lm[?12l[?25h[?25lc[?12l[?25h[?25lr[?12l[?25h[?25ly[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l-[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lv[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25lc[?12l[?25h[?25lc[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25la[?12l[?25h[?25lk[?12l[?25h[?25le[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25lu[?12l[?25h[?25lt[?12l[?25h[?25lo[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25li[?12l[?25h[?25lb[?12l[?25h[?25lc[?12l[?25h[?25l-[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lv[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lk[?12l[?25h[?25lg[?12l[?25h[?25l-[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25lf[?12l[?25h[?25li[?12l[?25h[?25lg[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lw[?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25ln[?12l[?25h[?25lz[?12l[?25h[?25li[?12l[?25h[?25lp[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25l
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25lh[?12l[?25h[?25lp[?12l[?25h[?25l-[?12l[?25h[?25lm[?12l[?25h[?25lb[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25ln[?12l[?25h[?25lg[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25lx[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lt[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25l-[?12l[?25h[?25lt[?12l[?25h[?25lo[?12l[?25h[?25lo[?12l[?25h[?25ll[?12l[?25h[?25ls[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25ly[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l3[?12l[?25h[?25l-[?12l[?25h[?25lm[?12l[?25h[?25ly[?12l[?25h[?25ls[?12l[?25h[?25lq[?12l[?25h[?25ll[?12l[?25h[?25ld[?12l[?25h[?25lb[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25ly[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l3[?12l[?25h[?25l-[?12l[?25h[?25la[?12l[?25h[?25lp[?12l[?25h[?25lt[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25ly[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25lo[?12l[?25h[?25ln[?12l[?25h[?25l3[?12l[?25h[?25l-[?12l[?25h[?25lp[?12l[?25h[?25ly[?12l[?25h[?25lc[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l78
+
+[?12l[?25h[?25l[?12l[?25h[?25l78
+M[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25lz[?12l[?25h[?25li[?12l[?25h[?25lp[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lc[?12l[?25h[?25lh[?12l[?25h[?25le[?12l[?25h[?25lc[?12l[?25h[?25lk[?12l[?25h[?25l_[?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lt[?12l[?25h[?25lr[?12l[?25h[?25lu[?12l[?25h[?25le[?12l[?25h[?25l78
+
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l
+[?12l[?25h[?25lassert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt: upgrade: safecheck_mode: trueregister: estado
+  - name: "teste: o sistema operativo encontra-se atualizado?"assert: that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se atualizada?"assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
+- mysql-server
+ [?12l[?25h[?25l78
+- php
+ [?12l[?25h[?25l78
+- php-mysql
+ [?12l[?25h[?25l78
+- php-ldap
+ [?12l[?25h[?25l78
+- php-cli
+ [?12l[?25h[?25l78
+- php-soap
+ [?12l[?25h[?25l78
+- php-json
+ [?12l[?25h[?25l78
+- graphviz
+ [?12l[?25h[?25l78
+- php-xml
+ [?12l[?25h[?25l78
+- php-gd
+ [?12l[?25h[?25l78
+- php-zip
+ [?12l[?25h[?25l78
+- libapache2-mod-php
+ [?12l[?25h[?25l78
+- php-dev
+ [?12l[?25h[?25l78
+- libmcrypt-dev
+ [?12l[?25h[?25l78
+- gcc
+ [?12l[?25h[?25l78
+- make
+ [?12l[?25h[?25l78
+- autoconf
+ [?12l[?25h[?25l78
+- libc-dev
+ [?12l[?25h[?25l78
+- pkg-config
+ [?12l[?25h[?25l78
+- pwgen
+ [?12l[?25h[?25l78
+- curl
+ [?12l[?25h[?25l78
+- unzip
+ [?12l[?25h[?25l78
+- zip
+ [?12l[?25h[?25l78
+- php-mbstring
+ [?12l[?25h[?25l78
+- expect
+ [?12l[?25h[?25l78
+- net-tools
+ [?12l[?25h[?25l78
+- python3-mysqldb
+ [?12l[?25h[?25l78
+- python3-apt
+ [?12l[?25h[?25l78
+- python3-pycurl
+ [?12l[?25h[?25l78
+check_mode: true
+ [?12l[?25h[?25l78
+register: estado
+ [?12l[?25h[?25l78
+ [?12l[?25h[?25l that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt: upgrade: safecheck_mode: trueregister: estado
+  - name: "teste: o sistema operativo encontra-se atualizado?"assert: that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se atualizada?"assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l78
+- php
+ [?12l[?25h[?25l78
+- php-mysql
+ [?12l[?25h[?25l78
+- php-ldap
+ [?12l[?25h[?25l78
+- php-cli
+ [?12l[?25h[?25l78
+- php-soap
+ [?12l[?25h[?25l78
+- php-json
+ [?12l[?25h[?25l78
+- graphviz
+ [?12l[?25h[?25l78
+- php-xml
+ [?12l[?25h[?25l78
+- php-gd
+ [?12l[?25h[?25l78
+- php-zip
+ [?12l[?25h[?25l78
+- libapache2-mod-php
+ [?12l[?25h[?25l78
+- php-dev
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l  - php-dev- libmcrypt-dev- gcc- make- autoconf
+     - libc-dev - pkg-config- pwgen- curl- unzip- zip- php-mbstring
+     - expect  - net-tools- python3-mysqldbpython3-aptpython3-pycurlcheck_mode: trueregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se atualizada?"assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"
+ - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:mcscreen   - git   - apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev
+[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l  - php-dev- libmcrypt-dev- gcc- make- autoconf
+     - libc-dev - pkg-config- pwgen- curl- unzip- zip- php-mbstring
+     - expect  - net-tools- python3-mysqldbpython3-aptpython3-pycurlcheck_mode: trueregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+   check_mode: true
+   [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+   register: estado
+   [?12l[?25h[?25l
+[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
+<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                             </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 82 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+[?12l[?25h[?25l that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se atualizada?"assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l
+[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
+- gcc
+[?12l[?25h[?25l
+- make
+[?12l[?25h[?25l
+- autoconf
+[?12l[?25h[?25l
+- libc-dev
+[?12l[?25h[?25l
+- pkg-config
+[?12l[?25h[?25l
+- pwgen
+[?12l[?25h[?25l- name: "Teste: a cache encontra-se atualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l- php-dev- libmcrypt-dev- gcc- make- autoconf
+     - libc-dev - pkg-config- pwgen- curl- unzip- zip- php-mbstring
+     - expect  - net-tools- python3-mysqldbpython3-aptpython3-pycurlcheck_mode: trueregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - name: "Teste: a cache encontra-se atualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25l?"[?12l[?25h[?25ls?"[?12l[?25h[?25l ?"[?12l[?25h[?25ld?"[?12l[?25h[?25le?"[?12l[?25h[?25lp?"[?12l[?25h[?25le?"[?12l[?25h[?25ln?"[?12l[?25h[?25ld?"[?12l[?25h[?25le?"[?12l[?25h[?25ln?"[?12l[?25h[?25lc?"[?12l[?25h[?25li?"[?12l[?25h[?25la?"[?12l[?25h[?25ls?"[?12l[?25h[?25l ?"[?12l[?25h[?25le?"[?12l[?25h[?25ln?"[?12l[?25h[?25lc?"[?12l[?25h[?25lo?"[?12l[?25h[?25ln?"[?12l[?25h[?25lt?"[?12l[?25h[?25lr?"[?12l[?25h[?25la?"[?12l[?25h[?25l-?"[?12l[?25h[?25ls?"[?12l[?25h[?25le?"[?12l[?25h[?25l ?"[?12l[?25h[?25li?"[?12l[?25h[?25ln?"[?12l[?25h[?25ls?"[?12l[?25h[?25lt?"[?12l[?25h[?25la?"[?12l[?25h[?25ll?"[?12l[?25h[?25la?"[?12l[?25h[?25ld?"[?12l[?25h[?25la?"[?12l[?25h[?25ls?"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25ls"[?12l[?25h[?25l "[?12l[?25h[?25ld"[?12l[?25h[?25le"[?12l[?25h[?25lp"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25ld"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lc"[?12l[?25h[?25li"[?12l[?25h[?25la"[?12l[?25h[?25ls"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25lv"[?12l[?25h[?25la"[?12l[?25h[?25lm"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25la"[?12l[?25h[?25ld"[?12l[?25h[?25la"[?12l[?25h[?25ls"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25lF"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25lm"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25l "[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25lg"[?12l[?25h[?25lu"[?12l[?25h[?25lm"[?12l[?25h[?25la"[?12l[?25h[?25ls"[?12l[?25h[?25l "[?12l[?25h[?25ld"[?12l[?25h[?25le"[?12l[?25h[?25lp"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25ld"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lc"[?12l[?25h[?25li"[?12l[?25h[?25la"[?12l[?25h[?25ls"[?12l[?25h[?25l."[?12l[?25h[?25l "[?12l[?25h[?25lO"[?12l[?25h[?25l "[?12l[?25h[?25ls"[?12l[?25h[?25lo"[?12l[?25h[?25lf"[?12l[?25h[?25lt"[?12l[?25h[?25lw"[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25lp"[?12l[?25h[?25lo"[?12l[?25h[?25ld"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25le"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25l "[?12l[?25h[?25lp"[?12l[?25h[?25la"[?12l[?25h[?25lr"[?12l[?25h[?25lc"[?12l[?25h[?25li"[?12l[?25h[?25la"[?12l[?25h[?25ll"[?12l[?25h[?25lm"[?12l[?25h[?25le"[?12l[?25h[?25ln"[?12l[?25h[?25lt"[?12l[?25h[?25le"[?12l[?25h[?25l "[?12l[?25h[?25li"[?12l[?25h[?25ln"[?12l[?25h[?25ls"[?12l[?25h[?25lt"[?12l[?25h[?25la"[?12l[?25h[?25l
+<span style="background-color: #AAAAAA; color: #000000">&lt;</span>nstal"[?12l[?25h[?25la"[?12l[?25h[?25ld"[?12l[?25h[?25lo"[?12l[?25h[?25l fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instala<span style="background-color: #AAAAAA; color: #000000">&gt;</span>[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
+<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                             </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml 
+Loading custom .yamllint config file, this extends our internal yamllint config.
+WARNING  Listing 1 violation(s) that are fatal
+<span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span>
+<span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span>
+<span style="font-weight: lighter">the implicit localhost does not match 'all'</span>
+<span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span>
+<span style="font-weight: lighter">  did not find expected '-' indicator</span>
+
+<span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 38, column 2, but may</span>
+<span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span>
+
+<span style="font-weight: lighter">The offending line appears to be:</span>
+
+
+<span style="font-weight: lighter"> - name: "Teste: a cache encontra-se atualizada?"</span>
+<span style="font-weight: lighter"> ^ here</span>
+<span style="font-weight: lighter">This one looks easy to fix. It seems that there is a value started</span>
+<span style="font-weight: lighter">with a quote, and the YAML parser is expecting to see the line ended</span>
+<span style="font-weight: lighter">with the same kind of quote. For instance:</span>
+
+<span style="font-weight: lighter">    when: "ok" in result.stdout</span>
+
+<span style="font-weight: lighter">Could be written as:</span>
+
+<span style="font-weight: lighter">   when: '"ok" in result.stdout'</span>
+
+<span style="font-weight: lighter">Or equivalently:</span>
+
+<span style="font-weight: lighter">   when: "'ok' in result.stdout"</span>
+
+
+You can skip specific rules or tags by adding them to your configuration file:
+<span style="font-weight: lighter"># .ansible-lint</span>
+<span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span>
+  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span>
+Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+<span style="color: #aa0000">ERROR! Syntax Error while loading YAML.</span>
+<span style="color: #aa0000">  did not find expected '-' indicator</span>
+
+<span style="color: #aa0000">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 38, column 2, but may</span>
+<span style="color: #aa0000">be elsewhere in the file depending on the exact syntax problem.</span>
+
+<span style="color: #aa0000">The offending line appears to be:</span>
+
+
+<span style="color: #aa0000"> - name: "Teste: a cache encontra-se atualizada?"</span>
+<span style="color: #aa0000"> ^ here</span>
+<span style="color: #aa0000">This one looks easy to fix. It seems that there is a value started</span>
+<span style="color: #aa0000">with a quote, and the YAML parser is expecting to see the line ended</span>
+<span style="color: #aa0000">with the same kind of quote. For instance:</span>
+
+<span style="color: #aa0000">    when: "ok" in result.stdout</span>
+
+<span style="color: #aa0000">Could be written as:</span>
+
+<span style="color: #aa0000">   when: '"ok" in result.stdout'</span>
+
+<span style="color: #aa0000">Or equivalently:</span>
+
+<span style="color: #aa0000">   when: "'ok' in result.stdout"</span>
+
+<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">4</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verifyansible-lint molecule/default/verify.yml 
+nano
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                         molecule/default/verify.yml                                      </span>
+<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer
+<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+---
+<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:
+[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">^W</span> In. parág<span style="background-color: #AAAAAA; color: #000000">^Y</span> Prim.linha             <span style="background-color: #AAAAAA; color: #000000">^T</span> Ir para txt<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">^O</span> Fim parág<span style="background-color: #AAAAAA; color: #000000">^V</span> Últ. linha
+<span style="background-color: #AAAAAA; color: #000000">Insira nº da linha, nº da coluna:                                                                       </span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">3
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">8
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">,
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">2
+</span>[?12l[?25h[?25l
+<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+ success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"
+    apt:    upgrade: safe  check_mode: true  register: estado- name: "teste: o sistema operativo encontra-se atualizado?"  assert:  that:- not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"
+ - name: "Teste: a cache encontra-se atualizada?"  assert:  tha- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"
+ - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas" apt: pkg:- mc - screen - git- apache2   - mysql-server - php- php-mysql
+[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l -[?12l[?25h[?25l
+[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
+  - name: "Teste: a cache encontra-se atualizada?"
+ [?12l[?25h[?25l[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
+<span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: molecule/default/verify.yml                                             </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+ [?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml molecule verifyansible-lint molecule/default/verify.yml 
+Loading custom .yamllint config file, this extends our internal yamllint config.
+WARNING  Listing 1 violation(s) that are fatal
+<span style="color: #ea4040">syntax-check</span><span style="font-weight: lighter">:</span> <span style="color: #aa0000">Ansible syntax check failed</span>
+<span style="color: #0000aa">molecule/default/verify.yml</span>:0 <span style="font-weight: lighter">[WARNING]: provided hosts list is empty, only localhost is available. Note that</span>
+<span style="font-weight: lighter">the implicit localhost does not match 'all'</span>
+<span style="font-weight: lighter">ERROR! Syntax Error while loading YAML.</span>
+<span style="font-weight: lighter">  did not find expected '-' indicator</span>
+
+<span style="font-weight: lighter">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 45, column 2, but may</span>
+<span style="font-weight: lighter">be elsewhere in the file depending on the exact syntax problem.</span>
+
+<span style="font-weight: lighter">The offending line appears to be:</span>
+
+
+<span style="font-weight: lighter"> - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span>
+<span style="font-weight: lighter"> ^ here</span>
+<span style="font-weight: lighter">This one looks easy to fix. It seems that there is a value started</span>
+<span style="font-weight: lighter">with a quote, and the YAML parser is expecting to see the line ended</span>
+<span style="font-weight: lighter">with the same kind of quote. For instance:</span>
+
+<span style="font-weight: lighter">    when: "ok" in result.stdout</span>
+
+<span style="font-weight: lighter">Could be written as:</span>
+
+<span style="font-weight: lighter">   when: '"ok" in result.stdout'</span>
+
+<span style="font-weight: lighter">Or equivalently:</span>
+
+<span style="font-weight: lighter">   when: "'ok' in result.stdout"</span>
+
+
+You can skip specific rules or tags by adding them to your configuration file:
+<span style="font-weight: lighter"># .ansible-lint</span>
+<span style="color: #4040ea">warn_list</span>:  <span style="font-weight: lighter"># or 'skip_list' to silence them completely</span>
+  - syntax-check  <span style="font-weight: lighter"># Ansible syntax check failed</span>
+Finished with <span style="font-weight: bold; color: #00aaaa">1</span> failure<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span>, <span style="font-weight: bold; color: #00aaaa">0</span> warning<span style="font-weight: bold">(</span>s<span style="font-weight: bold">)</span> on <span style="font-weight: bold; color: #00aaaa">1</span> files.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml 
+nanomolecule verify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+<span style="color: #aa0000">ERROR! Syntax Error while loading YAML.</span>
+<span style="color: #aa0000">  did not find expected '-' indicator</span>
+
+<span style="color: #aa0000">The error appears to be in '/home/admlocal/leantime_ansible/molecule/default/verify.yml': line 45, column 2, but may</span>
+<span style="color: #aa0000">be elsewhere in the file depending on the exact syntax problem.</span>
+
+<span style="color: #aa0000">The offending line appears to be:</span>
+
+
+<span style="color: #aa0000"> - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span>
+<span style="color: #aa0000"> ^ here</span>
+<span style="color: #aa0000">This one looks easy to fix. It seems that there is a value started</span>
+<span style="color: #aa0000">with a quote, and the YAML parser is expecting to see the line ended</span>
+<span style="color: #aa0000">with the same kind of quote. For instance:</span>
+
+<span style="color: #aa0000">    when: "ok" in result.stdout</span>
+
+<span style="color: #aa0000">Could be written as:</span>
+
+<span style="color: #aa0000">   when: '"ok" in result.stdout'</span>
+
+<span style="color: #aa0000">Or equivalently:</span>
+
+<span style="color: #aa0000">   when: "'ok' in result.stdout"</span>
+
+<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">4</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verifyansible-lint molecule/default/verify.yml 
+nano
+[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                         molecule/default/verify.yml                                      </span>
+<span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer
+<span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+---
+<span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+</span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: truetasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:
+[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">^W</span> In. parág<span style="background-color: #AAAAAA; color: #000000">^Y</span> Prim.linha             <span style="background-color: #AAAAAA; color: #000000">^T</span> Ir para txt<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">^O</span> Fim parág<span style="background-color: #AAAAAA; color: #000000">^V</span> Últ. linha
+<span style="background-color: #AAAAAA; color: #000000">Insira nº da linha, nº da coluna:                                                                       </span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">4
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">5
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">,
+</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">2
+</span>[?12l[?25h[?25l
+<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer
+register: estado
+teste: o sistema operativo encontra-se atualizado?"ssert:that:- not estado.changed  success_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"T
+ - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap - php-cli - php-soap- php-json   - graphviz - php-xml- php-gd
+ [?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span>
+  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+  [?12l[?25h[?25l[?12l[?25h[?25l
+    apt:
+   [?12l[?25h[?25l[?12l[?25h[?25l
+      pkg:[?12l[?25h[?25l[?12l[?25h[?25l
+[?12l[?25h[?25l      - mc
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - screen
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - git
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - apache2
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - mysql-server
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-mysql
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-ldap
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-cli
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-soap
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-json
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - graphviz
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-xml
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l      - php-gd
+ [?12l[?25h[?25l78
+- php-zip
+ [?12l[?25h[?25l[?12l[?25h[?25l      - php-zip
+ [?12l[?25h[?25l78
+- libapache2-mod-php
+ [?12l[?25h[?25l[?12l[?25h[?25l      - libapache2-mod-php
+ [?12l[?25h[?25l78
+- php-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l      - php-dev
+ [?12l[?25h[?25l78
+- libmcrypt-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l      - libmcrypt-dev
+ [?12l[?25h[?25l78
+- gcc
+ [?12l[?25h[?25l[?12l[?25h[?25l      - gcc
+ [?12l[?25h[?25l78
+- make
+ [?12l[?25h[?25l[?12l[?25h[?25l      - make
+ [?12l[?25h[?25l78
+- autoconf
+ [?12l[?25h[?25l[?12l[?25h[?25l      - autoconf
+ [?12l[?25h[?25l78
+- libc-dev
+ [?12l[?25h[?25l[?12l[?25h[?25l      - libc-dev
+ [?12l[?25h[?25l78
+- pkg-config
+ [?12l[?25h[?25l[?12l[?25h[?25l      - pkg-config
+ [?12l[?25h[?25l78
+- pwgen
+ [?12l[?25h[?25l[?12l[?25h[?25l      - pwgen
+ [?12l[?25h[?25l78
+- curl
+ [?12l[?25h[?25l[?12l[?25h[?25l      - curl
+ [?12l[?25h[?25l78
+- unzip
+ [?12l[?25h[?25l[?12l[?25h[?25l      - unzip
+ [?12l[?25h[?25l78
+- zip
+ [?12l[?25h[?25l[?12l[?25h[?25l      - zip
+ [?12l[?25h[?25l78
+- php-mbstring
+ [?12l[?25h[?25l[?12l[?25h[?25l      - php-mbstring
+ [?12l[?25h[?25l78
+- expect
+ [?12l[?25h[?25l[?12l[?25h[?25l      - expect
+ [?12l[?25h[?25l78
+- net-tools
+ [?12l[?25h[?25l[?12l[?25h[?25l      - net-tools
+ [?12l[?25h[?25l78
+- python3-mysqldb
+ [?12l[?25h[?25l[?12l[?25h[?25l      - python3-mysqldb
+ [?12l[?25h[?25l78
+- python3-apt
+ [?12l[?25h[?25l[?12l[?25h[?25l      - python3-apt
+ [?12l[?25h[?25l78
+- python3-pycurl
+ [?12l[?25h[?25l[?12l[?25h[?25l      - python3-pycurl
+ [?12l[?25h[?25l78
+check_mode: true
+ [?12l[?25h[?25l[?12l[?25h[?25l    check_mode: true
+ [?12l[?25h[?25l78
+register: estado
+ [?12l[?25h[?25l[?12l[?25h[?25l    register: estado
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l78
+- name: "Teste: as dependencias encontra-se instaladas?"
+ [?12l[?25h[?25l78
+assert:
+ [?12l[?25h[?25l78
+[?12l[?25h[?25l[?12l[?25h[?25l  - name: "Teste: as dependencias encontra-se instaladas?"
+ [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lfail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado
+  - name: "teste: o sistema operativo encontra-se atualizado?"assert:that:not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"fail_msg: "ERRO: Existem actualizações pendentes"
+  - name: "Teste: a cache encontra-se atualizada?"assert:that:not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem atualizações pendentes"
+[?12l[?25h[?25l[?12l[?25h[?25l- php-mysql- php-ldap    - php-cli  - php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-devlibmcrypt-dev- gcc- make- autoconf    - libc-dev  - pkg-config- pwgencurl- unzip- zip- php-mbstring    - expect  - net-tools- python3-mysqldbpython3-aptpython3-pycurlcheck_mode: trueregister: estado
+[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros
+[?12l[?25h[?25l[?12l[?25h[?1049l
+[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano molecule/default/verify.yml molecule verifyansible-lint molecule/default/verify.yml 
+Loading custom .yamllint config file, this extends our internal yamllint config.
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ ansible-lint molecule/default/verify.yml 
+nanomolecule verify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] *************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] *********************************************************
+<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
+
+TASK [teste: a cache encontra-se actualizada?] *********************************************************
+<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
+<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
+<span style="color: #aa0000">    "changed": false,</span>
+<span style="color: #aa0000">    "evaluated_to": false,</span>
+<span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span>
+<span style="color: #aa0000">}</span>
+
+PLAY RECAP *********************************************************************************************
+<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=1   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
+
+
+<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] *************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] *********************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [teste: a cache encontra-se actualizada?] *********************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
+<span style="color: #00aa00">}</span>
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ***************************************
+<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
+
+TASK [teste: o sistema operativo encontra-se atualizado?] **********************************************
+<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
+<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
+<span style="color: #aa0000">    "changed": false,</span>
+<span style="color: #aa0000">    "evaluated_to": false,</span>
+<span style="color: #aa0000">    "msg": "ERRO: Existem actualizações pendentes"</span>
+<span style="color: #aa0000">}</span>
+
+PLAY RECAP *********************************************************************************************
+<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=3   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
+
+
+<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span>
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span>
+<span style="color: #aa0000">WARNING </span> Skipping, instances already created.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span>
+<span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span>
+
+PLAY [Converge] ****************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [Include leantime_ansible] ************************************************************************
+
+TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] **********************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [leantime_ansible : Atualiza o sistema operativo] *************************************************
+<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
+
+PLAY RECAP *********************************************************************************************
+<span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=3   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule convergeverify
+<span style="color: #0000aa">INFO    </span> default scenario test matrix: verify
+<span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span>
+<span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.
+<span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span>
+<span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span>
+<span style="color: #0000aa">INFO    </span> Running Ansible Verifier
+
+PLAY [Infraestrutura conduzida por testes] *************************************************************
+
+TASK [Simulação: Atualizar a cache do sistema] *********************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [teste: a cache encontra-se actualizada?] *********************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
+<span style="color: #00aa00">}</span>
+
+TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ***************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04]</span>
+
+TASK [teste: o sistema operativo encontra-se atualizado?] **********************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span>
+<span style="color: #00aa00">}</span>
+
+TASK [Teste: a cache encontra-se atualizada?] **********************************************************
+<span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span>
+<span style="color: #00aa00">    "changed": false,</span>
+<span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span>
+<span style="color: #00aa00">}</span>
+
+TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ******
+<span style="color: #aa5500">changed: [ubuntu-20.04]</span>
+
+TASK [Teste: as dependencias encontra-se instaladas?] **************************************************
+<span style="color: #aa0000">fatal: [ubuntu-20.04]: FAILED! =&gt; {</span>
+<span style="color: #aa0000">    "assertion": "not estado.changed",</span>
+<span style="color: #aa0000">    "changed": false,</span>
+<span style="color: #aa0000">    "evaluated_to": false,</span>
+<span style="color: #aa0000">    "msg": "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"</span>
+<span style="color: #aa0000">}</span>
+
+PLAY RECAP *********************************************************************************************
+<span style="color: #aa0000">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=6   </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    <span style="color: #aa0000">failed=1   </span> skipped=0    rescued=0    ignored=0
+
+
+<span style="font-weight: bold; color: #aa0000">CRITICAL</span> Ansible return code was <span style="font-weight: bold; color: #00aaaa">2</span>, command was: ansible-playbook --inventory <span style="color: #E850A8">/home/admlocal/.cache/molecule/leantime_ansible/default/</span><span style="color: #ff90e8">inventory</span> --skip-tags molecule-notest,notest <span style="color: #E850A8">/home/admlocal/leantime_ansible/molecule/default/</span><span style="color: #ff90e8">verify.yml</span>
+]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit
+exit
