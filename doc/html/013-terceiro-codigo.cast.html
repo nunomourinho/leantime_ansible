@@ -1,272 +1,272 @@
-<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml </span>
-<span id="line-1">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 9 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                               tasks/tasks.yml                                            </span></span>
-<span id="line-2"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer</span>
-<span id="line-3"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer</span>
-<span id="line-4">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe</span>
-<span id="line-5">[?12l[?25h[?25l[?12l[?25h[?1049l</span>
-<span id="line-6">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml [1@-[1@F[1@ </span>
-<span id="line-7">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 9 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                               tasks/tasks.yml                                            </span></span>
-<span id="line-8"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer</span>
-<span id="line-9"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer</span>
-<span id="line-10">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe</span>
-<span id="line-11">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
-<span id="line-12">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">M-F</span> Novo buffer<span style="background-color: #AAAAAA; color: #000000">^X</span> Executar comando<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-N</span> Sem conversão<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
-<span id="line-13"><span style="background-color: #AAAAAA; color: #000000">Ficheiro a ler para o novo buffer [de ./]:                                                              </span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">m</span>
-<span id="line-14"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">o</span>
-<span id="line-15"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">l</span>
-<span id="line-16"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span>
-<span id="line-17"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">cule/</span>
-<span id="line-18"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">v</span>
-<span id="line-19"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span>
-<span id="line-20"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">r</span>
-<span id="line-21"></span>[?12l[?25h[?25l</span>
-<span id="line-22">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span>
-<span id="line-23"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span>
-<span id="line-24"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span>
-<span id="line-25"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">d</span>
-<span id="line-26"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span>
-<span id="line-27"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">fault/</span>
-<span id="line-28"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">v</span>
-<span id="line-29"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span>
-<span id="line-30"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">r</span>
-<span id="line-31"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">ify.yml</span>
-<span id="line-32"></span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">[2/2]       molecule/default/verify.yml          </span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Fechar     <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer</span>
-<span id="line-33"><span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site</span>
-<span id="line-34"># https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/</span>
-<span id="line-35"></span>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: true</span>
-<span id="line-36">  tasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:</span>
-<span id="line-37">[?12l[?25h[?25l    assert: that: - not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"TSimulação: testa se as aplicações dependencia do software leantime se encontram instaladas"pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-dev</span>
-<span id="line-38">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ Marcação feita ]</span></span>
-<span id="line-39">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span>
-<span id="line-40"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">    apt:</span>
-<span id="line-41"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      pkg:</span>
-<span id="line-42"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - mc</span>
-<span id="line-43"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - screen</span>
-<span id="line-44"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - git</span>
-<span id="line-45"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - apache2</span>
-<span id="line-46"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - mysql-server</span>
-<span id="line-47"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php</span>
-<span id="line-48"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-mysql</span>
-<span id="line-49"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-ldap</span>
-<span id="line-50"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-cli</span>
-<span id="line-51"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-soap</span>
-<span id="line-52"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-json</span>
-<span id="line-53"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - graphviz</span>
-<span id="line-54"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-xml</span>
-<span id="line-55"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-gd</span>
-<span id="line-56"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-zip</span>
-<span id="line-57"></span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - libapache2-mod-php</span>
-<span id="line-58"></span>[?12l[?25h[?25l78</span>
-<span id="line-59"><span style="background-color: #AAAAAA; color: #000000">      - php-dev</span>- libmcrypt-dev</span>
-<span id="line-60">[?12l[?25h[?25l78</span>
-<span id="line-61"><span style="background-color: #AAAAAA; color: #000000">      - libmcrypt-dev</span>- gcc</span>
-<span id="line-62">[?12l[?25h[?25l78</span>
-<span id="line-63"><span style="background-color: #AAAAAA; color: #000000">      - gcc</span>- make</span>
-<span id="line-64">[?12l[?25h[?25l78</span>
-<span id="line-65"><span style="background-color: #AAAAAA; color: #000000">      - make</span>- autoconf</span>
-<span id="line-66">[?12l[?25h[?25l78</span>
-<span id="line-67"><span style="background-color: #AAAAAA; color: #000000">      - autoconf</span>- libc-dev</span>
-<span id="line-68">[?12l[?25h[?25l78</span>
-<span id="line-69"><span style="background-color: #AAAAAA; color: #000000">      - libc-dev</span>- pkg-config</span>
-<span id="line-70">[?12l[?25h[?25l78</span>
-<span id="line-71"><span style="background-color: #AAAAAA; color: #000000">      - pkg-config</span>- pwgen</span>
-<span id="line-72">[?12l[?25h[?25l78</span>
-<span id="line-73"><span style="background-color: #AAAAAA; color: #000000">      - pwgen</span>- curl</span>
-<span id="line-74">[?12l[?25h[?25l78</span>
-<span id="line-75"><span style="background-color: #AAAAAA; color: #000000">      - curl</span>- unzip</span>
-<span id="line-76">[?12l[?25h[?25l78</span>
-<span id="line-77"><span style="background-color: #AAAAAA; color: #000000">      - unzip</span>- zip</span>
-<span id="line-78">[?12l[?25h[?25l78</span>
-<span id="line-79"><span style="background-color: #AAAAAA; color: #000000">      - zip</span>- php-mbstring</span>
-<span id="line-80">[?12l[?25h[?25l78</span>
-<span id="line-81"><span style="background-color: #AAAAAA; color: #000000">      - php-mbstring</span>- expect</span>
-<span id="line-82">[?12l[?25h[?25l78</span>
-<span id="line-83"><span style="background-color: #AAAAAA; color: #000000">      - expect</span>- net-tools</span>
-<span id="line-84">[?12l[?25h[?25l78</span>
-<span id="line-85"><span style="background-color: #AAAAAA; color: #000000">      - net-tools</span>- python3-mysqldb</span>
-<span id="line-86">[?12l[?25h[?25l78</span>
-<span id="line-87"><span style="background-color: #AAAAAA; color: #000000">      - python3-mysqldb</span>- python3-apt</span>
-<span id="line-88">[?12l[?25h[?25l78</span>
-<span id="line-89"><span style="background-color: #AAAAAA; color: #000000">      - python3-apt</span>- python3-pycurl</span>
-<span id="line-90">[?12l[?25h[?25l78</span>
-<span id="line-91"><span style="background-color: #AAAAAA; color: #000000">      - python3-pycurl</span>check_mode: true</span>
-<span id="line-92">[?12l[?25h[?25l78</span>
-<span id="line-93"><span style="background-color: #AAAAAA; color: #000000">    check_mode: true</span>register: estado</span>
-<span id="line-94">[?12l[?25h[?25l78</span>
-<span id="line-95"><span style="background-color: #AAAAAA; color: #000000">    register: estado</span>
-<span id="line-96"></span>[?12l[?25h[?25l78</span>
-<span id="line-97">    check_mode: true</span>
-<span id="line-98">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
-<span id="line-99">    register: estado</span>
-<span id="line-100">  - name: "teste: a cache encontra-se actualizada?"</span>
-<span id="line-101">    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"</span>
-<span id="line-102">  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"</span>
-<span id="line-103">    apt: upgrade: safe</span>
-<span id="line-104">    check_mode: true</span>
-<span id="line-105">    register: estado</span>
-<span id="line-106">  - name: "teste: o sistema operativo encontra-se atualizado?"</span>
-<span id="line-107">    assert: that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"</span>
-<span id="line-108">  - name: "Teste: a cache encontra-se atualizada?"</span>
-<span id="line-109">    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"</span>
-<span id="line-110">[?12l[?25h[?25l  - libmcrypt-dev- gcc    - make  - autoconf- libc-devpkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expectet-tools- python3-mysqldb- python3-apt- python3-pycurlassert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instala<span style="background-color: #AAAAAA; color: #000000">&gt;</span>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Gravar buffer modificado?                                                                                S</span> Sim</span>
-<span id="line-111"><span style="background-color: #AAAAAA; color: #000000"> N</span> Não          <span style="background-color: #AAAAAA; color: #000000">^C</span> Cancelar[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">1      tasks/tasks.yml      </span> <span style="background-color: #AAAAAA; color: #000000">[ tasks.yml -- 10 linhas ]</span><span style="background-color: #AAAAAA; color: #000000">1</span></span>
-<span id="line-112"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer</span>
-<span id="line-113"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer</span>
-<span id="line-114">---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600</span>
-<span id="line-115">- name: "Atualiza o sistema operativo"apt: upgrade: safe</span>
-<span id="line-116">[?12l[?25h[?25l - libmcrypt-dev   - gcc - make- autoconf- libc-dev- pkg-config   - pwgen - curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl</span>
-<span id="line-117">[?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600</span>
-<span id="line-118">- name: "Atualiza o sistema operativo"apt: upgrade: safe</span>
-<span id="line-119">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:mcscreengit- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make</span>
-<span id="line-120">[?12l[?25h[?25l   - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span>
-<span id="line-121"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l     apt:</span>
-<span id="line-122"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l pkg:</span>
-<span id="line-123"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mc</span>
-<span id="line-124"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - screen</span>
-<span id="line-125"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - git</span>
-<span id="line-126"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - apache2</span>
-<span id="line-127"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mysql-server</span>
-<span id="line-128"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php</span>
-<span id="line-129"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-mysql</span>
-<span id="line-130"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-ldap</span>
-<span id="line-131"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-cli</span>
-<span id="line-132"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-soap</span>
-<span id="line-133"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-json</span>
-<span id="line-134"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - graphviz</span>
-<span id="line-135"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-xml</span>
-<span id="line-136"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-gd</span>
-<span id="line-137"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-zip</span>
-<span id="line-138"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libapache2-mod-php</span>
-<span id="line-139"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-dev</span>
-<span id="line-140"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libmcrypt-dev</span>
-<span id="line-141"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - gcc</span>
-<span id="line-142"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - make</span>
-<span id="line-143"> [?12l[?25h[?25l78</span>
-<span id="line-144">- autoconf</span>
-<span id="line-145"> [?12l[?25h[?25l[?12l[?25h[?25l - autoconf</span>
-<span id="line-146"> [?12l[?25h[?25l78</span>
-<span id="line-147">- libc-dev</span>
-<span id="line-148"> [?12l[?25h[?25l[?12l[?25h[?25l - libc-dev</span>
-<span id="line-149"> [?12l[?25h[?25l78</span>
-<span id="line-150">- pkg-config</span>
-<span id="line-151"> [?12l[?25h[?25l[?12l[?25h[?25l - pkg-config</span>
-<span id="line-152"> [?12l[?25h[?25l78</span>
-<span id="line-153">- pwgen</span>
-<span id="line-154"> [?12l[?25h[?25l[?12l[?25h[?25l - pwgen</span>
-<span id="line-155"> [?12l[?25h[?25l78</span>
-<span id="line-156">- curl</span>
-<span id="line-157"> [?12l[?25h[?25l[?12l[?25h[?25l - curl</span>
-<span id="line-158"> [?12l[?25h[?25l78</span>
-<span id="line-159">- unzip</span>
-<span id="line-160"> [?12l[?25h[?25l[?12l[?25h[?25l - unzip</span>
-<span id="line-161"> [?12l[?25h[?25l78</span>
-<span id="line-162">- zip</span>
-<span id="line-163"> [?12l[?25h[?25l78</span>
-<span id="line-164">[?12l[?25h[?25l - zip</span>
-<span id="line-165">  [?12l[?25h[?25l[?12l[?25h[?25l</span>
-<span id="line-166">[?12l[?25h[?25l - php-mbstring</span>
-<span id="line-167"> [?12l[?25h[?25l78</span>
-<span id="line-168">- expect</span>
-<span id="line-169"> [?12l[?25h[?25l78</span>
-<span id="line-170">[?12l[?25h[?25l - expect</span>
-<span id="line-171">  [?12l[?25h[?25l[?12l[?25h[?25l</span>
-<span id="line-172">[?12l[?25h[?25l - net-tools</span>
-<span id="line-173"> [?12l[?25h[?25l78</span>
-<span id="line-174">- python3-mysqldb</span>
-<span id="line-175"> [?12l[?25h[?25l78</span>
-<span id="line-176">- python3-apt</span>
-<span id="line-177"> [?12l[?25h[?25l78</span>
-<span id="line-178">[?12l[?25h[?25l - python3-mysqldb</span>
-<span id="line-179">  [?12l[?25h[?25l[?12l[?25h[?25l</span>
-<span id="line-180">[?12l[?25h[?25l - python3-apt</span>
-<span id="line-181"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - python3-pycurl</span>
-<span id="line-182"> [?12l[?25h[?25l78</span>
-<span id="line-183"> [?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:- mc</span>
-<span id="line-184">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lIdependencia do software leantime se encontram instaladas"[?12l[?25h[?25lndependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ltdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lldependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25lddependencia do software leantime se encontram instaladas"[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25ls do software leantime se encontram instaladas"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l</span>
-<span id="line-185">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l n[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l: [?12l[?25h[?25l"[?12l[?25h[?25lI[?12l[?25h[?25lns[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lr as dependencias do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lndo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lcdo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lsdo software leantime"[?12l[?25h[?25lssdo software leantime"[?12l[?25h[?25ládo software leantime"[?12l[?25h[?25lrdo software leantime"[?12l[?25h[?25lido software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25lodo software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lp leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25lo leantime"[?12l[?25h[?25lg leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25lm leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
-<span id="line-186"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: tasks/tasks.yml                                                         </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 46 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer</span>
-<span id="line-187">[?12l[?25h[?25l</span>
-<span id="line-188">[?12l[?25h[?1049l</span>
-<span id="line-189">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge</span>
-<span id="line-190"><span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge</span>
-<span id="line-191"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-192"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-193"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-194"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span></span>
-<span id="line-195"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-196"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-197"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span></span>
-<span id="line-198"><span style="color: #aa0000">WARNING </span> Skipping, instances already created.</span>
-<span id="line-199"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span></span>
-<span id="line-200"><span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.</span>
-<span id="line-201"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span></span>
-<span id="line-202"></span>
-<span id="line-203">PLAY [Converge] ****************************************************************************************</span>
-<span id="line-204"></span>
-<span id="line-205">TASK [Gathering Facts] *********************************************************************************</span>
-<span id="line-206"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-207"></span>
-<span id="line-208">TASK [Include leantime_ansible] ************************************************************************</span>
-<span id="line-209"></span>
-<span id="line-210">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] **********************************</span>
-<span id="line-211"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
-<span id="line-212"></span>
-<span id="line-213">TASK [leantime_ansible : Atualiza o sistema operativo] *************************************************</span>
-<span id="line-214"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-215"></span>
-<span id="line-216">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *********************</span>
-<span id="line-217"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
-<span id="line-218"></span>
-<span id="line-219">PLAY RECAP *********************************************************************************************</span>
-<span id="line-220"><span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=4   </span> <span style="color: #aa5500">changed=2   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
-<span id="line-221"></span>
-<span id="line-222">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span>
-<span id="line-223"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
-<span id="line-224"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-225"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-226"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-227"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
-<span id="line-228"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
-<span id="line-229"></span>
-<span id="line-230">PLAY [Infraestrutura conduzida por testes] *************************************************************</span>
-<span id="line-231"></span>
-<span id="line-232">TASK [Simulação: Atualizar a cache do sistema] *********************************************************</span>
-<span id="line-233"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-234"></span>
-<span id="line-235">TASK [teste: a cache encontra-se actualizada?] *********************************************************</span>
-<span id="line-236"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-237"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-238"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
-<span id="line-239"><span style="color: #00aa00">}</span></span>
-<span id="line-240"></span>
-<span id="line-241">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ***************************************</span>
-<span id="line-242"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-243"></span>
-<span id="line-244">TASK [teste: o sistema operativo encontra-se atualizado?] **********************************************</span>
-<span id="line-245"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-246"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-247"><span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span></span>
-<span id="line-248"><span style="color: #00aa00">}</span></span>
-<span id="line-249"></span>
-<span id="line-250">TASK [Teste: a cache encontra-se atualizada?] **********************************************************</span>
-<span id="line-251"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-252"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-253"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
-<span id="line-254"><span style="color: #00aa00">}</span></span>
-<span id="line-255"></span>
-<span id="line-256">TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ******</span>
-<span id="line-257"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-258"></span>
-<span id="line-259">TASK [Teste: as dependencias encontra-se instaladas?] **************************************************</span>
-<span id="line-260"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-261"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-262"><span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span></span>
-<span id="line-263"><span style="color: #00aa00">}</span></span>
-<span id="line-264"></span>
-<span id="line-265">PLAY RECAP *********************************************************************************************</span>
-<span id="line-266"><span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=7   </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
-<span id="line-267"></span>
-<span id="line-268"><span style="color: #0000aa">INFO    </span> Verifier completed successfully.</span>
-<span id="line-269">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span>
-<span id="line-270">exit</span>
-<span id="line-271"></span>
+<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml </span><br>
+<span id="line-1">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><br><span style="background-color: #AAAAAA; color: #000000">[ 9 linhas lidas ]</span><br><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                               tasks/tasks.yml                                            </span><br></span><br>
+<span id="line-2"><span style="background-color: #AAAAAA; color: #000000">^G</span><br> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer</span><br>
+<span id="line-3"><span style="background-color: #AAAAAA; color: #000000">^X</span><br> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer</span><br>
+<span id="line-4">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe</span><br>
+<span id="line-5">[?12l[?25h[?25l[?12l[?25h[?1049l</span><br>
+<span id="line-6">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ nano tasks/tasks.yml [1@-[1@F[1@ </span><br>
+<span id="line-7">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><br><span style="background-color: #AAAAAA; color: #000000">[ 9 linhas lidas ]</span><br><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                               tasks/tasks.yml                                            </span><br></span><br>
+<span id="line-8"><span style="background-color: #AAAAAA; color: #000000">^G</span><br> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer</span><br>
+<span id="line-9"><span style="background-color: #AAAAAA; color: #000000">^X</span><br> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer</span><br>
+<span id="line-10">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe</span><br>
+<span id="line-11">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span><br></span><br>
+<span id="line-12">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">M-F</span><br> Novo buffer<span style="background-color: #AAAAAA; color: #000000">^X</span><br> Executar comando<span style="background-color: #AAAAAA; color: #000000">C</span><br> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-N</span><br> Sem conversão<span style="background-color: #AAAAAA; color: #000000">^T</span><br> P/ ficheiros</span><br>
+<span id="line-13"><span style="background-color: #AAAAAA; color: #000000">Ficheiro a ler para o novo buffer [de ./]:                                                              </span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">m</span><br>
+<span id="line-14"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">o</span><br>
+<span id="line-15"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">l</span><br>
+<span id="line-16"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span><br>
+<span id="line-17"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">cule/</span><br>
+<span id="line-18"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">v</span><br>
+<span id="line-19"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span><br>
+<span id="line-20"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">r</span><br>
+<span id="line-21"></span><br>[?12l[?25h[?25l</span><br>
+<span id="line-22">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span><br>
+<span id="line-23"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span><br>
+<span id="line-24"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000"> </span><br>
+<span id="line-25"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">d</span><br>
+<span id="line-26"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span><br>
+<span id="line-27"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">fault/</span><br>
+<span id="line-28"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">v</span><br>
+<span id="line-29"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">e</span><br>
+<span id="line-30"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">r</span><br>
+<span id="line-31"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">ify.yml</span><br>
+<span id="line-32"></span><br>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><br><span style="background-color: #AAAAAA; color: #000000">[ 89 linhas lidas ]</span><br><span style="background-color: #AAAAAA; color: #000000">[2/2]       molecule/default/verify.yml          </span><br><span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span><br> Fechar     <span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer</span><br>
+<span id="line-33"><span style="color: #00aaaa"># Tutorial de inspiração para a infraestrutura conduzida por teste no site</span><br>
+<span id="line-34"># https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/</span><br>
+<span id="line-35"></span><br>- name: "Infraestrutura conduzida por testes"hosts: allgather_facts: falsebecome: true</span><br>
+<span id="line-36">  tasks:- name: "Simulação: Atualizar a cache do sistema"apt:update_cache: truecache_valid_time: 3600check_mode: trueregister: estado- name: "teste: a cache encontra-se actualizada?"assert:that:- not estado.changedsuccess_msg: "SUCESSO: A cache está atualizada"fail_msg: "ERRO: Existem actualizações pendentes"- name: "Atualizar o sistema operativo (equivalente a apt upgrade)"apt:upgrade: safecheck_mode: trueregister: estado- name: "teste: o sistema operativo encontra-se atualizado?"assert:that:</span><br>
+<span id="line-37">[?12l[?25h[?25l    assert: that: - not estado.changedsuccess_msg: "SUCESSO: O sistema operativo está atualizado"  fail_msg: "ERRO: Existem actualizações pendentes"TSimulação: testa se as aplicações dependencia do software leantime se encontram instaladas"pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json  - graphviz  - php-xml- php-gd    - php-zip  - libapache2-mod-php- php-dev</span><br>
+<span id="line-38">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ Marcação feita ]</span><br></span><br>
+<span id="line-39">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span><br>
+<span id="line-40"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">    apt:</span><br>
+<span id="line-41"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      pkg:</span><br>
+<span id="line-42"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - mc</span><br>
+<span id="line-43"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - screen</span><br>
+<span id="line-44"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - git</span><br>
+<span id="line-45"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - apache2</span><br>
+<span id="line-46"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - mysql-server</span><br>
+<span id="line-47"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php</span><br>
+<span id="line-48"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-mysql</span><br>
+<span id="line-49"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-ldap</span><br>
+<span id="line-50"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-cli</span><br>
+<span id="line-51"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-soap</span><br>
+<span id="line-52"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-json</span><br>
+<span id="line-53"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - graphviz</span><br>
+<span id="line-54"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-xml</span><br>
+<span id="line-55"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-gd</span><br>
+<span id="line-56"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - php-zip</span><br>
+<span id="line-57"></span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">      - libapache2-mod-php</span><br>
+<span id="line-58"></span><br>[?12l[?25h[?25l78</span><br>
+<span id="line-59"><span style="background-color: #AAAAAA; color: #000000">      - php-dev</span><br>- libmcrypt-dev</span><br>
+<span id="line-60">[?12l[?25h[?25l78</span><br>
+<span id="line-61"><span style="background-color: #AAAAAA; color: #000000">      - libmcrypt-dev</span><br>- gcc</span><br>
+<span id="line-62">[?12l[?25h[?25l78</span><br>
+<span id="line-63"><span style="background-color: #AAAAAA; color: #000000">      - gcc</span><br>- make</span><br>
+<span id="line-64">[?12l[?25h[?25l78</span><br>
+<span id="line-65"><span style="background-color: #AAAAAA; color: #000000">      - make</span><br>- autoconf</span><br>
+<span id="line-66">[?12l[?25h[?25l78</span><br>
+<span id="line-67"><span style="background-color: #AAAAAA; color: #000000">      - autoconf</span><br>- libc-dev</span><br>
+<span id="line-68">[?12l[?25h[?25l78</span><br>
+<span id="line-69"><span style="background-color: #AAAAAA; color: #000000">      - libc-dev</span><br>- pkg-config</span><br>
+<span id="line-70">[?12l[?25h[?25l78</span><br>
+<span id="line-71"><span style="background-color: #AAAAAA; color: #000000">      - pkg-config</span><br>- pwgen</span><br>
+<span id="line-72">[?12l[?25h[?25l78</span><br>
+<span id="line-73"><span style="background-color: #AAAAAA; color: #000000">      - pwgen</span><br>- curl</span><br>
+<span id="line-74">[?12l[?25h[?25l78</span><br>
+<span id="line-75"><span style="background-color: #AAAAAA; color: #000000">      - curl</span><br>- unzip</span><br>
+<span id="line-76">[?12l[?25h[?25l78</span><br>
+<span id="line-77"><span style="background-color: #AAAAAA; color: #000000">      - unzip</span><br>- zip</span><br>
+<span id="line-78">[?12l[?25h[?25l78</span><br>
+<span id="line-79"><span style="background-color: #AAAAAA; color: #000000">      - zip</span><br>- php-mbstring</span><br>
+<span id="line-80">[?12l[?25h[?25l78</span><br>
+<span id="line-81"><span style="background-color: #AAAAAA; color: #000000">      - php-mbstring</span><br>- expect</span><br>
+<span id="line-82">[?12l[?25h[?25l78</span><br>
+<span id="line-83"><span style="background-color: #AAAAAA; color: #000000">      - expect</span><br>- net-tools</span><br>
+<span id="line-84">[?12l[?25h[?25l78</span><br>
+<span id="line-85"><span style="background-color: #AAAAAA; color: #000000">      - net-tools</span><br>- python3-mysqldb</span><br>
+<span id="line-86">[?12l[?25h[?25l78</span><br>
+<span id="line-87"><span style="background-color: #AAAAAA; color: #000000">      - python3-mysqldb</span><br>- python3-apt</span><br>
+<span id="line-88">[?12l[?25h[?25l78</span><br>
+<span id="line-89"><span style="background-color: #AAAAAA; color: #000000">      - python3-apt</span><br>- python3-pycurl</span><br>
+<span id="line-90">[?12l[?25h[?25l78</span><br>
+<span id="line-91"><span style="background-color: #AAAAAA; color: #000000">      - python3-pycurl</span><br>check_mode: true</span><br>
+<span id="line-92">[?12l[?25h[?25l78</span><br>
+<span id="line-93"><span style="background-color: #AAAAAA; color: #000000">    check_mode: true</span><br>register: estado</span><br>
+<span id="line-94">[?12l[?25h[?25l78</span><br>
+<span id="line-95"><span style="background-color: #AAAAAA; color: #000000">    register: estado</span><br>
+<span id="line-96"></span><br>[?12l[?25h[?25l78</span><br>
+<span id="line-97">    check_mode: true</span><br>
+<span id="line-98">[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span><br></span><br>
+<span id="line-99">    register: estado</span><br>
+<span id="line-100">  - name: "teste: a cache encontra-se actualizada?"</span><br>
+<span id="line-101">    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem actualizações pendentes"</span><br>
+<span id="line-102">  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"</span><br>
+<span id="line-103">    apt: upgrade: safe</span><br>
+<span id="line-104">    check_mode: true</span><br>
+<span id="line-105">    register: estado</span><br>
+<span id="line-106">  - name: "teste: o sistema operativo encontra-se atualizado?"</span><br>
+<span id="line-107">    assert: that: - not estado.changed success_msg: "SUCESSO: O sistema operativo está atualizado" fail_msg: "ERRO: Existem actualizações pendentes"</span><br>
+<span id="line-108">  - name: "Teste: a cache encontra-se atualizada?"</span><br>
+<span id="line-109">    assert: that: - not estado.changed success_msg: "SUCESSO: A cache está atualizada" fail_msg: "ERRO: Existem atualizações pendentes"</span><br>
+<span id="line-110">[?12l[?25h[?25l  - libmcrypt-dev- gcc    - make  - autoconf- libc-devpkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expectet-tools- python3-mysqldb- python3-apt- python3-pycurlassert:that:- not estado.changedsuccess_msg: "SUCESSO: As dependencias estavam instaladas"fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instala<span style="background-color: #AAAAAA; color: #000000">&gt;</span><br>[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Gravar buffer modificado?                                                                                S</span><br> Sim</span><br>
+<span id="line-111"><span style="background-color: #AAAAAA; color: #000000"> N</span><br> Não          <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Cancelar[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">1      tasks/tasks.yml      </span><br> <span style="background-color: #AAAAAA; color: #000000">[ tasks.yml -- 10 linhas ]</span><br><span style="background-color: #AAAAAA; color: #000000">1</span><br></span><br>
+<span id="line-112"><span style="background-color: #AAAAAA; color: #000000">^G</span><br> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer</span><br>
+<span id="line-113"><span style="background-color: #AAAAAA; color: #000000">^X</span><br> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer</span><br>
+<span id="line-114">---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600</span><br>
+<span id="line-115">- name: "Atualiza o sistema operativo"apt: upgrade: safe</span><br>
+<span id="line-116">[?12l[?25h[?25l - libmcrypt-dev   - gcc - make- autoconf- libc-dev- pkg-config   - pwgen - curl- unzip- zip- php-mbstring- expect- net-tools- python3-mysqldb- python3-apt- python3-pycurl</span><br>
+<span id="line-117">[?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt: update_cache: true cache_valid_time: 3600</span><br>
+<span id="line-118">- name: "Atualiza o sistema operativo"apt: upgrade: safe</span><br>
+<span id="line-119">  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:mcscreengit- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make</span><br>
+<span id="line-120">[?12l[?25h[?25l   - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"</span><br>
+<span id="line-121"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l     apt:</span><br>
+<span id="line-122"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l pkg:</span><br>
+<span id="line-123"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mc</span><br>
+<span id="line-124"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - screen</span><br>
+<span id="line-125"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - git</span><br>
+<span id="line-126"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - apache2</span><br>
+<span id="line-127"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - mysql-server</span><br>
+<span id="line-128"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php</span><br>
+<span id="line-129"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-mysql</span><br>
+<span id="line-130"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-ldap</span><br>
+<span id="line-131"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-cli</span><br>
+<span id="line-132"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-soap</span><br>
+<span id="line-133"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-json</span><br>
+<span id="line-134"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - graphviz</span><br>
+<span id="line-135"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-xml</span><br>
+<span id="line-136"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-gd</span><br>
+<span id="line-137"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-zip</span><br>
+<span id="line-138"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libapache2-mod-php</span><br>
+<span id="line-139"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - php-dev</span><br>
+<span id="line-140"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - libmcrypt-dev</span><br>
+<span id="line-141"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - gcc</span><br>
+<span id="line-142"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - make</span><br>
+<span id="line-143"> [?12l[?25h[?25l78</span><br>
+<span id="line-144">- autoconf</span><br>
+<span id="line-145"> [?12l[?25h[?25l[?12l[?25h[?25l - autoconf</span><br>
+<span id="line-146"> [?12l[?25h[?25l78</span><br>
+<span id="line-147">- libc-dev</span><br>
+<span id="line-148"> [?12l[?25h[?25l[?12l[?25h[?25l - libc-dev</span><br>
+<span id="line-149"> [?12l[?25h[?25l78</span><br>
+<span id="line-150">- pkg-config</span><br>
+<span id="line-151"> [?12l[?25h[?25l[?12l[?25h[?25l - pkg-config</span><br>
+<span id="line-152"> [?12l[?25h[?25l78</span><br>
+<span id="line-153">- pwgen</span><br>
+<span id="line-154"> [?12l[?25h[?25l[?12l[?25h[?25l - pwgen</span><br>
+<span id="line-155"> [?12l[?25h[?25l78</span><br>
+<span id="line-156">- curl</span><br>
+<span id="line-157"> [?12l[?25h[?25l[?12l[?25h[?25l - curl</span><br>
+<span id="line-158"> [?12l[?25h[?25l78</span><br>
+<span id="line-159">- unzip</span><br>
+<span id="line-160"> [?12l[?25h[?25l[?12l[?25h[?25l - unzip</span><br>
+<span id="line-161"> [?12l[?25h[?25l78</span><br>
+<span id="line-162">- zip</span><br>
+<span id="line-163"> [?12l[?25h[?25l78</span><br>
+<span id="line-164">[?12l[?25h[?25l - zip</span><br>
+<span id="line-165">  [?12l[?25h[?25l[?12l[?25h[?25l</span><br>
+<span id="line-166">[?12l[?25h[?25l - php-mbstring</span><br>
+<span id="line-167"> [?12l[?25h[?25l78</span><br>
+<span id="line-168">- expect</span><br>
+<span id="line-169"> [?12l[?25h[?25l78</span><br>
+<span id="line-170">[?12l[?25h[?25l - expect</span><br>
+<span id="line-171">  [?12l[?25h[?25l[?12l[?25h[?25l</span><br>
+<span id="line-172">[?12l[?25h[?25l - net-tools</span><br>
+<span id="line-173"> [?12l[?25h[?25l78</span><br>
+<span id="line-174">- python3-mysqldb</span><br>
+<span id="line-175"> [?12l[?25h[?25l78</span><br>
+<span id="line-176">- python3-apt</span><br>
+<span id="line-177"> [?12l[?25h[?25l78</span><br>
+<span id="line-178">[?12l[?25h[?25l - python3-mysqldb</span><br>
+<span id="line-179">  [?12l[?25h[?25l[?12l[?25h[?25l</span><br>
+<span id="line-180">[?12l[?25h[?25l - python3-apt</span><br>
+<span id="line-181"> [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l - python3-pycurl</span><br>
+<span id="line-182"> [?12l[?25h[?25l78</span><br>
+<span id="line-183"> [?12l[?25h[?25l---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"apt:pkg:- mc</span><br>
+<span id="line-184">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lIdependencia do software leantime se encontram instaladas"[?12l[?25h[?25lndependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ltdependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lldependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25ladependencia do software leantime se encontram instaladas"[?12l[?25h[?25lsdependencia do software leantime se encontram instaladas"[?12l[?25h[?25l dependencia do software leantime se encontram instaladas"[?12l[?25h[?25lddependencia do software leantime se encontram instaladas"[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ln[?12l[?25h[?25lc[?12l[?25h[?25li[?12l[?25h[?25la[?12l[?25h[?25ls do software leantime se encontram instaladas"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l"[?12l[?25h[?25l</span><br>
+<span id="line-185">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l n[?12l[?25h[?25la[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l: [?12l[?25h[?25l"[?12l[?25h[?25lI[?12l[?25h[?25lns[?12l[?25h[?25lt[?12l[?25h[?25la[?12l[?25h[?25ll[?12l[?25h[?25la[?12l[?25h[?25lr as dependencias do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lndo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lcdo software leantime"[?12l[?25h[?25ledo software leantime"[?12l[?25h[?25lsdo software leantime"[?12l[?25h[?25lssdo software leantime"[?12l[?25h[?25ládo software leantime"[?12l[?25h[?25lrdo software leantime"[?12l[?25h[?25lido software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25lado software leantime"[?12l[?25h[?25lodo software leantime"[?12l[?25h[?25l do software leantime"[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25lp leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25lo leantime"[?12l[?25h[?25lg leantime"[?12l[?25h[?25lr leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25lm leantime"[?12l[?25h[?25la leantime"[?12l[?25h[?25l            <span style="background-color: #AAAAAA; color: #000000">M-D</span><br> Formato DOS           <span style="background-color: #AAAAAA; color: #000000">M-A</span><br> Anexar<span style="background-color: #AAAAAA; color: #000000">M-B</span><br> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span><br> Cancelar<span style="background-color: #AAAAAA; color: #000000">M-M</span><br> Formato Mac           <span style="background-color: #AAAAAA; color: #000000">M-P</span><br> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span><br> P/ ficheiros</span><br>
+<span id="line-186"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: tasks/tasks.yml                                                         </span><br>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><br><span style="background-color: #AAAAAA; color: #000000">          </span><br><span style="background-color: #AAAAAA; color: #000000">[ 46 linhas escritas ]</span><br><span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar     <span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar   <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer<span style="background-color: #AAAAAA; color: #000000">X</span><br> Sair       <span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar   <span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt  <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha<span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer</span><br>
+<span id="line-187">[?12l[?25h[?25l</span><br>
+<span id="line-188">[?12l[?25h[?1049l</span><br>
+<span id="line-189">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge</span><br>
+<span id="line-190"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: dependency, create, prepare, converge</span><br>
+<span id="line-191"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-192"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-193"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-194"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">dependency</span><br></span><br>
+<span id="line-195"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-196"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-197"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">create</span><br></span><br>
+<span id="line-198"><span style="color: #aa0000">WARNING </span><br> Skipping, instances already created.</span><br>
+<span id="line-199"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">prepare</span><br></span><br>
+<span id="line-200"><span style="color: #aa0000">WARNING </span><br> Skipping, instances already prepared.</span><br>
+<span id="line-201"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">converge</span><br></span><br>
+<span id="line-202"></span><br>
+<span id="line-203">PLAY [Converge] ****************************************************************************************</span><br>
+<span id="line-204"></span><br>
+<span id="line-205">TASK [Gathering Facts] *********************************************************************************</span><br>
+<span id="line-206"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-207"></span><br>
+<span id="line-208">TASK [Include leantime_ansible] ************************************************************************</span><br>
+<span id="line-209"></span><br>
+<span id="line-210">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] **********************************</span><br>
+<span id="line-211"><span style="color: #aa5500">changed: [ubuntu-20.04]</span><br></span><br>
+<span id="line-212"></span><br>
+<span id="line-213">TASK [leantime_ansible : Atualiza o sistema operativo] *************************************************</span><br>
+<span id="line-214"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-215"></span><br>
+<span id="line-216">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *********************</span><br>
+<span id="line-217"><span style="color: #aa5500">changed: [ubuntu-20.04]</span><br></span><br>
+<span id="line-218"></span><br>
+<span id="line-219">PLAY RECAP *********************************************************************************************</span><br>
+<span id="line-220"><span style="color: #aa5500">ubuntu-20.04</span><br>               : <span style="color: #00aa00">ok=4   </span><br> <span style="color: #aa5500">changed=2   </span><br> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span><br>
+<span id="line-221"></span><br>
+<span id="line-222">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span><br>
+<span id="line-223"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: verify</span><br>
+<span id="line-224"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-225"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-226"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-227"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">verify</span><br></span><br>
+<span id="line-228"><span style="color: #0000aa">INFO    </span><br> Running Ansible Verifier</span><br>
+<span id="line-229"></span><br>
+<span id="line-230">PLAY [Infraestrutura conduzida por testes] *************************************************************</span><br>
+<span id="line-231"></span><br>
+<span id="line-232">TASK [Simulação: Atualizar a cache do sistema] *********************************************************</span><br>
+<span id="line-233"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-234"></span><br>
+<span id="line-235">TASK [teste: a cache encontra-se actualizada?] *********************************************************</span><br>
+<span id="line-236"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-237"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-238"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span><br></span><br>
+<span id="line-239"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-240"></span><br>
+<span id="line-241">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] ***************************************</span><br>
+<span id="line-242"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-243"></span><br>
+<span id="line-244">TASK [teste: o sistema operativo encontra-se atualizado?] **********************************************</span><br>
+<span id="line-245"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-246"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-247"><span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span><br></span><br>
+<span id="line-248"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-249"></span><br>
+<span id="line-250">TASK [Teste: a cache encontra-se atualizada?] **********************************************************</span><br>
+<span id="line-251"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-252"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-253"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span><br></span><br>
+<span id="line-254"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-255"></span><br>
+<span id="line-256">TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ******</span><br>
+<span id="line-257"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-258"></span><br>
+<span id="line-259">TASK [Teste: as dependencias encontra-se instaladas?] **************************************************</span><br>
+<span id="line-260"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-261"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-262"><span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span><br></span><br>
+<span id="line-263"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-264"></span><br>
+<span id="line-265">PLAY RECAP *********************************************************************************************</span><br>
+<span id="line-266"><span style="color: #00aa00">ubuntu-20.04</span><br>               : <span style="color: #00aa00">ok=7   </span><br> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span><br>
+<span id="line-267"></span><br>
+<span id="line-268"><span style="color: #0000aa">INFO    </span><br> Verifier completed successfully.</span><br>
+<span id="line-269">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span><br>
+<span id="line-270">exit</span><br>
+<span id="line-271"></span><br>

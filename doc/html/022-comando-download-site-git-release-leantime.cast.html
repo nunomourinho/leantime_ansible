@@ -1,257 +1,257 @@
-<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exitnano tasks/tasks.yml </span>
-<span id="line-1">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><span style="background-color: #AAAAAA; color: #000000">[ 105 linhas lidas ]</span><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                                tasks/tasks.yml                                                             </span></span>
-<span id="line-2"><span style="background-color: #AAAAAA; color: #000000">^G</span> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt</span>
-<span id="line-3"><span style="background-color: #AAAAAA; color: #000000">^X</span> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
-<span id="line-4">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev</span>
-<span id="line-5">[?12l[?25h[?25l - autoconf    - libc-dev  - pkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expect- net-tools    - python3-mysqldb  - python3-apt- python3-pycurl</span>
-<span id="line-6"><span style="color: #00aaaa">   # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span>- name: "Instala o serviço apache2 no arranque do sistema"service:name: apache2state: startedenabled: true</span>
-<span id="line-7"><span style="color: #00aaaa">   # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span>- name: "Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini</span>
-<span id="line-8"><span style="color: #00aaaa">   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span>- name: "Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile."ansible.builtin.lineinfile:path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"</span>
-<span id="line-9">[?12l[?25h[?25lregexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:regexp: "^file_uploads"  line: "file_uploads = 1"regexp: "^upload_max_filesize"  line: "upload_max_filesize = 1G"regexp: "^max_file_uploads"  line: "max_file_uploads = 20"regexp: "^post_max_size"  line: "post_max_size = 2G"regexp: "^memory_limit"  line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"</span>
-<span id="line-10"><span style="color: #00aaaa">   # Fonte: https://docs.ansible.com/ansible/2.7/modules/file_module.html</span>- name: Cria a directoria temporária leantime e a directoria de apache leantimefile:path: "{{ item.path }}"state: directory mode: 0755    owner: www-data  group: www-datawith_items:- path: "/tmp/leantime"- path: "/var/www/leantime"</span>
-<span id="line-11"><span style="color: #00aaaa">   # Fonte: Ansible for DevOps - Server and configuration management for humans de Jeff Geerling, página 98</span>
-<span id="line-12"></span>   - name: "Cria a base de dados de mysql para o leantime"  mysql_db: "db=leantime_database state=present"</span>
-<span id="line-13">- name: "Cria o utilizador para a base de dados leantime"mysql_user:namlogin_leantime }}"</span>
-<span id="line-14">[?12l[?25h[?25lmysql_user:namlogin_leantime }}"  password: "{{ password_leantime }}"priv: "leantime_database.*:ALL"host: localhoststate: present</span>
-<span id="line-15">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span></span>
-<span id="line-16">[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la</span>
-<span id="line-17">[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lF[?12l[?25h[?25la[?12l[?25h[?25lz[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lw[?12l[?25h[?25ln[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25lf[?12l[?25h[?25lt[?12l[?25h[?25lw[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25ló[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l"[?12l[?25h[?25l</span>
-<span id="line-18">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l:[?12l[?25h[?25l</span>
-<span id="line-19">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lh[?12l[?25h[?25lt[?12l[?25h[?25lt[?12l[?25h[?25lp[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l/[?12l[?25h[?25l/[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25lu[?12l[?25h[?25lb[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lm[?12l[?25h[?25l/[?12l[?25h[?25lL[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l/[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lw[?12l[?25h[?25ln[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l/[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l/[?12l[?25h[?25lL[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l-[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l.[?12l[?25h[?25lz[?12l[?25h[?25li[?12l[?25h[?25lp[?12l[?25h[?25l</span>
-<span id="line-20">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25lt[?12l[?25h[?25lm[?12l[?25h[?25lp[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l</span>
-<span id="line-21">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l0[?12l[?25h[?25l7[?12l[?25h[?25l5[?12l[?25h[?25l5[?12l[?25h[?25l</span>
-<span id="line-22">[?12l[?25h[?25l[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span> P/ ficheiros</span>
-<span id="line-23"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           </span>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><span style="background-color: #AAAAAA; color: #000000">          </span><span style="background-color: #AAAAAA; color: #000000">[ 111 linhas escritas ]</span><span style="background-color: #AAAAAA; color: #000000">^O</span> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span> Copiar txt</span>
-<span id="line-24">[?12l[?25h[?25l[?12l[?25h[?1049l</span>
-<span id="line-25">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint</span>
-<span id="line-26"><span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, lint</span>
-<span id="line-27"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-28"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-29"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-30"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span></span>
-<span id="line-31"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-32"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-33"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">lint</span></span>
-<span id="line-34">COMMAND: set -e</span>
-<span id="line-35">yamllint .</span>
-<span id="line-36">ansible-lint</span>
-<span id="line-37"></span>
-<span id="line-38">Loading custom .yamllint config file, this extends our internal yamllint config.</span>
-<span id="line-39">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge</span>
-<span id="line-40"><span style="color: #0000aa">INFO    </span> default scenario test matrix: dependency, create, prepare, converge</span>
-<span id="line-41"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-42"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-43"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-44"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">dependency</span></span>
-<span id="line-45"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-46"><span style="color: #aa0000">WARNING </span> Skipping, missing the requirements file.</span>
-<span id="line-47"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">create</span></span>
-<span id="line-48"><span style="color: #aa0000">WARNING </span> Skipping, instances already created.</span>
-<span id="line-49"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">prepare</span></span>
-<span id="line-50"><span style="color: #aa0000">WARNING </span> Skipping, instances already prepared.</span>
-<span id="line-51"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">converge</span></span>
-<span id="line-52"></span>
-<span id="line-53">PLAY [Converge] **************************************************************************************************************************</span>
-<span id="line-54"></span>
-<span id="line-55">TASK [Gathering Facts] *******************************************************************************************************************</span>
-<span id="line-56"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-57"></span>
-<span id="line-58">TASK [Include leantime_ansible] **********************************************************************************************************</span>
-<span id="line-59"></span>
-<span id="line-60">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************</span>
-<span id="line-61"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-62"></span>
-<span id="line-63">TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************</span>
-<span id="line-64"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-65"></span>
-<span id="line-66">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************</span>
-<span id="line-67"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-68"></span>
-<span id="line-69">TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************</span>
-<span id="line-70"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-71"></span>
-<span id="line-72">TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************</span>
-<span id="line-73"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-74"></span>
-<span id="line-75">TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************</span>
-<span id="line-76"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span></span>
-<span id="line-77"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span></span>
-<span id="line-78"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span></span>
-<span id="line-79"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span></span>
-<span id="line-80"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span></span>
-<span id="line-81"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span></span>
-<span id="line-82"></span>
-<span id="line-83">TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************</span>
-<span id="line-84"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</span></span>
-<span id="line-85"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</span></span>
-<span id="line-86"></span>
-<span id="line-87">TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************</span>
-<span id="line-88"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-89"></span>
-<span id="line-90">TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************</span>
-<span id="line-91"><span style="font-weight: bold; color: #E850A8">[WARNING]: Module did not set no_log for update_password</span></span>
-<span id="line-92"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-93"></span>
-<span id="line-94">TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************</span>
-<span id="line-95"><span style="color: #aa5500">changed: [ubuntu-20.04]</span></span>
-<span id="line-96"></span>
-<span id="line-97">PLAY RECAP *******************************************************************************************************************************</span>
-<span id="line-98"><span style="color: #aa5500">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=11  </span> <span style="color: #aa5500">changed=1   </span> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
-<span id="line-99"></span>
-<span id="line-100"></span>
-<span id="line-101">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence</span>
-<span id="line-102"><span style="color: #0000aa">INFO    </span> default scenario test matrix: idempotence</span>
-<span id="line-103"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-104"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-105"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-106"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">idempotence</span></span>
-<span id="line-107"></span>
-<span id="line-108">PLAY [Converge] **************************************************************************************************************************</span>
-<span id="line-109"></span>
-<span id="line-110">TASK [Gathering Facts] *******************************************************************************************************************</span>
-<span id="line-111"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-112"></span>
-<span id="line-113">TASK [Include leantime_ansible] **********************************************************************************************************</span>
-<span id="line-114"></span>
-<span id="line-115">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************</span>
-<span id="line-116"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-117"></span>
-<span id="line-118">TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************</span>
-<span id="line-119"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-120"></span>
-<span id="line-121">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************</span>
-<span id="line-122"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-123"></span>
-<span id="line-124">TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************</span>
-<span id="line-125"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-126"></span>
-<span id="line-127">TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************</span>
-<span id="line-128"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-129"></span>
-<span id="line-130">TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************</span>
-<span id="line-131"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span></span>
-<span id="line-132"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span></span>
-<span id="line-133"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span></span>
-<span id="line-134"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span></span>
-<span id="line-135"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span></span>
-<span id="line-136"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span></span>
-<span id="line-137"></span>
-<span id="line-138">TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************</span>
-<span id="line-139"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</span></span>
-<span id="line-140"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</span></span>
-<span id="line-141"></span>
-<span id="line-142">TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************</span>
-<span id="line-143"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-144"></span>
-<span id="line-145">TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************</span>
-<span id="line-146"><span style="font-weight: bold; color: #E850A8">[WARNING]: Module did not set no_log for update_password</span></span>
-<span id="line-147"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-148"></span>
-<span id="line-149">TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************</span>
-<span id="line-150"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-151"></span>
-<span id="line-152">PLAY RECAP *******************************************************************************************************************************</span>
-<span id="line-153"><span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=11  </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
-<span id="line-154"></span>
-<span id="line-155"></span>
-<span id="line-156"><span style="color: #0000aa">INFO    </span> Idempotence completed successfully.</span>
-<span id="line-157">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span>
-<span id="line-158"><span style="color: #0000aa">INFO    </span> default scenario test matrix: verify</span>
-<span id="line-159"><span style="color: #0000aa">INFO    </span> Performing prerun<span style="color: #aa5500">...</span></span>
-<span id="line-160"><span style="color: #0000aa">INFO    </span> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span>
-<span id="line-161"><span style="color: #0000aa">INFO    </span> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span>=~<span style="color: #E850A8">/.ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/usr/share/ansible/</span><span style="color: #ff90e8">roles</span>:<span style="color: #E850A8">/etc/ansible/</span><span style="color: #ff90e8">roles</span>:.<span style="color: #E850A8">/.cache/</span><span style="color: #ff90e8">roles</span></span>
-<span id="line-162"><span style="color: #0000aa">INFO    </span> <span style="font-weight: lighter; color: #00aaaa">Running </span><span style="font-weight: lighter; color: #00aa00">default</span><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><span style="font-weight: lighter; color: #00aa00">verify</span></span>
-<span id="line-163"><span style="color: #0000aa">INFO    </span> Running Ansible Verifier</span>
-<span id="line-164"></span>
-<span id="line-165">PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************</span>
-<span id="line-166"></span>
-<span id="line-167">TASK [Variáveis] *************************************************************************************************************************</span>
-<span id="line-168"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-169"></span>
-<span id="line-170">TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************</span>
-<span id="line-171"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-172"></span>
-<span id="line-173">TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************</span>
-<span id="line-174"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-175"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-176"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
-<span id="line-177"><span style="color: #00aa00">}</span></span>
-<span id="line-178"></span>
-<span id="line-179">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************</span>
-<span id="line-180"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-181"></span>
-<span id="line-182">TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************</span>
-<span id="line-183"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-184"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-185"><span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span></span>
-<span id="line-186"><span style="color: #00aa00">}</span></span>
-<span id="line-187"></span>
-<span id="line-188">TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************</span>
-<span id="line-189"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-190"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-191"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span></span>
-<span id="line-192"><span style="color: #00aa00">}</span></span>
-<span id="line-193"></span>
-<span id="line-194">TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************</span>
-<span id="line-195"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-196"></span>
-<span id="line-197">TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************</span>
-<span id="line-198"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-199"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-200"><span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span></span>
-<span id="line-201"><span style="color: #00aa00">}</span></span>
-<span id="line-202"></span>
-<span id="line-203">TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************</span>
-<span id="line-204"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-205"></span>
-<span id="line-206">TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************</span>
-<span id="line-207"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-208"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-209"><span style="color: #00aa00">    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"</span></span>
-<span id="line-210"><span style="color: #00aa00">}</span></span>
-<span id="line-211"></span>
-<span id="line-212">TASK [Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************</span>
-<span id="line-213"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-214"></span>
-<span id="line-215">TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************</span>
-<span id="line-216"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span></span>
-<span id="line-217"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span></span>
-<span id="line-218"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span></span>
-<span id="line-219"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span></span>
-<span id="line-220"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span></span>
-<span id="line-221"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span></span>
-<span id="line-222"></span>
-<span id="line-223">TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************</span>
-<span id="line-224"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-225"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-226"><span style="color: #00aa00">    "msg": "SUCESSO: O ficheiro php.ini foi alterado com sucesso"</span></span>
-<span id="line-227"><span style="color: #00aa00">}</span></span>
-<span id="line-228"></span>
-<span id="line-229">TASK [Simulação: Obtem informação sobre a pastas /var/www/leantime] **********************************************************************</span>
-<span id="line-230"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-231"></span>
-<span id="line-232">TASK [Teste: A pasta /var/www/leantime existe e tem as permissões certas?] ***************************************************************</span>
-<span id="line-233"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-234"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-235"><span style="color: #00aa00">    "msg": "SUCESSO: Permissões correctas no site leantime"</span></span>
-<span id="line-236"><span style="color: #00aa00">}</span></span>
-<span id="line-237"></span>
-<span id="line-238">TASK [Simulação: Verifica se é necessário criar a base de dados leantime_database] *******************************************************</span>
-<span id="line-239"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-240"></span>
-<span id="line-241">TASK [Teste: A base de dados leantime_database existe ?] *********************************************************************************</span>
-<span id="line-242"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span></span>
-<span id="line-243"><span style="color: #00aa00">    "changed": false,</span></span>
-<span id="line-244"><span style="color: #00aa00">    "msg": "SUCESSO: A base de dados leantime_database já se encontra criada"</span></span>
-<span id="line-245"><span style="color: #00aa00">}</span></span>
-<span id="line-246"></span>
-<span id="line-247">TASK [Simulação e Teste: Verifica se o endereço git para a versão de leantime existe] ****************************************************</span>
-<span id="line-248"><span style="color: #00aa00">ok: [ubuntu-20.04]</span></span>
-<span id="line-249"></span>
-<span id="line-250">PLAY RECAP *******************************************************************************************************************************</span>
-<span id="line-251"><span style="color: #00aa00">ubuntu-20.04</span>               : <span style="color: #00aa00">ok=18  </span> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span>
-<span id="line-252"></span>
-<span id="line-253"><span style="color: #0000aa">INFO    </span> Verifier completed successfully.</span>
-<span id="line-254">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span>
-<span id="line-255">exit</span>
-<span id="line-256"></span>
+<span id="line-0">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exitnano tasks/tasks.yml </span><br>
+<span id="line-1">[?2004h[?1049h[?7h[?1h=[?1h=[?25l<span style="background-color: #AAAAAA; color: #000000">[ A ler... ]</span><br><span style="background-color: #AAAAAA; color: #000000">[ 105 linhas lidas ]</span><br><span style="background-color: #AAAAAA; color: #000000">  GNU nano 4.8                                                tasks/tasks.yml                                                             </span><br></span><br>
+<span id="line-2"><span style="background-color: #AAAAAA; color: #000000">^G</span><br> Ajuda<span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar<span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor    <span style="background-color: #AAAAAA; color: #000000">M-U</span><br> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span><br> Marcar txt</span><br>
+<span id="line-3"><span style="background-color: #AAAAAA; color: #000000">^X</span><br> Sair<span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer<span style="background-color: #AAAAAA; color: #000000">M-6</span><br> Copiar txt</span><br>
+<span id="line-4">---- name: Atualiza a cache (equivalente a apt update)apt:update_cache: truecache_valid_time: 3600- name: "Atualiza o sistema operativo"apt:upgrade: safe- name: "Instalar as dependencias necessária ao programa leantime"apt:pkg:- mc- screen- git- apache2- mysql-server- php- php-mysql- php-ldap- php-cli- php-soap- php-json- graphviz- php-xml- php-gd- php-zip- libapache2-mod-php- php-dev- libmcrypt-dev- gcc- make- autoconf- libc-dev</span><br>
+<span id="line-5">[?12l[?25h[?25l - autoconf    - libc-dev  - pkg-config- pwgen- curl- unzip    - zip  - php-mbstring- expect- net-tools    - python3-mysqldb  - python3-apt- python3-pycurl</span><br>
+<span id="line-6"><span style="color: #00aaaa">   # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html</span><br>- name: "Instala o serviço apache2 no arranque do sistema"service:name: apache2state: startedenabled: true</span><br>
+<span id="line-7"><span style="color: #00aaaa">   # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder</span><br>- name: "Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2"find:paths: /etcpatterns: "php.ini"recurse: trueregister: caminho_php_ini</span><br>
+<span id="line-8"><span style="color: #00aaaa">   # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html</span><br>- name: "Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile."ansible.builtin.lineinfile:path: "{{ caminho_php_ini.files[0].path }}"regexp: "{{ item.regexp  }}"line: "{{ item.line }}"</span><br>
+<span id="line-9">[?12l[?25h[?25lregexp: "{{ item.regexp  }}"line: "{{ item.line }}"with_items:regexp: "^file_uploads"  line: "file_uploads = 1"regexp: "^upload_max_filesize"  line: "upload_max_filesize = 1G"regexp: "^max_file_uploads"  line: "max_file_uploads = 20"regexp: "^post_max_size"  line: "post_max_size = 2G"regexp: "^memory_limit"  line: "memory_limit = 2G"- regexp: "^max_input_time" line: "max_input_time = 3600"</span><br>
+<span id="line-10"><span style="color: #00aaaa">   # Fonte: https://docs.ansible.com/ansible/2.7/modules/file_module.html</span><br>- name: Cria a directoria temporária leantime e a directoria de apache leantimefile:path: "{{ item.path }}"state: directory mode: 0755    owner: www-data  group: www-datawith_items:- path: "/tmp/leantime"- path: "/var/www/leantime"</span><br>
+<span id="line-11"><span style="color: #00aaaa">   # Fonte: Ansible for DevOps - Server and configuration management for humans de Jeff Geerling, página 98</span><br>
+<span id="line-12"></span><br>   - name: "Cria a base de dados de mysql para o leantime"  mysql_db: "db=leantime_database state=present"</span><br>
+<span id="line-13">- name: "Cria o utilizador para a base de dados leantime"mysql_user:namlogin_leantime }}"</span><br>
+<span id="line-14">[?12l[?25h[?25lmysql_user:namlogin_leantime }}"  password: "{{ password_leantime }}"priv: "leantime_database.*:ALL"host: localhoststate: present</span><br>
+<span id="line-15">[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l<span style="background-color: #AAAAAA; color: #000000">Modificado</span><br></span><br>
+<span id="line-16">[?12l[?25h[?25l[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l-[?12l[?25h[?25l [?12l[?25h[?25ln[?12l[?25h[?25la</span><br>
+<span id="line-17">[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l"[?12l[?25h[?25lF[?12l[?25h[?25la[?12l[?25h[?25lz[?12l[?25h[?25l [?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lw[?12l[?25h[?25ln[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25ls[?12l[?25h[?25lo[?12l[?25h[?25lf[?12l[?25h[?25lt[?12l[?25h[?25lw[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25la[?12l[?25h[?25l [?12l[?25h[?25lp[?12l[?25h[?25la[?12l[?25h[?25lr[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lr[?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25lp[?12l[?25h[?25lo[?12l[?25h[?25ls[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25ló[?12l[?25h[?25lr[?12l[?25h[?25li[?12l[?25h[?25lo[?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25l"[?12l[?25h[?25l</span><br>
+<span id="line-18">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lg[?12l[?25h[?25le[?12l[?25h[?25lt[?12l[?25h[?25l_[?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l:[?12l[?25h[?25l</span><br>
+<span id="line-19">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lu[?12l[?25h[?25lr[?12l[?25h[?25ll[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25lh[?12l[?25h[?25lt[?12l[?25h[?25lt[?12l[?25h[?25lp[?12l[?25h[?25ls[?12l[?25h[?25l:[?12l[?25h[?25l/[?12l[?25h[?25l/[?12l[?25h[?25lg[?12l[?25h[?25li[?12l[?25h[?25lt[?12l[?25h[?25lh[?12l[?25h[?25lu[?12l[?25h[?25lb[?12l[?25h[?25l.[?12l[?25h[?25lc[?12l[?25h[?25lo[?12l[?25h[?25lm[?12l[?25h[?25l/[?12l[?25h[?25lL[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l/[?12l[?25h[?25lr[?12l[?25h[?25le[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ls[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25l/[?12l[?25h[?25ld[?12l[?25h[?25lo[?12l[?25h[?25lw[?12l[?25h[?25ln[?12l[?25h[?25ll[?12l[?25h[?25lo[?12l[?25h[?25la[?12l[?25h[?25ld[?12l[?25h[?25l/[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l/[?12l[?25h[?25lL[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l-[?12l[?25h[?25l{[?12l[?25h[?25l{[?12l[?25h[?25l [?12l[?25h[?25lv[?12l[?25h[?25le[?12l[?25h[?25lr[?12l[?25h[?25ls[?12l[?25h[?25la[?12l[?25h[?25lo[?12l[?25h[?25l_[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l [?12l[?25h[?25l}[?12l[?25h[?25l}[?12l[?25h[?25l.[?12l[?25h[?25lz[?12l[?25h[?25li[?12l[?25h[?25lp[?12l[?25h[?25l</span><br>
+<span id="line-20">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25ls[?12l[?25h[?25lt[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l/[?12l[?25h[?25lt[?12l[?25h[?25lm[?12l[?25h[?25lp[?12l[?25h[?25l/[?12l[?25h[?25ll[?12l[?25h[?25le[?12l[?25h[?25la[?12l[?25h[?25ln[?12l[?25h[?25lt[?12l[?25h[?25li[?12l[?25h[?25lm[?12l[?25h[?25le[?12l[?25h[?25l</span><br>
+<span id="line-21">[?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25l [?12l[?25h[?25lm[?12l[?25h[?25lo[?12l[?25h[?25ld[?12l[?25h[?25le[?12l[?25h[?25l:[?12l[?25h[?25l [?12l[?25h[?25l0[?12l[?25h[?25l7[?12l[?25h[?25l5[?12l[?25h[?25l5[?12l[?25h[?25l</span><br>
+<span id="line-22">[?12l[?25h[?25l[?12l[?25h[?25l         <span style="background-color: #AAAAAA; color: #000000">M-D</span><br> Formato DOS<span style="background-color: #AAAAAA; color: #000000">M-A</span><br> Anexar<span style="background-color: #AAAAAA; color: #000000">B</span><br> Segurança<span style="background-color: #AAAAAA; color: #000000">C</span><br> Cancelar           <span style="background-color: #AAAAAA; color: #000000">M-M</span><br> Formato Mac<span style="background-color: #AAAAAA; color: #000000">M-P</span><br> Prepor<span style="background-color: #AAAAAA; color: #000000">^T</span><br> P/ ficheiros</span><br>
+<span id="line-23"><span style="background-color: #AAAAAA; color: #000000">Nome do ficheiro onde escrever: tasks/tasks.yml                                                                                           </span><br>[?12l[?25h[?25l <span style="background-color: #AAAAAA; color: #000000">[ A escrever... ]</span><br><span style="background-color: #AAAAAA; color: #000000">          </span><br><span style="background-color: #AAAAAA; color: #000000">[ 111 linhas escritas ]</span><br><span style="background-color: #AAAAAA; color: #000000">^O</span><br> Gravar<span style="background-color: #AAAAAA; color: #000000">^W</span><br> Procurar      <span style="background-color: #AAAAAA; color: #000000">^K</span><br> Cortar txt    <span style="background-color: #AAAAAA; color: #000000">^J</span><br> Justificar    <span style="background-color: #AAAAAA; color: #000000">^C</span><br> Pos cursor<span style="background-color: #AAAAAA; color: #000000">U</span><br> Desfazer     <span style="background-color: #AAAAAA; color: #000000">M-A</span><br> Marcar txt<span style="background-color: #AAAAAA; color: #000000">X</span><br> Sair    <span style="background-color: #AAAAAA; color: #000000">^R</span><br> Carregar<span style="background-color: #AAAAAA; color: #000000">^\</span><br> Substituir    <span style="background-color: #AAAAAA; color: #000000">^U</span><br> Colar txt     <span style="background-color: #AAAAAA; color: #000000">^T</span><br> Ortografia    <span style="background-color: #AAAAAA; color: #000000">^_</span><br> Ir p/ linha   <span style="background-color: #AAAAAA; color: #000000">M-E</span><br> Refazer      <span style="background-color: #AAAAAA; color: #000000">M-6</span><br> Copiar txt</span><br>
+<span id="line-24">[?12l[?25h[?25l[?12l[?25h[?1049l</span><br>
+<span id="line-25">[?1l&gt;[?2004l]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule lint</span><br>
+<span id="line-26"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: dependency, lint</span><br>
+<span id="line-27"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-28"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-29"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-30"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">dependency</span><br></span><br>
+<span id="line-31"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-32"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-33"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">lint</span><br></span><br>
+<span id="line-34">COMMAND: set -e</span><br>
+<span id="line-35">yamllint .</span><br>
+<span id="line-36">ansible-lint</span><br>
+<span id="line-37"></span><br>
+<span id="line-38">Loading custom .yamllint config file, this extends our internal yamllint config.</span><br>
+<span id="line-39">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule converge</span><br>
+<span id="line-40"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: dependency, create, prepare, converge</span><br>
+<span id="line-41"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-42"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-43"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-44"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">dependency</span><br></span><br>
+<span id="line-45"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-46"><span style="color: #aa0000">WARNING </span><br> Skipping, missing the requirements file.</span><br>
+<span id="line-47"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">create</span><br></span><br>
+<span id="line-48"><span style="color: #aa0000">WARNING </span><br> Skipping, instances already created.</span><br>
+<span id="line-49"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">prepare</span><br></span><br>
+<span id="line-50"><span style="color: #aa0000">WARNING </span><br> Skipping, instances already prepared.</span><br>
+<span id="line-51"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">converge</span><br></span><br>
+<span id="line-52"></span><br>
+<span id="line-53">PLAY [Converge] **************************************************************************************************************************</span><br>
+<span id="line-54"></span><br>
+<span id="line-55">TASK [Gathering Facts] *******************************************************************************************************************</span><br>
+<span id="line-56"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-57"></span><br>
+<span id="line-58">TASK [Include leantime_ansible] **********************************************************************************************************</span><br>
+<span id="line-59"></span><br>
+<span id="line-60">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************</span><br>
+<span id="line-61"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-62"></span><br>
+<span id="line-63">TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************</span><br>
+<span id="line-64"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-65"></span><br>
+<span id="line-66">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************</span><br>
+<span id="line-67"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-68"></span><br>
+<span id="line-69">TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************</span><br>
+<span id="line-70"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-71"></span><br>
+<span id="line-72">TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************</span><br>
+<span id="line-73"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-74"></span><br>
+<span id="line-75">TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************</span><br>
+<span id="line-76"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span><br></span><br>
+<span id="line-77"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span><br></span><br>
+<span id="line-78"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span><br></span><br>
+<span id="line-79"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span><br></span><br>
+<span id="line-80"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span><br></span><br>
+<span id="line-81"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span><br></span><br>
+<span id="line-82"></span><br>
+<span id="line-83">TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************</span><br>
+<span id="line-84"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</span><br></span><br>
+<span id="line-85"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</span><br></span><br>
+<span id="line-86"></span><br>
+<span id="line-87">TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************</span><br>
+<span id="line-88"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-89"></span><br>
+<span id="line-90">TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************</span><br>
+<span id="line-91"><span style="font-weight: bold; color: #E850A8">[WARNING]: Module did not set no_log for update_password</span><br></span><br>
+<span id="line-92"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-93"></span><br>
+<span id="line-94">TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************</span><br>
+<span id="line-95"><span style="color: #aa5500">changed: [ubuntu-20.04]</span><br></span><br>
+<span id="line-96"></span><br>
+<span id="line-97">PLAY RECAP *******************************************************************************************************************************</span><br>
+<span id="line-98"><span style="color: #aa5500">ubuntu-20.04</span><br>               : <span style="color: #00aa00">ok=11  </span><br> <span style="color: #aa5500">changed=1   </span><br> unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span><br>
+<span id="line-99"></span><br>
+<span id="line-100"></span><br>
+<span id="line-101">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule idempotence</span><br>
+<span id="line-102"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: idempotence</span><br>
+<span id="line-103"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-104"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-105"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-106"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">idempotence</span><br></span><br>
+<span id="line-107"></span><br>
+<span id="line-108">PLAY [Converge] **************************************************************************************************************************</span><br>
+<span id="line-109"></span><br>
+<span id="line-110">TASK [Gathering Facts] *******************************************************************************************************************</span><br>
+<span id="line-111"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-112"></span><br>
+<span id="line-113">TASK [Include leantime_ansible] **********************************************************************************************************</span><br>
+<span id="line-114"></span><br>
+<span id="line-115">TASK [leantime_ansible : Atualiza a cache (equivalente a apt update)] ********************************************************************</span><br>
+<span id="line-116"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-117"></span><br>
+<span id="line-118">TASK [leantime_ansible : Atualiza o sistema operativo] ***********************************************************************************</span><br>
+<span id="line-119"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-120"></span><br>
+<span id="line-121">TASK [leantime_ansible : Instalar as dependencias necessária ao programa leantime] *******************************************************</span><br>
+<span id="line-122"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-123"></span><br>
+<span id="line-124">TASK [leantime_ansible : Instala o serviço apache2 no arranque do sistema] ***************************************************************</span><br>
+<span id="line-125"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-126"></span><br>
+<span id="line-127">TASK [leantime_ansible : Rotina Auxiliar: Procura o caminho do ficheiro php.ini do servidor apache2] *************************************</span><br>
+<span id="line-128"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-129"></span><br>
+<span id="line-130">TASK [leantime_ansible : Ativa várias opções no ficheiro php.ini, utilizando o módulo lineinfile.] ***************************************</span><br>
+<span id="line-131"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span><br></span><br>
+<span id="line-132"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span><br></span><br>
+<span id="line-133"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span><br></span><br>
+<span id="line-134"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span><br></span><br>
+<span id="line-135"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span><br></span><br>
+<span id="line-136"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span><br></span><br>
+<span id="line-137"></span><br>
+<span id="line-138">TASK [leantime_ansible : Cria a directoria temporária leantime e a directoria de apache leantime] ****************************************</span><br>
+<span id="line-139"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/tmp/leantime'})</span><br></span><br>
+<span id="line-140"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'path': '/var/www/leantime'})</span><br></span><br>
+<span id="line-141"></span><br>
+<span id="line-142">TASK [leantime_ansible : Cria a base de dados de mysql para o leantime] ******************************************************************</span><br>
+<span id="line-143"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-144"></span><br>
+<span id="line-145">TASK [leantime_ansible : Cria o utilizador para a base de dados leantime] ****************************************************************</span><br>
+<span id="line-146"><span style="font-weight: bold; color: #E850A8">[WARNING]: Module did not set no_log for update_password</span><br></span><br>
+<span id="line-147"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-148"></span><br>
+<span id="line-149">TASK [leantime_ansible : Faz o download do software leantime a partir do repositório git] ************************************************</span><br>
+<span id="line-150"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-151"></span><br>
+<span id="line-152">PLAY RECAP *******************************************************************************************************************************</span><br>
+<span id="line-153"><span style="color: #00aa00">ubuntu-20.04</span><br>               : <span style="color: #00aa00">ok=11  </span><br> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span><br>
+<span id="line-154"></span><br>
+<span id="line-155"></span><br>
+<span id="line-156"><span style="color: #0000aa">INFO    </span><br> Idempotence completed successfully.</span><br>
+<span id="line-157">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ molecule verify</span><br>
+<span id="line-158"><span style="color: #0000aa">INFO    </span><br> default scenario test matrix: verify</span><br>
+<span id="line-159"><span style="color: #0000aa">INFO    </span><br> Performing prerun<span style="color: #aa5500">...</span><br></span><br>
+<span id="line-160"><span style="color: #0000aa">INFO    </span><br> Using .cache/roles/nunomourinho.leantime_ansible symlink to current repository in order to enable Ansible to find the role using its expected full name.</span><br>
+<span id="line-161"><span style="color: #0000aa">INFO    </span><br> Added <span style="color: #aa5500">ANSIBLE_ROLES_PATH</span><br>=~<span style="color: #E850A8">/.ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/usr/share/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:<span style="color: #E850A8">/etc/ansible/</span><br><span style="color: #ff90e8">roles</span><br>:.<span style="color: #E850A8">/.cache/</span><br><span style="color: #ff90e8">roles</span><br></span><br>
+<span id="line-162"><span style="color: #0000aa">INFO    </span><br> <span style="font-weight: lighter; color: #00aaaa">Running </span><br><span style="font-weight: lighter; color: #00aa00">default</span><br><span style="font-weight: lighter; color: #00aaaa"> &gt; </span><br><span style="font-weight: lighter; color: #00aa00">verify</span><br></span><br>
+<span id="line-163"><span style="color: #0000aa">INFO    </span><br> Running Ansible Verifier</span><br>
+<span id="line-164"></span><br>
+<span id="line-165">PLAY [Infraestrutura conduzida por testes] ***********************************************************************************************</span><br>
+<span id="line-166"></span><br>
+<span id="line-167">TASK [Variáveis] *************************************************************************************************************************</span><br>
+<span id="line-168"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-169"></span><br>
+<span id="line-170">TASK [Simulação: Atualizar a cache do sistema] *******************************************************************************************</span><br>
+<span id="line-171"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-172"></span><br>
+<span id="line-173">TASK [teste: a cache encontra-se actualizada?] *******************************************************************************************</span><br>
+<span id="line-174"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-175"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-176"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span><br></span><br>
+<span id="line-177"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-178"></span><br>
+<span id="line-179">TASK [Atualizar o sistema operativo (equivalente a apt upgrade)] *************************************************************************</span><br>
+<span id="line-180"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-181"></span><br>
+<span id="line-182">TASK [teste: o sistema operativo encontra-se atualizado?] ********************************************************************************</span><br>
+<span id="line-183"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-184"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-185"><span style="color: #00aa00">    "msg": "SUCESSO: O sistema operativo está atualizado"</span><br></span><br>
+<span id="line-186"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-187"></span><br>
+<span id="line-188">TASK [Teste: a cache encontra-se atualizada?] ********************************************************************************************</span><br>
+<span id="line-189"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-190"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-191"><span style="color: #00aa00">    "msg": "SUCESSO: A cache está atualizada"</span><br></span><br>
+<span id="line-192"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-193"></span><br>
+<span id="line-194">TASK [Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas] ****************************************</span><br>
+<span id="line-195"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-196"></span><br>
+<span id="line-197">TASK [Teste: as dependencias encontra-se instaladas?] ************************************************************************************</span><br>
+<span id="line-198"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-199"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-200"><span style="color: #00aa00">    "msg": "SUCESSO: As dependencias estavam instaladas"</span><br></span><br>
+<span id="line-201"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-202"></span><br>
+<span id="line-203">TASK [Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque] ****************************************</span><br>
+<span id="line-204"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-205"></span><br>
+<span id="line-206">TASK [Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?] ***********************************************</span><br>
+<span id="line-207"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-208"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-209"><span style="color: #00aa00">    "msg": "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"</span><br></span><br>
+<span id="line-210"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-211"></span><br>
+<span id="line-212">TASK [Rotina Auxiliar&gt; Procura o caminho do ficheiro php.ini do servidor apache2] ********************************************************</span><br>
+<span id="line-213"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-214"></span><br>
+<span id="line-215">TASK [Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile.] ****************************************</span><br>
+<span id="line-216"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^file_uploads', 'line': 'file_uploads = 1'})</span><br></span><br>
+<span id="line-217"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^upload_max_filesize', 'line': 'upload_max_filesize = 1G'})</span><br></span><br>
+<span id="line-218"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_file_uploads', 'line': 'max_file_uploads = 20'})</span><br></span><br>
+<span id="line-219"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^post_max_size', 'line': 'post_max_size = 2G'})</span><br></span><br>
+<span id="line-220"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^memory_limit', 'line': 'memory_limit = 2G'})</span><br></span><br>
+<span id="line-221"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; (item={'regexp': '^max_input_time', 'line': 'max_input_time = 3600'})</span><br></span><br>
+<span id="line-222"></span><br>
+<span id="line-223">TASK [Teste: As linhas do php.ini encontram-se alteradas ?] ******************************************************************************</span><br>
+<span id="line-224"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-225"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-226"><span style="color: #00aa00">    "msg": "SUCESSO: O ficheiro php.ini foi alterado com sucesso"</span><br></span><br>
+<span id="line-227"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-228"></span><br>
+<span id="line-229">TASK [Simulação: Obtem informação sobre a pastas /var/www/leantime] **********************************************************************</span><br>
+<span id="line-230"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-231"></span><br>
+<span id="line-232">TASK [Teste: A pasta /var/www/leantime existe e tem as permissões certas?] ***************************************************************</span><br>
+<span id="line-233"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-234"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-235"><span style="color: #00aa00">    "msg": "SUCESSO: Permissões correctas no site leantime"</span><br></span><br>
+<span id="line-236"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-237"></span><br>
+<span id="line-238">TASK [Simulação: Verifica se é necessário criar a base de dados leantime_database] *******************************************************</span><br>
+<span id="line-239"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-240"></span><br>
+<span id="line-241">TASK [Teste: A base de dados leantime_database existe ?] *********************************************************************************</span><br>
+<span id="line-242"><span style="color: #00aa00">ok: [ubuntu-20.04] =&gt; {</span><br></span><br>
+<span id="line-243"><span style="color: #00aa00">    "changed": false,</span><br></span><br>
+<span id="line-244"><span style="color: #00aa00">    "msg": "SUCESSO: A base de dados leantime_database já se encontra criada"</span><br></span><br>
+<span id="line-245"><span style="color: #00aa00">}</span><br></span><br>
+<span id="line-246"></span><br>
+<span id="line-247">TASK [Simulação e Teste: Verifica se o endereço git para a versão de leantime existe] ****************************************************</span><br>
+<span id="line-248"><span style="color: #00aa00">ok: [ubuntu-20.04]</span><br></span><br>
+<span id="line-249"></span><br>
+<span id="line-250">PLAY RECAP *******************************************************************************************************************************</span><br>
+<span id="line-251"><span style="color: #00aa00">ubuntu-20.04</span><br>               : <span style="color: #00aa00">ok=18  </span><br> changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0</span><br>
+<span id="line-252"></span><br>
+<span id="line-253"><span style="color: #0000aa">INFO    </span><br> Verifier completed successfully.</span><br>
+<span id="line-254">]0;admlocal@devOps: ~/leantime_ansibleadmlocal@devOps:~/leantime_ansible$ exit</span><br>
+<span id="line-255">exit</span><br>
+<span id="line-256"></span><br>
