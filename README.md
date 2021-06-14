@@ -43,8 +43,8 @@ Author Information
 Nuno Mourinho.
 ---
 
-***Tutoriais em vídeo, passo a passo.
-001 - Ansible lint - Teste para deteção de erros de sintaxe
+#Tutoriais em vídeo, passo a passo.
+##001 - Ansible lint - Teste para deteção de erros de sintaxe
 Detectou os seguintes erros de falta de preenchimento no ficheiro (meta/main.yml): platforms - plataformas suportadas pelo role
 author - nome do autor do role
 company - nome da empresa
