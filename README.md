@@ -1,12 +1,13 @@
 Role Name
 =========
 
-Este role instala a plataforma de gestão de projetos agil leantime num servidor ou máquina virtual com Ubuntu 20.04
+Este role instala a plataforma de gestão de projetos agil leantime num servidor ou máquina virtual com Ubuntu 20.04. O desenvolvimento deste role teve a sua origem no trabalho da cadeira de Segurança e Usabilidade do Software, do mestrado em Engenharia de Segurança Informática, na Escola Superior de Tecnologia e Gestão de Beja.  
+Cada um dos commits deste role representa uma fase do TDI - Test Driven Infraestructure. Cada commit tem também dentro da pasta doc/asciinema um video dos passos executados. A metodologia do TDI consiste na criação de testes e depois na escrita do código para o teste passar. Sempre que possível, cada commit consiste apenas de um único passo, de teste ou de escrita de código para passar o teste.
 
 Requirements
 ------------
 
-Ubuntu 20.04, Ubuntu 21.04. 
+Ubuntu 20.04. 
 
 Role Variables
 --------------
