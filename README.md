@@ -42,3 +42,6 @@ Author Information
 
 Nuno Mourinho.
 ---
+
+**Tutoriais em vídeo, passo a passo.
+[![asciicast](https://asciinema.org/a/419965.svg)](https://asciinema.org/a/419965)
