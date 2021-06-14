@@ -50,7 +50,7 @@ Tutoriais em vídeo, passo a passo.
 ---
 
 Detectou os seguintes erros de falta de preenchimento no ficheiro (meta/main.yml): platforms - plataformas suportadas pelo role
-**author** - nome do autor do role
-**company** - nome da empresa
-**license** - licenca
+**author** - nome do autor do role  
+**company** - nome da empresa  
+**license** - licenca  
 [![asciicast](https://asciinema.org/a/419965.svg)](https://asciinema.org/a/419965)
