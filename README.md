@@ -7,7 +7,7 @@ Cada um dos commits deste role representa uma fase do TDI - Test Driven Infraest
 Requirements
 ------------
 
-Ubuntu 20.04. 
+Ubuntu 20.04 (focal). 
 
 Instruções de instalação
 ------------
