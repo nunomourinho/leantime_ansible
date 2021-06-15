@@ -44,9 +44,17 @@ Example Playbook
 ----------------
 
     - hosts: servers
+      vars:
+        - login_leantime: "adminLeanTimeDB"  
+        - password_leantime: "P0ssW0rD###)"  
+        - login_website: "utilizador@email.com"  
+        - password_website: "Passw0rd###)Websit3"  
+        - first_name_website: "Nuno"  
+        - last_name_website: "Mourinho"  
+        - company_website: "MESI"  
+        - versao_leantime: "v2.1.7"  
       roles:
-         - { login_leantime: "adminLeanTimeDB", password_leantime: "P0ssW0rD###)", login_website: "utilizador@email.com", password_website: "Passw0rd###)Websit3",first_name_website: "Nuno", last_name_website: "Mourinho", company_website: "MESI",  versao_leantime: "v2.1.7" }
-         
+         - { role: leantime_ansible }                  
 
 License
 -------
