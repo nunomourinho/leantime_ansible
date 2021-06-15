@@ -11,7 +11,7 @@ Ubuntu 20.04.
 
 Instruções de instalação
 ------------
-Para instalar este role no localhost é necessário instalar os requesitos doPermitRootLogin prohibit-password ansible e configurar as chaves publicas e privadas do servidor de ssh. Deverá proceder do seguinte modo:  
+Para instalar este role no localhost é necessário instalar os requesitos do ansible e configurar as chaves publicas e privadas do servidor de ssh. Deverá proceder do seguinte modo:  
 1) Instalar o sistema operativo ubuntu server versão 20.04 server  
 2) apt install ansible git -y
 3) ssh-keygen
@@ -21,7 +21,8 @@ Para instalar este role no localhost é necessário instalar os requesitos doPer
 7) nano /etc/ssh/sshd_config (colocar PermitRootLogin prohibit-password)
 8) service sshd reload
 9) git clone https://github.com/nunomourinho/leantime_ansible.git
-10) ansible localhost -v -m include_role -a name=leantime_ansible
+10)  nano leantime_ansible/vars/main.yml (editar login e pwd do administrador do site e da base de dados)
+11) ansible localhost -v -m include_role -a name=leantime_ansible
 
 Role Variables
 --------------
