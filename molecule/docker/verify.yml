@@ -1,0 +1,368 @@
+---
+# Tutorial de inspiração para a infraestrutura conduzida por teste no site
+# https://www.adictosaltrabajo.com/2020/05/08/ansible-testing-using-molecule-with-ansible-as-verifier/
+
+- name: "Infraestrutura conduzida por testes"
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+  - name: Variáveis
+    include_vars:
+      file: ../../vars/main.yml
+
+  - name: "Simulação: Atualizar a cache do sistema"
+    apt:
+      update_cache: true
+      cache_valid_time: 3600
+    check_mode: true
+    register: estado
+
+  - name: "teste: a cache encontra-se actualizada?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: A cache está atualizada"
+      fail_msg: "ERRO: Existem actualizações pendentes"
+
+  - name: "Atualizar o sistema operativo (equivalente a apt upgrade)"
+    apt:
+      upgrade: safe
+    check_mode: true
+    register: estado
+
+  - name: "teste: o sistema operativo encontra-se atualizado?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: O sistema operativo está atualizado"
+      fail_msg: "ERRO: Existem actualizações pendentes"
+
+  - name: "Teste: a cache encontra-se atualizada?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: A cache está atualizada"
+      fail_msg: "ERRO: Existem atualizações pendentes"
+
+  - name: "Simulação: testa se as aplicações dependencia do software leantime se encontram instaladas"
+    apt:
+      pkg:
+      - mc
+      - screen
+      - git
+      - apache2
+      - mysql-server
+      - php
+      - php-mysql
+      - php-ldap
+      - php-cli
+      - php-soap
+      - php-json
+      - graphviz
+      - php-xml
+      - php-gd
+      - php-zip
+      - libapache2-mod-php
+      - php-dev
+      - libmcrypt-dev
+      - gcc
+      - make
+      - autoconf
+      - libc-dev
+      - pkg-config
+      - pwgen
+      - curl
+      - unzip
+      - zip
+      - php-mbstring
+      - expect
+      - net-tools
+      - python3-mysqldb
+      - python3-apt
+      - python3-pycurl
+    check_mode: true
+    register: estado
+
+  - name: "Teste: as dependencias encontra-se instaladas?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: As dependencias estavam instaladas"
+      fail_msg: "ERRO: Faltam instalar algumas dependencias. O software pode estar parcialmente instalado"
+
+  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+  - name: "Simulação: Testar se o serviço apache2 se encontra instalado, iniciado e ativo no arranque"
+    service:
+      name: apache2
+      state: started
+      enabled: true
+    check_mode: true
+    register: estado
+
+  - name: "Teste: O serviço apache2 encontra-se ativo no arranque no sistema, e está iniciado?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: O serviço apache2 está correctamente instalado e inicia com o arranque do sistema"
+      fail_msg: "ERRO: O serviço apache2 não se encontra correctamente instalado"
+
+  # Fonte: https://www.mydailytutorials.com/using-ansible-find-module-search-filesfolder
+  - name: "Rotina Auxiliar> Procura o caminho do ficheiro php.ini do servidor apache2"
+    find:
+      paths: /etc
+      patterns: "php.ini"
+      recurse: true
+    register: caminho_php_ini
+
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+  - name: "Simulação: Ativa a opção file_uploads no ficheiro php.ini, utilizando o módulo lineinfile."
+    ansible.builtin.lineinfile:
+      path: "{{ caminho_php_ini.files[0].path }}"
+      regexp: "{{ item.regexp  }}"
+      line: "{{ item.line }}"
+    with_items:
+      - regexp: "^file_uploads"
+        line: "file_uploads = 1"
+      - regexp: "^upload_max_filesize"
+        line: "upload_max_filesize = 1G"
+      - regexp: "^max_file_uploads"
+        line: "max_file_uploads = 20"
+      - regexp: "^post_max_size"
+        line: "post_max_size = 2G"
+      - regexp: "^memory_limit"
+        line: "memory_limit = 2G"
+      - regexp: "^max_input_time"
+        line: "max_input_time = 3600"
+    check_mode: true
+    register: estado
+
+  - name: "Teste: As linhas do php.ini encontram-se alteradas ?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: O ficheiro php.ini foi alterado com sucesso"
+      fail_msg: "ERRO: Algumas alterações ao ficheiro php.ini não tiveram sucesso"
+  
+  # O site deve existir na pasta /var/www/leantime. Este teste visa determinar se a pasta
+  # existe e se temas permissões certas
+  # Fonte de inspiração: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre a pastas /var/www/leantime"
+    stat:
+      path: "/var/www/leantime"
+    register: pasta
+ 
+  - name: "Teste: A pasta /var/www/leantime existe e tem as permissões certas?"
+    assert:
+      that:
+        - pasta.stat.exists
+        - pasta.stat.isdir
+        - pasta.stat.mode == "0755"
+        - pasta.stat.pw_name == "www-data"
+        - pasta.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas no site leantime"
+      fail_msg: "ERRO: Permissões incorrectas no site leantime ou site não existente"
+
+  # Outro dos requesitos é a existência de uma base de dados para o site.
+  # Esta base de dados deve ser criada, logo tem de ser testada para determinar se ela existe ou não.
+  # Fonte de inspiração: https://serverfault.com/questions/173978/from-a-shell-script-how-can-i-check-whether-a-mysql-database-exists
+  - name: "Simulação: Verifica se é necessário criar a base de dados leantime_database"
+    shell: "mysql -u root -e 'use leantime_database'"
+    register: result
+    failed_when: false
+    changed_when: false
+
+  - name: "Teste: A base de dados leantime_database existe ?"
+    assert:
+      that:
+      - result.rc == 0
+      success_msg: "SUCESSO: A base de dados leantime_database já se encontra criada"
+      fail_msg: "ERRO: Não existe a base de dados leantime_database"
+
+  # Teste: O download do software leantime deve ser possível, a partir do site do leantime
+  - name: "Simulação e Teste: Verifica se o endereço git para a versão de leantime existe"
+    uri:
+      url: https://github.com/Leantime/leantime/releases/download/{{ versao_leantime }}/Leantime-{{ versao_leantime }}.zip
+    register: resultado
+
+  # Teste: Deve existir o ficheiro configuration.php no site do leantime. A existência deste ficheiro
+  #        com as permissões certas indica que o processo de unzip correu bem
+  # Documentação oficial em: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /var/www/leantime/config/configuration.php"
+    stat:
+      path: "/var/www/leantime/config/configuration.php"
+    register: ficheiro
+ 
+  - name: "Teste: O ficheiro /var/www/leantime/config/configuration.php existe e tem as permissões certas?"
+    assert:
+      that:
+        - ficheiro.stat.exists
+        - ficheiro.stat.isreg
+        - ficheiro.stat.mode == "0755"
+        - ficheiro.stat.pw_name == "www-data"
+        - ficheiro.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas e ficheiro configuration.php existente"
+      fail_msg: "ERRO: Permissões incorrectas ou ficheiro configuration.php não existente"
+
+  # Teste: O ficheiro /var/www/leantime/config/configuration.php necessita de ser alterado.
+  # As variáveis dbuser, dbDatabase, e dbPassword necessitam de estar configuradas.
+  # Por simulação o sistema vai determinar se estas estão configuradas com o valor esperado.
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbuser foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbUser=""'
+      replace: 'dbUser="{{ login_leantime }}"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: O dbUser foi alterado?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbUser foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbUser não foi alterado no ficheiro configuration.php"
+
+
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbDatabase foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbDatabase=""'
+      replace: 'dbDatabase="leantime_database"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: a variável dbDatabase foi alterada?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbDatabase foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbDatabase não foi alterado no ficheiro configuration.php"
+
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  - name: "Simulação: Testa se o dbPassword foi alterado no ficheiro configuration.php utilizando o módulo replace."
+    ansible.builtin.replace:
+      path: /var/www/leantime/config/configuration.php
+      regexp: 'dbPassword=""'
+      replace: 'dbPassword="{{ password_leantime }}"'
+    check_mode: yes
+    register: conf
+    failed_when: false
+
+  - name: "Teste: O dbPassword foi alterado?"
+    assert:
+      that:
+      - conf is not changed 
+      - conf is not failed
+      success_msg: "SUCESSO: O dbPassword foi alterado no ficheiro configuration.php"
+      fail_msg: "ERRO: O dbPassword não foi alterado no ficheiro configuration.php"
+
+  # A configuração do site leantime necessita que seja criado um site através de um ficheiro de
+  # configuração, dentro das pasta do apache2. Deve existir um ficheiro de configuração do
+  # leantime em (/etc/apache2/sites-available
+  # Fonte: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-available/leantime.conf"
+    stat:
+      path: "/etc/apache2/sites-available/leantime.conf"
+    register: ficheiro
+ 
+  - name: "Teste: O ficheiro /etc/apache2/sites-available/leantime.conf existe e tem as permissões certas?"
+    assert:
+      that:
+        - ficheiro.stat.exists
+        - ficheiro.stat.isreg
+        - ficheiro.stat.mode == "0777"
+        - ficheiro.stat.pw_name == "root"
+        - ficheiro.stat.gr_name == "www-data"
+      success_msg: "SUCESSO: Permissões correctas"
+      fail_msg: "ERRO: Permissões incorrectas"
+
+  # O site deve estar ativo no apache. Este teste vai verificar se o site se encontra ativo
+  # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/leantime.conf"
+    stat:
+      path: "/etc/apache2/sites-enabled/leantime.conf"
+    register: ficheiro
+ 
+  - name: "Teste: O ficheiro /etc/apache2/sites-enabled/leantime.conf existe e tem as permissões certas?"
+    assert:
+      that:
+        - ficheiro.stat.exists
+        - ficheiro.stat.islnk
+        - ficheiro.stat.mode == "0777"
+        - ficheiro.stat.pw_name == "root"
+        - ficheiro.stat.gr_name == "root"
+      success_msg: "SUCESSO: Permissões correctas"
+      fail_msg: "ERRO: Permissões incorrectas"
+
+  # https//docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+  - name: "Simulação: Obtem informação sobre o ficheiro /etc/apache2/sites-enabled/000-default.conf"
+    stat:
+      path: "/etc/apache2/sites-enabled/000-default.conf"
+    register: ficheiro
+
+  - name: "Teste: O ficheiro /etc/apache2/sites-enabled/000-default.conf NÃO existe?"
+    assert:
+      that:
+        - not ficheiro.stat.exists
+
+  - name: "Simulação: Activa o módulo mod_rewrite no apache"
+    apache2_module:
+      name: rewrite
+      state: present
+    check_mode: true
+    register: estado
+
+  - name: "Simulação: Activa o módulo mod_rewrite no apache"
+    apache2_module:
+      name: rewrite
+      state: present
+    check_mode: true
+    register: estado
+ 
+  - name: "Teste: o mod_rewrite do apache encontra-se ativo?"
+    assert:
+      that:
+      - not estado.changed
+      success_msg: "SUCESSO: mod_rewrite encontra-se instalado e ativo"
+      fail_msg: "ERRO: mod_rewrite não instalado ou não ativo!"
+
+  # Teste: Verificar se o sistema se encontra devidamente instalado e configurado.
+  #        Se a base de dados estiver correctamente configurada e se o administrador do
+  #        sistema estiver configurado, deve ser possível fazer login ao sistema sem problemas.
+  #        Este teste tem como objetivo verificar se é possível fazer o login
+  # Através do BurpSuite (https://portswigger.net/burp), aprendido nas aulas de Testes de Penetração e Desenvolvimento de Exploits
+  # foi realizado um debug da sessão de login. Com base nessa sessão a fase de Login encontra-se aqui replicada.
+  # É necessário gravar a cockie de sessão. A página oficial do Ansible contem um erro que é resolvido com a seguinte...
+  # Fonte: https://stackoverflow.com/questions/63791689/ansible-looses-cookie-content
+  - name: "Simulação: Tenta fazer login na aplicação com o utilizador criado"
+    uri:
+      url: http://localhost
+      method: POST
+      body: "username={{ login_website  }}&password={{ password_website  }}&redirectUrl:=/&login=Login"
+      status_code: 200
+      follow_redirects: true
+    register: paginalogin
+
+  - name: "Simulação: Obtem a página showMyCalendar para testar uma página com o login efetuado com sucesso"
+    uri:
+      url: http://localhost/calendar/showMyCalendar
+      method: GET
+      headers:
+        Cookie: "{{ paginalogin.set_cookie }}"
+      return_content: yes
+    register: paginaweb
+
+  - name: "Teste: Existe o texto editCompanySettings na página?"
+    assert:
+      that:
+      - "'password' not in paginaweb.content"
+      - "'editCompanySettings' in paginaweb.content"
+      success_msg: "SUCESSO: Login com sucesso. Utilizador e palavra passe iniciais correctamente criados"
+      fail_msg: "ERRO: Não foi possivel fazer login! O utilizador ou palavra passe não foram criados com sucesso!"
