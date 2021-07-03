@@ -26,4 +26,3 @@ gifs: $(MYDIR)/*.cast
 		base=$${ficheiro%.cast} ; \
 		ffmpeg -f image2 -framerate 4 -i ${MYVIDEO}/$${base}/%d.png -vf scale=1024x768,tpad=stop_mode=clone:stop_duration=20 ./doc/gif/$${base}.gif ; \
 	done
-
