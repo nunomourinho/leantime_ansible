@@ -70,6 +70,7 @@ Nuno Mourinho.
 Tutoriais em vídeo, passo a passo.
 =========
 Consultar: https://asciinema.org/~ngam-mesi ou pasta docs/asciinema
+
 001 - Ansible lint - Teste para deteção de erros de sintaxe
 ---
 
