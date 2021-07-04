@@ -5,6 +5,7 @@ sudo apt update
 sudo apt install ansible ansible-lint git-all virtualbox virtualbox-ext-pack python3-pip -y
 sudo apt install mc screen -y
 sudo apt install net-tools -y
+sudo apt install docker docker-compose -y
 python3 -m pip install "molecule[ansible]"
 python3 -m pip install "molecule[docker,lint]"
 python3 -m pip install "molecule-vagrant"
