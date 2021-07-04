@@ -26,7 +26,7 @@ Para instalar este role no localhost é necessário instalar os requesitos do an
 
 Intalação do molecule
 ------------
-bash install_molecule
+bash install_molecule.sh
 
 Role Variables
 --------------
