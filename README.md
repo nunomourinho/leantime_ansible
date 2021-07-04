@@ -24,6 +24,10 @@ Para instalar este role no localhost é necessário instalar os requesitos do an
 10)  nano leantime_ansible/vars/main.yml (editar login e pwd do administrador do site e da base de dados)
 11) ansible localhost -v -m include_role -a name=leantime_ansible
 
+Intalação do molecule
+------------
+bash instaLL_molecule
+
 Role Variables
 --------------
     login_leantime - Utilizador a ser criado na base de dados de Mysql ou MariaDB
